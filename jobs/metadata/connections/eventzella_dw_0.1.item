@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TalendMetadata="http://www.talend.org/metadata/connection/2010" xmlns:orgomg.cwm.resource.relational="http:///orgomg/cwm/resource/relational.ecore">
+  <TalendMetadata:DatabaseConnection xmi:id="_ofWWkAtNEfGIHKxNMBsoJA" name="eventzella_dw" id="_bx4lcAtNEfGIHKxNMBsoJA" label="eventzella_dw" dataPackage="_UNsHIBUEEfGnsbHwB11MJw" DatabaseType="PostgreSQL" DriverClass="org.postgresql.Driver" URL="jdbc:postgresql://localhost:5432/eventzilla_dw?" dbVersionString="V9_X" Port="5432" Username="postgres" Password="enc:system.encryption.key.v1:QzWaMO6RTeTXSNBVt/Ih19HtVTtGR6bm/wWwQCATGEVQCGZWUA==" ServerName="localhost" DatasourceName="" FileFieldName="" SID="eventzilla_dw" SqlSynthax="" StringQuote="" NullChar="" DbmsId="postgres_id" ProductId="POSTGRESQL" AdditionalParams="" StandardSQL="true" SQLMode="false" UiSchema="">
+    <taggedValue xmi:id="_ofWWkQtNEfGIHKxNMBsoJA" tag="Is Conn Need Reload" value="false"/>
+    <taggedValue xmi:id="_ohMwsAtNEfGIHKxNMBsoJA" tag="package filter" value=""/>
+    <taggedValue xmi:id="_ohMwsQtNEfGIHKxNMBsoJA" tag="Status" value=""/>
+    <taggedValue xmi:id="_ohMwsgtNEfGIHKxNMBsoJA" tag="Version" value="0.1"/>
+    <taggedValue xmi:id="_ohMwswtNEfGIHKxNMBsoJA" tag="Purpose" value=""/>
+    <taggedValue xmi:id="_ohMwtAtNEfGIHKxNMBsoJA" tag="Description" value=""/>
+    <taggedValue xmi:id="_ohMwtQtNEfGIHKxNMBsoJA" tag="Author" value=""/>
+    <taggedValue xmi:id="_ohMwtgtNEfGIHKxNMBsoJA" tag="otherParameter"/>
+    <taggedValue xmi:id="_ohqDsAtNEfGIHKxNMBsoJA" tag="DB ProductName" value="PostgreSQL"/>
+    <taggedValue xmi:id="_ohqDsQtNEfGIHKxNMBsoJA" tag="DB ProductVersion" value="18.1"/>
+    <taggedValue xmi:id="_ohqDsgtNEfGIHKxNMBsoJA" tag="DB IdentifierQuoteString" value="&quot;"/>
+    <parameters xmi:id="_ofWWkgtNEfGIHKxNMBsoJA" key="CONN_PARA_KEY_USERNAME" value="postgres"/>
+    <parameters xmi:id="_7YFOkBT6EfGnsbHwB11MJw" key="CONN_PARA_KEY_MAPRDB_TABLE_NS_MAPPING" value=""/>
+  </TalendMetadata:DatabaseConnection>
+  <orgomg.cwm.resource.relational:Catalog xmi:id="_UNsHIBUEEfGnsbHwB11MJw" name="eventzilla_dw" dataManager="_ofWWkAtNEfGIHKxNMBsoJA">
+    <ownedElement xsi:type="orgomg.cwm.resource.relational:Schema" xmi:id="_UNsHIRUEEfGnsbHwB11MJw" name="information_schema"/>
+    <ownedElement xsi:type="orgomg.cwm.resource.relational:Schema" xmi:id="_UNsHIhUEEfGnsbHwB11MJw" name="pg_catalog"/>
+    <ownedElement xsi:type="orgomg.cwm.resource.relational:Schema" xmi:id="_UNsHIxUEEfGnsbHwB11MJw" name="public"/>
+  </orgomg.cwm.resource.relational:Catalog>
+</xmi:XMI>
