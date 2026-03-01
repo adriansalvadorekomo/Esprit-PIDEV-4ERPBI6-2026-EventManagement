@@ -31,6 +31,10 @@
     "id" : "_h-3RcPxtEfCKnOCNUyq7tg",
     "version" : "Latest",
     "type" : "property"
+  }, {
+    "id" : "_DLrnwAt5EfGkcqTJyOtsMQ - dim_events",
+    "version" : "Latest",
+    "type" : "schema"
   } ]
 }, {
   "baseItem" : {
@@ -141,6 +145,10 @@
     "id" : "_h-3RcPxtEfCKnOCNUyq7tg",
     "version" : "Latest",
     "type" : "property"
+  }, {
+    "id" : "_DLrnwAt5EfGkcqTJyOtsMQ - dim_reservation",
+    "version" : "Latest",
+    "type" : "schema"
   } ]
 }, {
   "baseItem" : {
@@ -176,6 +184,10 @@
     "version" : "Latest",
     "type" : "property"
   }, {
+    "id" : "_DLrnwAt5EfGkcqTJyOtsMQ - dim_reviews",
+    "version" : "Latest",
+    "type" : "schema"
+  }, {
     "id" : "_h-3RcPxtEfCKnOCNUyq7tg - stg_reviews",
     "version" : "Latest",
     "type" : "schema"
@@ -194,6 +206,10 @@
     "id" : "_h-3RcPxtEfCKnOCNUyq7tg",
     "version" : "Latest",
     "type" : "property"
+  }, {
+    "id" : "_DLrnwAt5EfGkcqTJyOtsMQ - dim_competitor",
+    "version" : "Latest",
+    "type" : "schema"
   }, {
     "id" : "_h-3RcPxtEfCKnOCNUyq7tg - stg_competitor",
     "version" : "Latest",
