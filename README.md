@@ -149,12 +149,12 @@ ng serve
 
 ## Contributors
 
-- [Walid Fehry]
-- [Emna Trabelsi]
-- [Hejer Mnejja]
-- [Karim Makni]
-- [Amir Jabeur]
-- [Adrian Salvador Ekomo Mesi Obono]
+- Walid Fehry
+- Emna Trabelsi
+- Hejer Mnejja
+- Karim Makni
+- Amir Jabeur
+- Adrian Salvador Ekomo Mesi Obono
 
 4rd Year Engineering Students  
 Esprit School of Engineering – Tunisia  
