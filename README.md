@@ -117,7 +117,7 @@ The company requires a Business Intelligence system to:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/eventzella-bi.git
+git clone https://github.com/adriansalvadorekomo/Esprit-PIDEV-4ERPBI6-2026-EventManagement.git
 ```
 
 2. Install backend dependencies:
