@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project was developed as part of the PIDEV – 4rd Year Engineering Program at **Esprit School of Engineering** (Academic Year 2025–2026).
+This project was developed as part of the PIDEV – 4rd ERPBI6 Year Engineering Program at **Esprit School of Engineering** (Academic Year 2025–2026).
 
 EventZella BI is a Business Intelligence platform designed to transform raw operational data from the EventZella event management system into strategic, data-driven insights.
 
@@ -156,7 +156,7 @@ ng serve
 - Amir Jabeur
 - Adrian Salvador Ekomo Mesi Obono
 
-4rd Year Engineering Students  
+4rd ERPBI6 Year Engineering Students  
 Esprit School of Engineering – Tunisia  
 
 ---
