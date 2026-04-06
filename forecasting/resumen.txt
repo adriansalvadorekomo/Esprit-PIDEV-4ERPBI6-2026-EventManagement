@@ -1,0 +1,79 @@
+================================================================================
+EXECUTIVE SUMMARY: EVENTZELLA DASHBOARD STRATEGY
+================================================================================
+
+This document outlines the strategic configuration for 5 key visuals per model, 
+optimized for clarity and stakeholder decision-making.
+
+--------------------------------------------------------------------------------
+DATA MAPPING FOR POWER BI (High-Precision Implementation)
+--------------------------------------------------------------------------------
+
+1. FORECASTING DASHBOARD (Script: powerbi_forecast.py)
+------------------------------------------------------
+A. KPIs & Indicators (Visuals: Cards/Gauges)
+   - DataFrame: [df_kpis]
+   - Visual 1: Anticipated Booking Volume -> Field: [Value] where [Name] == 'Total Forecasted Reservations'
+   - Visual 2: MoM Growth Projection -> Field: [Value] where [Name] == 'Trend vs Last Month'
+   - Visual 3: Model Confidence -> Field: [Value] where [Name] == 'Model Accuracy'
+   - Visual 4: Forecast Risk Margin -> Field: [Value] where [Name] == 'MAPE (Risk Margin)'
+
+B. Time Series Metric (Visual: Line Chart)
+   - DataFrame: [df_visual_ts]
+   - X-Axis: [Date]
+   - Y-Axis: [Actual] (Historical data) and [Prediction] (Future forecast)
+   - Confidence Interval: [Lower_Bound] and [Upper_Bound] (Add to "Error Bars" or "Tooltips")
+
+C. Filtering (Visual: Slicer)
+   - DataFrame: [df_visual_ts]
+   - Field: [Category] -> (Allows switching between event types)
+
+
+2. REGRESSION DASHBOARD (Script: powerbi_regression.py)
+-------------------------------------------------------
+A. KPIs & Indicators (Visuals: Cards/Gauges)
+   - DataFrame: [df_reg_kpis]
+   - Visual 1: Expected Attrition Rate -> Field: [Value] where [Name] == 'Predicted Cancellation Rate'
+   - Visual 2: Deviation vs SMART Target -> Field: [Value] where [Name] == 'Deviation vs SMART Target'
+   - Visual 3: Predictive Model Strength -> Field: [Value] where [Name] == 'Model Reliability (R2)'
+   - Visual 4: Attrition Accuracy -> Field: [Value] where [Name] == 'Model Accuracy'
+
+B. Attrition Trend Metric (Visual: Line Chart)
+   - DataFrame: [df_reg_visual_ts]
+   - X-Axis: [Date]
+   - Y-Axis: [Actual_Rate] and [Predicted_Rate]
+
+C. Filtering (Visual: Slicer)
+   - DataFrame: [df_reg_visual_ts]
+   - Field: [Category] -> (Crucial to identify high-risk event types)
+
+
+--------------------------------------------------------------------------------
+STAKEHOLDER VALUE PROPOSITIONS
+--------------------------------------------------------------------------------
+
+FORECASTING PAGE:
+- Focus: Planning. The [MoM Growth] and [Confidence Rating] show stakeholders 
+  if the business is trending up and how much they can trust the machine's guess.
+
+REGRESSION PAGE:
+- Focus: Risk Mitigation. The [Deviation vs SMART Target] (10% goal) serves as 
+  an executive alarm system. If it turns red, it triggers strategic reviews.
+
+
+--------------------------------------------------------------------------------
+HOW TO IMPLEMENT & FILTERS SETUP
+--------------------------------------------------------------------------------
+
+1.  LOAD DATA: 'Get Data' > 'Python script' > Paste the script.
+2.  INTERACTIVITY: 
+    - Use the [Category] field in Slicers for both pages.
+    - Use the [Date] field for "Relative Date" filtering (Last 12 months / Next 30 days).
+3.  FORMATTING: Ensure all % fields are set to "Percentage" data type in the Data View.
+
+================================================================================
+NOTES:
+- Both scripts are optimized to output these specific DataFrames.
+- If a visual is blank, check the "Filters on this visual" pane to ensure the 
+  correct [Name] is selected from the KPI dataframes.
+================================================================================
