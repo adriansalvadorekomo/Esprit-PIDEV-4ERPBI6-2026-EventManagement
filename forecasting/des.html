@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Industrial Analytics Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#1d2a40",
+                        "on-secondary-container": "#a8b5d2",
+                        "surface-container-low": "#0e1c31",
+                        "background": "#051328",
+                        "on-primary-fixed-variant": "#004e5f",
+                        "surface-variant": "#28354b",
+                        "secondary": "#bac7e4",
+                        "on-surface-variant": "#bbc9cf",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed": "#b4ebff",
+                        "secondary-fixed": "#d7e3ff",
+                        "on-primary-fixed": "#001f27",
+                        "inverse-on-surface": "#243147",
+                        "tertiary-container": "#00e073",
+                        "secondary-container": "#3a475f",
+                        "surface": "#051328",
+                        "surface-bright": "#2d3950",
+                        "surface-container-highest": "#28354b",
+                        "on-tertiary-fixed-variant": "#005226",
+                        "outline": "#859398",
+                        "on-tertiary-fixed": "#00210b",
+                        "primary-fixed-dim": "#3cd7ff",
+                        "inverse-primary": "#00677e",
+                        "on-secondary": "#243147",
+                        "on-tertiary": "#003918",
+                        "tertiary-fixed": "#62ff96",
+                        "on-background": "#d6e3ff",
+                        "outline-variant": "#3c494e",
+                        "on-primary-container": "#00586b",
+                        "on-tertiary-container": "#005d2c",
+                        "on-secondary-fixed": "#0e1c31",
+                        "surface-container": "#122035",
+                        "on-secondary-fixed-variant": "#3a475f",
+                        "tertiary": "#3efe8a",
+                        "error-container": "#93000a",
+                        "primary": "#a8e8ff",
+                        "primary-container": "#00d4ff",
+                        "surface-tint": "#3cd7ff",
+                        "surface-container-lowest": "#010e23",
+                        "tertiary-fixed-dim": "#00e475",
+                        "secondary-fixed-dim": "#bac7e4",
+                        "inverse-surface": "#d6e3ff",
+                        "on-error": "#690005",
+                        "on-surface": "#d6e3ff",
+                        "error": "#ffb4ab",
+                        "on-primary": "#003642",
+                        "surface-dim": "#051328"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #051328;
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(18, 32, 53, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface select-none pb-20 md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-[#051328] dark:bg-[#051328] flex justify-between items-center px-6 py-4 w-full docked full-width top-0 z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#00D4FF]" data-icon="analytics">analytics</span>
+<h1 class="text-xl font-bold text-[#D6E3FF] uppercase tracking-widest font-inter tracking-tight">Industrial Intelligence</h1>
+</div>
+<!-- Desktop Filters -->
+<div class="hidden md:flex items-center gap-6">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded bg-surface-container-low text-on-surface-variant text-sm hover:bg-[#122035] transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-xs" data-icon="calendar_today">calendar_today</span>
+<span>Date Range</span>
+<span class="material-symbols-outlined text-xs" data-icon="expand_more">expand_more</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded bg-surface-container-low text-on-surface-variant text-sm hover:bg-[#122035] transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-xs" data-icon="category">category</span>
+<span>Event Category</span>
+<span class="material-symbols-outlined text-xs" data-icon="expand_more">expand_more</span>
+</div>
+<span class="material-symbols-outlined text-[#BBC9CF] hover:bg-[#122035] transition-colors p-2 rounded cursor-pointer" data-icon="tune">tune</span>
+</div>
+<!-- Mobile Active Nav Indicator Simulation -->
+<div class="md:hidden">
+<span class="material-symbols-outlined text-[#00D4FF]" data-icon="dashboard">dashboard</span>
+</div>
+</header>
+<main class="max-w-[1600px] mx-auto p-6 space-y-8">
+<!-- Dashboard Sub-Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<p class="text-primary font-medium text-sm tracking-widest uppercase">System Overview</p>
+<h2 class="text-3xl font-extrabold text-on-surface tracking-tight mt-1">Industrial Analytics</h2>
+</div>
+<div class="flex gap-3 md:hidden">
+<div class="flex-1 bg-surface-container px-4 py-2 rounded text-sm text-on-surface-variant">Date Range</div>
+<div class="flex-1 bg-surface-container px-4 py-2 rounded text-sm text-on-surface-variant">Category</div>
+</div>
+</div>
+<!-- Top Section: KPI Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="bg-surface-container-low p-5 rounded-lg border-l-4 border-primary-container relative overflow-hidden group hover:bg-surface-container transition-all">
+<div class="flex justify-between items-start mb-4">
+<span class="text-on-surface-variant text-xs font-bold uppercase tracking-wider">Reservations vs Forecast</span>
+<span class="material-symbols-outlined text-primary-container opacity-50 group-hover:opacity-100 transition-opacity" data-icon="trending_up">trending_up</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-black text-on-surface tracking-tighter">1,284</span>
+<span class="text-tertiary text-xs font-bold">+5.2%</span>
+</div>
+<p class="text-[10px] text-on-surface-variant mt-2 uppercase">Target: 1,220 units</p>
+</div>
+<!-- Card 2: Cancellation Rate (Red Accent) -->
+<div class="bg-surface-container-low p-5 rounded-lg border-l-4 border-error relative overflow-hidden group hover:bg-surface-container transition-all">
+<div class="flex justify-between items-start mb-4">
+<span class="text-on-surface-variant text-xs font-bold uppercase tracking-wider">Cancellation Rate</span>
+<span class="material-symbols-outlined text-error opacity-50 group-hover:opacity-100 transition-opacity" data-icon="dangerous">dangerous</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-black text-on-surface tracking-tighter">12.4%</span>
+<span class="text-error text-xs font-bold">+1.8%</span>
+</div>
+<p class="text-[10px] text-on-surface-variant mt-2 uppercase">Threshold: 10.0%</p>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-low p-5 rounded-lg border-l-4 border-secondary relative overflow-hidden group hover:bg-surface-container transition-all">
+<div class="flex justify-between items-start mb-4">
+<span class="text-on-surface-variant text-xs font-bold uppercase tracking-wider">Marketing ROI</span>
+<span class="material-symbols-outlined text-secondary opacity-50 group-hover:opacity-100 transition-opacity" data-icon="payments">payments</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-black text-on-surface tracking-tighter">4.2x</span>
+<span class="text-tertiary text-xs font-bold">+0.4</span>
+</div>
+<p class="text-[10px] text-on-surface-variant mt-2 uppercase">Campaign: Q3 Industrial</p>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-low p-5 rounded-lg border-l-4 border-tertiary-container relative overflow-hidden group hover:bg-surface-container transition-all">
+<div class="flex justify-between items-start mb-4">
+<span class="text-on-surface-variant text-xs font-bold uppercase tracking-wider">Prediction Accuracy</span>
+<span class="material-symbols-outlined text-tertiary-container opacity-50 group-hover:opacity-100 transition-opacity" data-icon="target">target</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-black text-on-surface tracking-tighter">98.1%</span>
+<span class="text-tertiary text-xs font-bold">Stable</span>
+</div>
+<p class="text-[10px] text-on-surface-variant mt-2 uppercase">Model: XGBoost-v4</p>
+</div>
+</div>
+<!-- Middle Section: Large Area Chart -->
+<div class="bg-surface-container rounded-xl p-8 relative">
+<div class="flex flex-col md:flex-row justify-between md:items-center mb-8 gap-4">
+<div>
+<h3 class="text-lg font-bold text-on-surface">30-Day Predictive Forecast</h3>
+<p class="text-sm text-on-surface-variant">Visualizing volume projections with 95% confidence bands</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary-container"></div>
+<span class="text-xs text-on-surface-variant uppercase font-bold">Projected</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary-container opacity-20"></div>
+<span class="text-xs text-on-surface-variant uppercase font-bold">Confidence Band</span>
+</div>
+</div>
+</div>
+<!-- Chart Visualization Placeholder -->
+<div class="h-80 w-full relative flex items-end justify-between gap-1 mt-4">
+<!-- Confidence Band Layer (Simulated with Background) -->
+<div class="absolute inset-0 bottom-12 flex items-end">
+<svg class="w-full h-full preserve-3d" preserveaspectratio="none" viewbox="0 0 1000 300">
+<!-- Shaded Confidence Band -->
+<path class="text-primary-container/10" d="M0,150 Q125,50 250,130 T500,80 T750,160 T1000,100 L1000,200 Q750,260 500,180 T250,230 T0,250 Z" fill="currentColor"></path>
+<!-- Prediction Line -->
+<path class="text-primary-container" d="M0,200 Q125,100 250,180 T500,130 T750,210 T1000,150" fill="none" stroke="currentColor" stroke-width="3"></path>
+</svg>
+</div>
+<!-- X-Axis Labels -->
+<div class="absolute bottom-0 w-full flex justify-between text-[10px] text-on-surface-variant font-mono border-t border-outline-variant/20 pt-4">
+<span>OCT 01</span>
+<span>OCT 07</span>
+<span>OCT 14</span>
+<span>OCT 21</span>
+<span>OCT 28</span>
+<span>NOV 04</span>
+</div>
+</div>
+</div>
+<!-- Bottom Section: Feature Importance -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-12 md:pb-6">
+<div class="lg:col-span-2 bg-surface-container rounded-xl p-8">
+<div class="mb-8">
+<h3 class="text-lg font-bold text-on-surface">Feature Importance</h3>
+<p class="text-sm text-on-surface-variant">Variables most significantly affecting cancellation probability</p>
+</div>
+<div class="space-y-6">
+<!-- Bar 1 -->
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span class="text-on-surface">Base Price Point</span>
+<span class="text-primary">88%</span>
+</div>
+<div class="h-2 bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary-container to-primary w-[88%]"></div>
+</div>
+</div>
+<!-- Bar 2 -->
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span class="text-on-surface">Seasonal Month (Std)</span>
+<span class="text-primary">64%</span>
+</div>
+<div class="h-2 bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary-container to-primary w-[64%]"></div>
+</div>
+</div>
+<!-- Bar 3 -->
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span class="text-on-surface">Price Deviation (std_price)</span>
+<span class="text-primary">42%</span>
+</div>
+<div class="h-2 bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary-container to-primary w-[42%]"></div>
+</div>
+</div>
+<!-- Bar 4 -->
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span class="text-on-surface">User Tenure</span>
+<span class="text-primary">15%</span>
+</div>
+<div class="h-2 bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary-container to-primary w-[15%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Card: Insights -->
+<div class="bg-surface-container-high rounded-xl p-8 border border-outline-variant/10">
+<h3 class="text-lg font-bold text-on-surface mb-6">AI Optimization Insights</h3>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded bg-tertiary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary" data-icon="lightbulb">lightbulb</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Price Sensitivity detected</p>
+<p class="text-xs text-on-surface-variant leading-relaxed">Adjusting price by -2% in week 4 could reduce predicted cancellations by 15%.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Forecast Drift</p>
+<p class="text-xs text-on-surface-variant leading-relaxed">Model accuracy improved by 2.1% after including 'Event Category' weights.</p>
+</div>
+</div>
+<img class="w-full h-32 object-cover rounded-lg mt-4 opacity-50 grayscale hover:grayscale-0 transition-all cursor-pointer" data-alt="Close-up technical view of industrial hardware cooling fans and blue neon internal lighting in a high-performance computer or server" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsJoyu0WE8e2nB1dDSZQfA7r3I6g5FWV4JjzbYWXm0mkIdJ1skjolGygWDjdY7Gtie8_jXb-iug6IkEfDIUt3vGh2llrIDd9wbefEkecLWN-VE6IS1LdiMo3WrPxejxwXQBal75Mhjaiy6o6HWAvnwT7yVo15ZFUyq9sV3bFfv5Zghara3uUdnmSDiVXcWVyXrS46hEcvjRUhteIiW3zR4-1NkGrp8Odb1vuN0hfrjHYM7MLcCE36mrJiBbP7mdcM-PdfTlbeabGw"/>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-4 bg-[#010E23] dark:bg-[#010E23] shadow-[0_-4px_20px_rgba(0,0,0,0.4)] rounded-t-lg">
+<div class="flex flex-col items-center justify-center bg-gradient-to-br from-[#00D4FF] to-[#A8E8FF] text-[#051328] rounded-lg px-6 py-1 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-medium font-inter uppercase">Overview</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#BBC9CF] px-6 py-1 hover:text-[#D6E3FF] active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="text-[10px] font-medium font-inter uppercase">Events</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#BBC9CF] px-6 py-1 hover:text-[#D6E3FF] active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span class="text-[10px] font-medium font-inter uppercase">Analytics</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#BBC9CF] px-6 py-1 hover:text-[#D6E3FF] active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[10px] font-medium font-inter uppercase">Settings</span>
+</div>
+</nav>
+</body></html>
