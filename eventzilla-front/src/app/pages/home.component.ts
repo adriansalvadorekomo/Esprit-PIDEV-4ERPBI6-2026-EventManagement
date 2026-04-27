@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   readonly pbiUrlSafe: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.pbiUrl);
 
   activeSection = signal<Section>('overview');
+  selectedModel = signal<string | null>(null);
 
   // ── Price Prediction ──────────────────────────────────────────────────────
   priceForm: PricePredictRequest = {
@@ -109,6 +110,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.activeSection.set('overview');
       window.location.hash = 'overview';
     } else {
+      this.selectedModel.set(null);
       this.activeSection.set(hash);
       setTimeout(() => this.animateSection(hash), 50);
     }
@@ -132,10 +134,25 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     if (typeof window === 'undefined') return;
     const gsap = (window as any).gsap;
     if (!gsap) return;
-    gsap.from('.lab-card', {
-      opacity: 0, y: 30, stagger: 0.12, duration: 0.55,
+    gsap.from('.catalog-card', {
+      opacity: 0, y: 28, scale: 0.97,
+      stagger: 0.07, duration: 0.5,
       ease: 'power2.out', clearProps: 'all'
     });
+  }
+
+  selectModel(id: string | null): void {
+    if (typeof window === 'undefined') return;
+    const gsap = (window as any).gsap;
+    this.selectedModel.set(id);
+    if (id && gsap) {
+      setTimeout(() => {
+        gsap.from('.catalog-panel', {
+          opacity: 0, y: 16, duration: 0.35, ease: 'power2.out'
+        });
+        document.querySelector('.catalog-panel')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 0);
+    }
   }
 
   isProtectedAndLocked(section: Section): boolean {

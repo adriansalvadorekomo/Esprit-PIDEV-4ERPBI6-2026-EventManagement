@@ -47,37 +47,38 @@
 }
 
 .header-inner {
-  max-width: 1440px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 3rem;
-  height: 64px;
+  padding: 0 2rem;
+  height: 72px;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  justify-content: space-between;
 }
 
 /* ── Logo ────────────────────────────────────────────────────────────── */
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 1rem;
+  gap: 0.75rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-primary, #e6edf3);
   text-decoration: none;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   flex-shrink: 0;
   transition: opacity 0.15s;
+  margin-right: 1rem;
 }
 
 .logo:hover { opacity: 0.85; }
 
 .logo-icon {
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, rgba(31,111,235,0.3), rgba(56,139,253,0.15));
-  border: 1px solid rgba(31,111,235,0.35);
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, rgba(31,111,235,0.35), rgba(56,139,253,0.2));
+  border: 1px solid rgba(31,111,235,0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,38 +89,39 @@
 .nav-links {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.25rem;
+  gap: 1.25rem;
+  margin-left: 2rem;
   flex: 1;
 }
 
 .nav-link {
   position: relative;
-  padding: 0.4rem 0.75rem;
-  border-radius: 7px;
-  font-size: 0.875rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-secondary, #8b949e);
   text-decoration: none;
-  transition: color 0.15s, background 0.15s;
+  transition: color 0.15s, background 0.2s;
+  white-space: nowrap;
 }
 
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: 2px;
+  bottom: 0px;
   left: 50%;
   transform: translateX(-50%) scaleX(0);
-  width: 16px;
+  width: 12px;
   height: 2px;
   border-radius: 1px;
-  background: var(--accent, #1f6feb);
-  transition: transform 0.2s ease;
+  background: #388bfd;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-link:hover {
   color: var(--text-primary, #e6edf3);
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.06);
 }
 
 .nav-link:hover::after { transform: translateX(-50%) scaleX(1); }
@@ -128,103 +130,116 @@
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1.25rem;
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .icon-btn {
-  width: 34px;
-  height: 34px;
-  border-radius: 7px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.04);
-  color: var(--text-primary, #e6edf3);
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.05);
+  color: var(--text-secondary, #8b949e);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: color 0.15s, background 0.15s, border-color 0.15s, transform 0.15s;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.icon-btn svg {
+  width: 20px;
+  height: 20px;
 }
 
 .icon-btn:hover {
-  color: var(--text-primary, #e6edf3);
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.22);
-  transform: scale(1.05);
+  color: #388bfd;
+  background: rgba(31,111,235,0.1);
+  border-color: rgba(31,111,235,0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2), 0 0 0 1px rgba(31,111,235,0.1);
+}
+
+.icon-btn:active {
+  transform: translateY(0) scale(0.95);
 }
 
 .btn-signin {
-  padding: 0.4rem 1.1rem;
-  border-radius: 7px;
-  font-size: 0.85rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: 9px;
+  font-size: 0.9rem;
   font-weight: 600;
-  background: var(--accent, #1f6feb);
+  background: #1f6feb;
   color: #fff;
   border: none;
   cursor: pointer;
-  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+  transition: all 0.2s;
   letter-spacing: 0.01em;
 }
 
 .btn-signin:hover {
-  background: var(--accent-hover, #388bfd);
+  background: #388bfd;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(31,111,235,0.35);
+  box-shadow: 0 4px 16px rgba(31,111,235,0.4);
 }
-
-.btn-signin:active { transform: translateY(0); }
 
 .user-badge {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.25rem 0.7rem 0.25rem 0.35rem;
+  gap: 0.6rem;
+  padding: 0.35rem 1rem 0.35rem 0.45rem;
   border-radius: 9999px;
-  background: rgba(31,111,235,0.1);
-  border: 1px solid rgba(31,111,235,0.22);
-  transition: background 0.15s, border-color 0.15s;
+  background: rgba(31,111,235,0.08);
+  border: 1px solid rgba(31,111,235,0.2);
+  transition: all 0.2s;
+  cursor: default;
 }
 
 .user-badge:hover {
-  background: rgba(31,111,235,0.16);
-  border-color: rgba(31,111,235,0.35);
+  background: rgba(31,111,235,0.12);
+  border-color: rgba(31,111,235,0.3);
 }
 
 .avatar {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: linear-gradient(135deg, #1f6feb, #388bfd);
   color: #fff;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 6px rgba(31,111,235,0.3);
 }
 
 .username {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-primary, #e6edf3);
 }
 
 .btn-signout {
-  padding: 0.4rem 0.9rem;
-  border-radius: 7px;
+  padding: 0.55rem 1.1rem;
+  border-radius: 9px;
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 600;
   background: transparent;
   color: var(--text-secondary, #8b949e);
-  border: 1px solid var(--border-subtle, rgba(255,255,255,0.08));
+  border: 1px solid rgba(255,255,255,0.12);
   cursor: pointer;
-  transition: color 0.15s, background 0.15s, border-color 0.15s;
+  transition: all 0.2s;
 }
 
 .btn-signout:hover {
-  color: var(--text-primary, #e6edf3);
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(255,255,255,0.14);
+  color: #f85149;
+  background: rgba(248,81,73,0.06);
+  border-color: rgba(248,81,73,0.25);
 }
 
 /* ── Modal ───────────────────────────────────────────────────────────── */
