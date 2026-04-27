@@ -1,0 +1,13 @@
+pandas
+numpy
+scikit-learn
+joblib
+mlflow
+SQLAlchemy
+psycopg2-binary
+fastapi
+pydantic
+uvicorn
+xgboost
+imbalanced-learn
+Flask
