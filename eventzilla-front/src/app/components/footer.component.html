@@ -1,16 +1,59 @@
-<footer class="glass-footer">
-  <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+<footer class="site-footer">
+  <div class="footer-inner">
 
-    <span class="text-sm footer-text">
-      &copy; {{ year }} EventZella. All rights reserved.
-    </span>
+    <!-- Brand column -->
+    <div class="footer-brand">
+      <a href="#overview" class="footer-logo">
+        <div class="footer-logo-icon">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M8 3v10" stroke="#388bfd" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span>EventZella</span>
+      </a>
+      <p class="footer-tagline">
+        Turn your event data into<br>unstoppable growth.
+      </p>
+      <p class="footer-copy">&copy; {{ year }} EventZella. All rights reserved.</p>
+    </div>
 
-    <nav class="flex items-center gap-5">
-      <a href="#" class="footer-link">Privacy</a>
-      <a href="#" class="footer-link">Terms</a>
-      <a href="#" class="footer-link">Contact</a>
-      <a href="#" class="footer-link">Docs</a>
-    </nav>
+    <!-- Platform links -->
+    <div class="footer-col">
+      <h4 class="footer-col-title">Platform</h4>
+      <nav class="footer-nav">
+        <a href="#overview"   class="footer-link">Overview</a>
+        <a href="#dashboards" class="footer-link">Dashboards</a>
+        <a href="#lab"        class="footer-link">AI &amp; ML Lab</a>
+        <a href="#about"      class="footer-link">Features</a>
+      </nav>
+    </div>
 
+    <!-- Resources links -->
+    <div class="footer-col">
+      <h4 class="footer-col-title">Resources</h4>
+      <nav class="footer-nav">
+        <a href="#" class="footer-link">Documentation</a>
+        <a href="#" class="footer-link">API Reference</a>
+        <a href="#" class="footer-link">Changelog</a>
+        <a href="#" class="footer-link">Status</a>
+      </nav>
+    </div>
+
+    <!-- Legal links -->
+    <div class="footer-col">
+      <h4 class="footer-col-title">Legal</h4>
+      <nav class="footer-nav">
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link">Terms of Service</a>
+        <a href="#" class="footer-link">Contact</a>
+      </nav>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>Built with Angular &amp; GSAP · Powered by Groq LLaMA</span>
+    <span class="footer-dot">·</span>
+    <span>Esprit PABI 4ERP BI6 2025–26</span>
   </div>
 </footer>

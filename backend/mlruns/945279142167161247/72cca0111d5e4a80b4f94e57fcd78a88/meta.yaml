@@ -1,0 +1,14 @@
+artifact_uri: file:C:/Users/larry/Desktop/Esprit-PABI-4ERPBI6-2526-EventZella/backend/mlruns/945279142167161247/72cca0111d5e4a80b4f94e57fcd78a88/artifacts
+end_time: 1777312324937
+entry_point_name: ''
+experiment_id: '945279142167161247'
+lifecycle_stage: active
+run_id: 72cca0111d5e4a80b4f94e57fcd78a88
+run_name: Loyalty_RandomForest
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777312320668
+status: 3
+tags: []
+user_id: larry

@@ -5,7 +5,9 @@ import numpy as np
 from datetime import datetime
 from sklearn.neighbors import NearestNeighbors
 
+from flask_cors import CORS
 app = Flask(__name__)
+CORS(app)
 
 # Initialisation des variables globales
 kmeans = None

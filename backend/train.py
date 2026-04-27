@@ -19,7 +19,7 @@ warnings.filterwarnings('ignore')
 # ============================================================
 def get_engine():
     user = "postgres"
-    password = "221JMT2852*"
+    password = "1400"
     host = "localhost"
     port = "5432"
     database = "DW_event"
@@ -183,6 +183,7 @@ def run_loyalty_classification(engine):
 # ============================================================
 if __name__ == "__main__":
     # Configuration MLflow (Optionnel : pointer vers un serveur distant)
+    mlflow.set_tracking_uri("file:./mlruns")
     mlflow.set_experiment("Analyse_Evenements_BI")
     
     try:

@@ -1,3 +1,4 @@
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -25,7 +26,7 @@ app = FastAPI()
 # =============================
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],
+    allow_origins=["*"], # Allow all origins for development
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -35,14 +36,14 @@ app.add_middleware(
 # =============================
 @app.on_event("startup")
 def init_mlflow():
-    mlflow.set_tracking_uri("http://127.0.0.1:5000")
+    # mlflow.set_tracking_uri("http://127.0.0.1:5000") # Port 5000 is used by the Flask app
     mlflow.set_experiment("ml_pipeline")
 
 # =============================
 # DB ENGINE — pour fidélisation
 # =============================
 engine = create_engine(
-    "postgresql+psycopg2://postgres:221JMT2852*@localhost:5432/DW_event?client_encoding=utf8",
+    "postgresql+psycopg2://postgres:1400@localhost:5432/DW_event?client_encoding=utf8",
     pool_size=2,
     max_overflow=0,
     pool_pre_ping=True,
@@ -59,8 +60,8 @@ last_loaded          = 0
 def load_regression_model():
     global rf_regression_model, rf_regression_scaler, last_loaded
 
-    model_path  = "rf_regression_model.pkl"   # ✅ nom unique
-    scaler_path = "rf_regression_scaler.pkl"  # ✅ nom unique
+    model_path  = "rf_model.pkl"   # ✅ nom unique
+    scaler_path = "scaler.pkl"  # ✅ nom unique
 
     if not os.path.exists(model_path) or not os.path.exists(scaler_path):
         raise HTTPException(
@@ -103,6 +104,11 @@ except Exception as e:
 # =============================
 # INPUT — Fidélisation
 # =============================
+
+class InputForecast(BaseModel):
+    category_name: str
+    horizon: int = 6
+
 class InputFidelisation(BaseModel):
     price: float
     budget: float
@@ -141,7 +147,7 @@ def home():
 def train_price():
     try:
         result = subprocess.run(
-            ["python", "train.py"],
+            ["python", "train_reg.py"],
             capture_output=True, text=True, check=True
         )
         load_regression_model()
@@ -413,3 +419,86 @@ def predict_fidelisation(input_data: InputFidelisation):
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erreur interne : {str(e)}")
+
+
+# =============================
+# CATEGORIES
+# =============================
+@app.get("/categories")
+def get_categories():
+    try:
+        # Filter categories that have at least 10 reservations in total to ensure enough data for forecasting
+        query = '''
+            SELECT c.category_name 
+            FROM public."DIM_category" c
+            JOIN fact_suivi_event fs ON c.category_id = fs.category_id
+            GROUP BY c.category_name
+            HAVING SUM(fs.reservations) >= 10
+        '''
+        with engine.connect() as conn:
+            df = pd.read_sql(query, conn)
+        return df['category_name'].tolist()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+# =============================
+# PREDICT â€” Forecasting
+# =============================
+@app.post("/predict/forecast")
+def predict_forecast(data: InputForecast):
+    try:
+        # 1. Charger les donnÃ©es
+        query = f"""
+        WITH dts AS (SELECT date::timestamp AS ds, date_id FROM dim_date)
+        SELECT d.ds, COALESCE(SUM(fs.reservations),0) AS y
+        FROM dts d
+        LEFT JOIN fact_suivi_event fs ON fs.reservation_date_fk = d.date_id
+        LEFT JOIN public."DIM_category" c ON fs.category_id = c.category_id
+        WHERE c.category_name = '{data.category_name}'
+        GROUP BY d.ds
+        ORDER BY d.ds
+        """
+        with engine.connect() as conn:
+            df = pd.read_sql(query, conn)
+        
+        if df.empty or df['y'].sum() == 0:
+            raise HTTPException(status_code=404, detail=f"Not enough historical data for {data.category_name}. Minimum activity required.")
+
+        df['ds'] = pd.to_datetime(df['ds'])
+        df = df.set_index('ds').resample('MS').sum()
+
+        # 2. EntraÃ®nement Holt-Winters
+        model = ExponentialSmoothing(
+            df['y'], 
+            trend='add', 
+            seasonal='add' if len(df) >= 24 else None, 
+            seasonal_periods=12
+        ).fit()
+
+        # 3. Forecast
+        forecast = model.forecast(data.horizon)
+        
+        results = []
+        last_date = df.index[-1]
+        for i, val in enumerate(forecast):
+            next_date = last_date + pd.DateOffset(months=i+1)
+            results.append({
+                "date": next_date.strftime("%Y-%m-%d"),
+                "value": round(float(max(0, val)), 2)
+            })
+
+        return {
+            "status": "success",
+            "category": data.category_name,
+            "history": [{"date": d.strftime("%Y-%m-%d"), "value": float(v)} for d, v in df.tail(12).itertuples()],
+            "forecast": results
+        }
+
+    except Exception as e:
+        import traceback
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -1,0 +1,10 @@
+artifact_location: file:C:/Users/larry/Desktop/Esprit-PABI-4ERPBI6-2526-EventZella/backend/mlruns/945279142167161247/models/m-60c614551a814180933a1d31d2c7ad2b/artifacts
+creation_timestamp: 1777312320883
+experiment_id: '945279142167161247'
+last_updated_timestamp: 1777312324919
+model_id: m-60c614551a814180933a1d31d2c7ad2b
+model_type: null
+name: loyalty_model
+source_run_id: 72cca0111d5e4a80b4f94e57fcd78a88
+status: 2
+status_message: null

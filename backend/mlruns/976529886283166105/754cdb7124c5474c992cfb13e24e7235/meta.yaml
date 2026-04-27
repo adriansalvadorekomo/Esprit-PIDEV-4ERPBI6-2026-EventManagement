@@ -1,0 +1,14 @@
+artifact_uri: file:C:/Users/larry/Desktop/Esprit-PABI-4ERPBI6-2526-EventZella/backend/mlruns/976529886283166105/754cdb7124c5474c992cfb13e24e7235/artifacts
+end_time: 1777312371539
+entry_point_name: ''
+experiment_id: '976529886283166105'
+lifecycle_stage: active
+run_id: 754cdb7124c5474c992cfb13e24e7235
+run_name: placid-auk-615
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777312366060
+status: 3
+tags: []
+user_id: larry

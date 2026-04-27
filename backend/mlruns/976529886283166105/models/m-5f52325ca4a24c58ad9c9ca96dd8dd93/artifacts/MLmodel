@@ -1,0 +1,23 @@
+artifact_path: file:C:/Users/larry/Desktop/Esprit-PABI-4ERPBI6-2526-EventZella/backend/mlruns/976529886283166105/models/m-5f52325ca4a24c58ad9c9ca96dd8dd93/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.14.3
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.11.1
+model_id: m-5f52325ca4a24c58ad9c9ca96dd8dd93
+model_size_bytes: 4594632
+model_uuid: m-5f52325ca4a24c58ad9c9ca96dd8dd93
+prompts: null
+run_id: a2536cfd3fa445e492e038490c9c6780
+utc_time_created: '2026-04-27 18:20:13.486150'

@@ -1,0 +1,14 @@
+artifact_uri: file:C:/Users/larry/Desktop/Esprit-PABI-4ERPBI6-2526-EventZella/backend/mlruns/406929783980704186/06dfbde456c94fde82309687b5045d9a/artifacts
+end_time: 1777314448110
+entry_point_name: ''
+experiment_id: '406929783980704186'
+lifecycle_stage: active
+run_id: 06dfbde456c94fde82309687b5045d9a
+run_name: train_fidelisation
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777314422976
+status: 3
+tags: []
+user_id: larry

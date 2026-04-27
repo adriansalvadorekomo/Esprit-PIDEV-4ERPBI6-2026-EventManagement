@@ -1,0 +1,14 @@
+artifact_uri: file:C:/Users/larry/Desktop/Esprit-PABI-4ERPBI6-2526-EventZella/backend/mlruns/976529886283166105/714c9f6b2d5f4fcc9f73f4dde5498925/artifacts
+end_time: 1777313997100
+entry_point_name: ''
+experiment_id: '976529886283166105'
+lifecycle_stage: active
+run_id: 714c9f6b2d5f4fcc9f73f4dde5498925
+run_name: sneaky-yak-425
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777313985153
+status: 3
+tags: []
+user_id: larry

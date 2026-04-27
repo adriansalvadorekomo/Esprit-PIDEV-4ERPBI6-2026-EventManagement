@@ -11,13 +11,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, r2_score
 
 # ─── MLflow setup ───────────────────────────────
+mlflow.set_tracking_uri("file:./mlruns")
 mlflow.set_experiment("rf_final_price")
 
 # ─── Connexion DB ───────────────────────────────
 conn = psycopg2.connect(
     dbname="DW_event",
     user="postgres",
-    password="221JMT2852",
+    password="1400",
     host="localhost",
     port="5432"
 )

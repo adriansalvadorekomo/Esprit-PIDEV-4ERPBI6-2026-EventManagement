@@ -1,0 +1,8 @@
+artifact_location: file:C:/Users/larry/Desktop/Esprit-PABI-4ERPBI6-2526-EventZella/backend/mlruns/406929783980704186
+creation_time: 1777312402233
+experiment_id: '406929783980704186'
+last_update_time: 1777312402233
+lifecycle_stage: active
+name: ml_pipeline
+trace_location: null
+workspace: default
