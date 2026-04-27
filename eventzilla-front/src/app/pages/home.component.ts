@@ -7,7 +7,10 @@ import {
   FidelisationRequest, FidelisationResponse,
   LoyaltyRequest, LoyaltyResponse,
   ClusterRequest, ClusterResponse,
-  ForecastRequest, ForecastResponse
+  ForecastRequest, ForecastResponse,
+  SentimentResponse,
+  RecommendationResponse,
+  AnomalyResponse, DeepLearningResponse
 } from '../models/ml.models';
 
 type Section = 'overview' | 'dashboards' | 'lab' | 'about';
@@ -78,6 +81,28 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   forecastLoading = signal(false);
   forecastError = signal<string | null>(null);
   categories = signal<string[]>([]);
+
+  // ── NEW: Sentiment ────────────────────────────────────────────────────────
+  sentimentText = 'The event was absolutely fantastic!';
+  sentimentResult = signal<SentimentResponse | null>(null);
+  sentimentLoading = signal(false);
+
+  // ── NEW: Recommendation ───────────────────────────────────────────────────
+  recoBeneId = 1;
+  recoCount = 5;
+  recoResult = signal<RecommendationResponse | null>(null);
+  recoLoading = signal(false);
+  recoError = signal<string | null>(null);
+
+  // ── NEW: Anomalies ────────────────────────────────────────────────────────
+  anomalyResult = signal<AnomalyResponse | null>(null);
+  anomalyLoading = signal(false);
+  anomalyError = signal<string | null>(null);
+
+  // ── NEW: Deep Learning (MLP) ──────────────────────────────────────────────
+  dlResult = signal<DeepLearningResponse | null>(null);
+  dlLoading = signal(false);
+  dlError = signal<string | null>(null);
 
   private onHashChange = () => this.readHash();
 
@@ -157,6 +182,52 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   isProtectedAndLocked(section: Section): boolean {
     return PROTECTED.includes(section) && !this.auth.isAdmin;
+  }
+
+  get forecastSeries(): Array<{ label: string; value: number; phase: 'history' | 'forecast' }> {
+    const result = this.forecastResult();
+    if (!result) return [];
+    const history = (result.history ?? []).map((item) => ({
+      label: item.date,
+      value: item.value,
+      phase: 'history' as const
+    }));
+    const forecast = result.forecast.map((item) => ({
+      label: item.date,
+      value: item.value,
+      phase: 'forecast' as const
+    }));
+    return [...history, ...forecast];
+  }
+
+  get forecastMaxValue(): number {
+    const values = this.forecastSeries.map((item) => item.value);
+    return values.length ? Math.max(...values, 1) : 1;
+  }
+
+  get forecastPolylinePoints(): string {
+    const series = this.forecastSeries;
+    if (!series.length) return '';
+    return series
+      .map((item, index) => {
+        const x = series.length === 1 ? 0 : (index / (series.length - 1)) * 100;
+        const y = 100 - (item.value / this.forecastMaxValue) * 100;
+        return `${x},${y}`;
+      })
+      .join(' ');
+  }
+
+  get forecastDividerX(): number | null {
+    const historyLength = this.forecastResult()?.history?.length ?? 0;
+    const total = this.forecastSeries.length;
+    if (!historyLength || historyLength >= total) return null;
+    return ((historyLength - 1) / (total - 1)) * 100;
+  }
+
+  get anomalyRatePercent(): number | null {
+    const result = this.anomalyResult();
+    if (!result || !result.total_count) return null;
+    return (result.anomaly_count / result.total_count) * 100;
   }
 
   // ── Actions ───────────────────────────────────────────────────────────────
@@ -244,6 +315,70 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       error: (e) => { 
         this.forecastError.set(e?.error?.detail ?? 'Forecast failed.'); 
         this.forecastLoading.set(false); 
+      }
+    });
+  }
+
+  runSentiment(): void {
+    this.sentimentLoading.set(true);
+    this.sentimentResult.set(null);
+    this.api.predictSentiment(this.sentimentText).subscribe({
+      next: (res) => {
+        this.sentimentResult.set(res);
+        this.sentimentLoading.set(false);
+        this.animateResult('.sentiment-result');
+      },
+      error: () => this.sentimentLoading.set(false)
+    });
+  }
+
+  runReco(): void {
+    this.recoLoading.set(true);
+    this.recoResult.set(null);
+    this.recoError.set(null);
+    this.api.recommendEvents(this.recoBeneId, this.recoCount).subscribe({
+      next: (res) => {
+        this.recoResult.set(res);
+        this.recoLoading.set(false);
+        this.animateResult('.reco-result');
+      },
+      error: (e) => {
+        this.recoError.set(e?.error?.detail ?? 'Recommendation request failed.');
+        this.recoLoading.set(false);
+      }
+    });
+  }
+
+  runAnomalies(): void {
+    this.anomalyLoading.set(true);
+    this.anomalyResult.set(null);
+    this.anomalyError.set(null);
+    this.api.detectAnomalies().subscribe({
+      next: (res) => {
+        this.anomalyResult.set(res);
+        this.anomalyLoading.set(false);
+        this.animateResult('.anomaly-result');
+      },
+      error: (e) => {
+        this.anomalyError.set(e?.error?.detail ?? 'Anomaly detection failed.');
+        this.anomalyLoading.set(false);
+      }
+    });
+  }
+
+  runDL(): void {
+    this.dlLoading.set(true);
+    this.dlResult.set(null);
+    this.dlError.set(null);
+    this.api.predictDeepLearning(this.fidelForm).subscribe({
+      next: (res) => {
+        this.dlResult.set(res);
+        this.dlLoading.set(false);
+        this.animateResult('.dl-result');
+      },
+      error: (e) => {
+        this.dlError.set(e?.error?.detail ?? 'Deep learning prediction failed.');
+        this.dlLoading.set(false);
       }
     });
   }

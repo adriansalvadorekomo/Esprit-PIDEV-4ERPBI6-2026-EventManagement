@@ -284,11 +284,11 @@
       <div>
         <div class="ov-section-label">AI &amp; ML Lab</div>
         <h2 class="catalog-title">Model Catalog</h2>
-        <p class="catalog-sub">Select a model to configure inputs and run predictions.</p>
+        <p class="catalog-sub">Select a model to configure inputs and run predictions against the active FastAPI and Flask services.</p>
       </div>
       <div class="catalog-badge-row">
-        <span class="catalog-badge">6 Models</span>
-        <span class="catalog-badge catalog-badge-green">● Live</span>
+        <span class="catalog-badge">10 Models</span>
+        <span class="catalog-badge catalog-badge-green">● Lab Ready</span>
       </div>
     </div>
 
@@ -321,6 +321,32 @@
         <div class="catalog-card-arrow">→</div>
       </div>
 
+      <!-- Sentiment Analysis (NEW) -->
+      <div class="catalog-card" [class.catalog-card--active]="selectedModel() === 'sentiment'" (click)="selectModel('sentiment')">
+        <div class="catalog-card-icon" style="background:rgba(255,107,107,0.1);border-color:rgba(255,107,107,0.25);">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#ff6b6b" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="catalog-card-body">
+          <div class="catalog-card-tag">NLP · Keyword Engine</div>
+          <h3>Sentiment Analysis</h3>
+          <p>Analyze the emotional tone of event reviews and complaints.</p>
+        </div>
+        <div class="catalog-card-arrow">→</div>
+      </div>
+
+      <!-- Event Recommendation (NEW) -->
+      <div class="catalog-card" [class.catalog-card--active]="selectedModel() === 'reco'" (click)="selectModel('reco')">
+        <div class="catalog-card-icon" style="background:rgba(78,205,196,0.1);border-color:rgba(78,205,196,0.25);">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#4ecdc4" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        </div>
+        <div class="catalog-card-body">
+          <div class="catalog-card-tag">Content-Based Filtering</div>
+          <h3>Event Recommendation</h3>
+          <p>Recommend tailored events to beneficiaries based on their history.</p>
+        </div>
+        <div class="catalog-card-arrow">→</div>
+      </div>
+
       <!-- Loyalty -->
       <div class="catalog-card" [class.catalog-card--active]="selectedModel() === 'loyalty'" (click)="selectModel('loyalty')">
         <div class="catalog-card-icon" style="background:rgba(63,185,80,0.1);border-color:rgba(63,185,80,0.25);">
@@ -347,6 +373,19 @@
         <div class="catalog-card-arrow">→</div>
       </div>
 
+      <!-- Anomaly Detection (NEW) -->
+      <div class="catalog-card" [class.catalog-card--active]="selectedModel() === 'anomalies'" (click)="selectModel('anomalies')">
+        <div class="catalog-card-icon" style="background:rgba(255,159,67,0.1);border-color:rgba(255,159,67,0.25);">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#ff9f43" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        </div>
+        <div class="catalog-card-body">
+          <div class="catalog-card-tag">Isolation Forest</div>
+          <h3>Anomaly Detection</h3>
+          <p>Identify unusual pricing, attendance, and marketing patterns from the event fact table.</p>
+        </div>
+        <div class="catalog-card-arrow">→</div>
+      </div>
+
       <!-- Forecasting -->
       <div class="catalog-card" [class.catalog-card--active]="selectedModel() === 'forecast'" (click)="selectModel('forecast')">
         <div class="catalog-card-icon" style="background:rgba(121,192,255,0.1);border-color:rgba(121,192,255,0.25);">
@@ -356,6 +395,19 @@
           <div class="catalog-card-tag">Holt-Winters</div>
           <h3>Demand Forecasting</h3>
           <p>Forecast future reservation volumes by category using exponential smoothing.</p>
+        </div>
+        <div class="catalog-card-arrow">→</div>
+      </div>
+
+      <!-- Deep Learning (NEW) -->
+      <div class="catalog-card" [class.catalog-card--active]="selectedModel() === 'dl'" (click)="selectModel('dl')">
+        <div class="catalog-card-icon" style="background:rgba(238,82,83,0.1);border-color:rgba(238,82,83,0.25);">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#ee5253" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <div class="catalog-card-body">
+          <div class="catalog-card-tag">MLP Neural Network</div>
+          <h3>Advanced Prediction</h3>
+          <p>MLP loyalty classification trained on the same business features as the fidelisation workflow.</p>
         </div>
         <div class="catalog-card-arrow">→</div>
       </div>
@@ -458,6 +510,28 @@
             </button>
             <button class="btn-outline panel-train" (click)="trainFidel()" [disabled]="fidelLoading()">Train Model</button>
           </div>
+          <div *ngIf="fidelResult() as r" class="lab-kpi-grid">
+            <div class="lab-kpi-card">
+              <span class="lab-kpi-label">Probability</span>
+              <strong class="lab-kpi-value">{{ (r.probabilite_fidelite * 100) | number:'1.1-1' }}%</strong>
+              <span class="lab-kpi-meta">Current prediction confidence.</span>
+            </div>
+            <div class="lab-kpi-card" *ngIf="r.accuracy !== undefined">
+              <span class="lab-kpi-label">Accuracy</span>
+              <strong class="lab-kpi-value">{{ (r.accuracy * 100) | number:'1.1-1' }}%</strong>
+              <span class="lab-kpi-meta">Evaluation metric from the backend logistic model.</span>
+            </div>
+            <div class="lab-kpi-card" *ngIf="r.recall !== undefined">
+              <span class="lab-kpi-label">Recall</span>
+              <strong class="lab-kpi-value">{{ (r.recall * 100) | number:'1.1-1' }}%</strong>
+              <span class="lab-kpi-meta">Share of loyal profiles correctly detected.</span>
+            </div>
+            <div class="lab-kpi-card" *ngIf="r.roc_auc !== undefined">
+              <span class="lab-kpi-label">ROC-AUC</span>
+              <strong class="lab-kpi-value">{{ r.roc_auc | number:'1.3-3' }}</strong>
+              <span class="lab-kpi-meta">Classifier ranking quality.</span>
+            </div>
+          </div>
           <div *ngIf="fidelResult() as r" class="result-box fidel-result" [class.result-loyal]="r.prediction === 1" [class.result-not-loyal]="r.prediction === 0">
             <div class="result-main">{{ r.label }} <span class="result-badge">{{ r.niveau_confiance }}</span></div>
             <div class="result-meta">Probability: {{ (r.probabilite_fidelite * 100) | number:'1.1-1' }}%</div>
@@ -536,9 +610,37 @@
               <span *ngIf="clusterLoading()" class="spinner"></span>
             </button>
           </div>
+          <div *ngIf="clusterResult() as r" class="lab-kpi-grid">
+            <div class="lab-kpi-card">
+              <span class="lab-kpi-label">Algorithm</span>
+              <strong class="lab-kpi-value">{{ r.algorithm | uppercase }}</strong>
+              <span class="lab-kpi-meta">Clustering engine used for the current assignment.</span>
+            </div>
+            <div class="lab-kpi-card" *ngIf="r.silhouette_score !== undefined && r.silhouette_score !== null">
+              <span class="lab-kpi-label">Silhouette</span>
+              <strong class="lab-kpi-value">{{ r.silhouette_score | number:'1.3-3' }}</strong>
+              <span class="lab-kpi-meta">Higher is better cluster separation.</span>
+            </div>
+            <div class="lab-kpi-card" *ngIf="r.davies_bouldin_score !== undefined && r.davies_bouldin_score !== null">
+              <span class="lab-kpi-label">Davies-Bouldin</span>
+              <strong class="lab-kpi-value">{{ r.davies_bouldin_score | number:'1.3-3' }}</strong>
+              <span class="lab-kpi-meta">Lower is better cluster compactness.</span>
+            </div>
+            <div class="lab-kpi-card" *ngIf="r.n_clusters_detected !== undefined">
+              <span class="lab-kpi-label">Clusters</span>
+              <strong class="lab-kpi-value">{{ r.n_clusters_detected }}</strong>
+              <span class="lab-kpi-meta">Detected by the selected clustering model.</span>
+            </div>
+            <div class="lab-kpi-card" *ngIf="r.algorithm === 'dbscan'">
+              <span class="lab-kpi-label">Noise Points</span>
+              <strong class="lab-kpi-value">{{ r.noise_points ?? 0 }}</strong>
+              <span class="lab-kpi-meta">Profiles classified as outliers by DBSCAN.</span>
+            </div>
+          </div>
           <div *ngIf="clusterResult() as r" class="result-box cluster-result">
             <div class="result-main">{{ r.cluster_name }}</div>
             <div class="result-meta">Cluster ID: {{ r.cluster_id }} · Algorithm: {{ r.algorithm }}</div>
+            <div class="result-meta" *ngIf="r.silhouette_score === null && r.algorithm === 'dbscan'">Silhouette and Davies-Bouldin are unavailable when DBSCAN detects too few stable clusters.</div>
           </div>
           <p *ngIf="clusterError()" class="predict-error">{{ clusterError() }}</p>
         </div>
@@ -549,7 +651,7 @@
         <div class="panel-header">
           <div class="panel-title-row">
             <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#79c0ff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
-            <h3>Demand Forecasting <span class="panel-endpoint">/forecast</span></h3>
+            <h3>Demand Forecasting <span class="panel-endpoint">/predict/forecast</span></h3>
           </div>
           <button class="panel-close" (click)="selectModel(null)">✕</button>
         </div>
@@ -564,16 +666,247 @@
               <span *ngIf="forecastLoading()" class="spinner"></span>
             </button>
           </div>
+          <div *ngIf="forecastResult() as r" class="lab-kpi-grid">
+            <div class="lab-kpi-card" *ngIf="r.metrics">
+              <span class="lab-kpi-label">MAPE</span>
+              <strong class="lab-kpi-value">{{ r.metrics.mape | number:'1.1-1' }}%</strong>
+              <span class="lab-kpi-meta">Validation error on the holdout window.</span>
+            </div>
+            <div class="lab-kpi-card" *ngIf="r.metrics">
+              <span class="lab-kpi-label">MAE</span>
+              <strong class="lab-kpi-value">{{ r.metrics.mae | number:'1.1-1' }}</strong>
+              <span class="lab-kpi-meta">Average absolute reservation error.</span>
+            </div>
+            <div class="lab-kpi-card" *ngIf="r.metrics">
+              <span class="lab-kpi-label">RMSE</span>
+              <strong class="lab-kpi-value">{{ r.metrics.rmse | number:'1.1-1' }}</strong>
+              <span class="lab-kpi-meta">Penalty-weighted forecast error.</span>
+            </div>
+            <div class="lab-kpi-card" *ngIf="r.metrics">
+              <span class="lab-kpi-label">Validation Window</span>
+              <strong class="lab-kpi-value">{{ r.metrics.test_points }}</strong>
+              <span class="lab-kpi-meta">Test periods after {{ r.metrics.train_points }} training periods.</span>
+            </div>
+          </div>
           <div *ngIf="forecastResult() as r" class="result-box forecast-result">
+            <div class="forecast-chart">
+              <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="forecast-chart-svg">
+                <line x1="0" y1="100" x2="100" y2="100" class="forecast-axis"></line>
+                <line x1="0" y1="0" x2="0" y2="100" class="forecast-axis"></line>
+                <line *ngIf="forecastDividerX !== null" [attr.x1]="forecastDividerX" [attr.x2]="forecastDividerX" y1="0" y2="100" class="forecast-divider"></line>
+                <polyline [attr.points]="forecastPolylinePoints" class="forecast-line"></polyline>
+              </svg>
+              <div class="forecast-chart-legend">
+                <span>History</span>
+                <span>Forecast</span>
+              </div>
+            </div>
             <div class="forecast-list">
               <div *ngFor="let item of r.forecast" class="forecast-item">
                 <span class="forecast-date">{{ item.date | date:'MMM yyyy' }}</span>
                 <span class="forecast-value"><strong>{{ item.value }}</strong> reservations</span>
               </div>
             </div>
-            <div class="result-meta">Model: Holt-Winters Exponential Smoothing</div>
+            <div class="result-meta">Model: {{ r.model || 'Holt-Winters Exponential Smoothing' }}</div>
           </div>
           <p *ngIf="forecastError()" class="predict-error">{{ forecastError() }}</p>
+        </div>
+      </ng-container>
+
+      <!-- Sentiment (NEW) -->
+      <ng-container *ngIf="selectedModel() === 'sentiment'">
+        <div class="panel-header">
+          <div class="panel-title-row">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#ff6b6b" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <h3>Sentiment Analysis <span class="panel-endpoint">/predict/sentiment</span></h3>
+          </div>
+          <button class="panel-close" (click)="selectModel(null)">✕</button>
+        </div>
+        <div class="ml-form">
+          <label class="field-label">Complaint or Review Text</label>
+          <textarea class="ml-input" style="height:80px;resize:vertical;" [(ngModel)]="sentimentText"></textarea>
+          <div class="panel-actions">
+            <button class="btn-predict panel-run" (click)="runSentiment()" [disabled]="sentimentLoading()">
+              <span *ngIf="!sentimentLoading()">Analyze Sentiment</span>
+              <span *ngIf="sentimentLoading()" class="spinner"></span>
+            </button>
+          </div>
+          <div *ngIf="sentimentResult() as r" class="result-box sentiment-result">
+            <div class="result-main">Label: <strong>{{ r.label }}</strong></div>
+            <div class="result-meta">Polarity Score: {{ r.polarity | number:'1.3-3' }} ( -1 to +1 )</div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Recommendation (NEW) -->
+      <ng-container *ngIf="selectedModel() === 'reco'">
+        <div class="panel-header">
+          <div class="panel-title-row">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#4ecdc4" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            <h3>Event Recommendation <span class="panel-endpoint">/recommend/events</span></h3>
+          </div>
+          <button class="panel-close" (click)="selectModel(null)">✕</button>
+        </div>
+        <div class="ml-form">
+          <div class="result-box" style="border-color:rgba(78,205,196,0.2);background:rgba(78,205,196,0.05);">
+            <div class="result-main">Content-based recommender</div>
+            <div class="result-meta">The backend compares event similarity using average price, rating, visitors, marketing spend, and event type.</div>
+          </div>
+          <div class="form-row">
+            <label>Beneficiary ID <input type="number" [(ngModel)]="recoBeneId" class="ml-input"></label>
+            <label>Recommendation Count <input type="number" [(ngModel)]="recoCount" min="1" max="10" class="ml-input"></label>
+          </div>
+          <div class="panel-actions">
+            <button class="btn-predict panel-run" (click)="runReco()" [disabled]="recoLoading()">
+              <span *ngIf="!recoLoading()">Get Recommendations</span>
+              <span *ngIf="recoLoading()" class="spinner"></span>
+            </button>
+          </div>
+          <div *ngIf="recoResult() as r" class="result-box reco-result">
+            <div class="result-main">Recommended Event IDs:</div>
+            <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem;">
+              <span *ngFor="let id of r.recommendations" class="catalog-badge" style="background:rgba(78,205,196,0.15);color:#4ecdc4;">ID: {{ id }}</span>
+            </div>
+            <div class="result-meta" style="margin-top:0.5rem;">Strategy: {{ r.type }}</div>
+            <div *ngIf="r.scores?.length" class="result-meta">Scores: {{ r.scores?.join(', ') }}</div>
+          </div>
+          <p *ngIf="recoError()" class="predict-error">{{ recoError() }}</p>
+        </div>
+      </ng-container>
+
+      <!-- Anomalies (NEW) -->
+      <ng-container *ngIf="selectedModel() === 'anomalies'">
+        <div class="panel-header">
+          <div class="panel-title-row">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#ff9f43" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <h3>Anomaly Detection <span class="panel-endpoint">/predict/anomalies</span></h3>
+          </div>
+          <button class="panel-close" (click)="selectModel(null)">✕</button>
+        </div>
+        <div class="ml-form">
+          <div class="result-box" style="border-color:rgba(255,159,67,0.2);background:rgba(255,159,67,0.05);">
+            <div class="result-main">Backend detector</div>
+            <div class="result-meta">This panel uses the FastAPI anomaly endpoint powered by Isolation Forest over core event metrics.</div>
+          </div>
+          <div class="panel-actions">
+            <button class="btn-predict panel-run" (click)="runAnomalies()" [disabled]="anomalyLoading()">
+              <span *ngIf="!anomalyLoading()">Scan for Anomalies</span>
+              <span *ngIf="anomalyLoading()" class="spinner"></span>
+            </button>
+          </div>
+          <div *ngIf="anomalyResult() as r" class="lab-kpi-grid">
+            <div class="lab-kpi-card">
+              <span class="lab-kpi-label">Anomaly Rate</span>
+              <strong class="lab-kpi-value">{{ anomalyRatePercent | number:'1.1-1' }}%</strong>
+              <span class="lab-kpi-meta">Detected anomalous profiles over all scanned records.</span>
+            </div>
+            <div class="lab-kpi-card">
+              <span class="lab-kpi-label">Anomalies</span>
+              <strong class="lab-kpi-value">{{ r.anomaly_count }}</strong>
+              <span class="lab-kpi-meta">Flagged by {{ r.algorithm || 'Isolation Forest' }}.</span>
+            </div>
+            <div class="lab-kpi-card">
+              <span class="lab-kpi-label">Population</span>
+              <strong class="lab-kpi-value">{{ r.total_count }}</strong>
+              <span class="lab-kpi-meta">Records evaluated by the detector.</span>
+            </div>
+            <div class="lab-kpi-card" *ngIf="r.contamination !== undefined">
+              <span class="lab-kpi-label">Contamination</span>
+              <strong class="lab-kpi-value">{{ (r.contamination * 100) | number:'1.1-1' }}%</strong>
+              <span class="lab-kpi-meta">Configured anomaly prior in the backend.</span>
+            </div>
+          </div>
+          <div *ngIf="anomalyResult() as r" class="result-box anomaly-result">
+            <div class="result-main">Found <strong>{{ r.anomaly_count }}</strong> anomalies out of {{ r.total_count }} records.</div>
+            <div class="result-meta" style="margin-top:0.5rem;">
+              Detection Algorithm: {{ r.algorithm || 'Isolation Forest' }}
+              <span *ngIf="r.contamination !== undefined"> (Contamination={{ r.contamination }})</span>
+            </div>
+            <div *ngIf="r.sample_anomalies.length" class="forecast-list" style="margin-top:0.75rem;">
+              <div *ngFor="let item of r.sample_anomalies | slice:0:5" class="forecast-item">
+                <span class="forecast-date">Price {{ item.price | number:'1.0-0' }} / Budget {{ item.budget | number:'1.0-0' }}</span>
+                <span class="forecast-value"><strong>{{ item.ano_score | number:'1.3-3' }}</strong> score</span>
+              </div>
+            </div>
+          </div>
+          <p *ngIf="anomalyError()" class="predict-error">{{ anomalyError() }}</p>
+        </div>
+      </ng-container>
+
+      <!-- Deep Learning (NEW) -->
+      <ng-container *ngIf="selectedModel() === 'dl'">
+        <div class="panel-header">
+          <div class="panel-title-row">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#ee5253" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            <h3>Advanced Prediction (MLP) <span class="panel-endpoint">/predict/deep-learning</span></h3>
+          </div>
+          <button class="panel-close" (click)="selectModel(null)">✕</button>
+        </div>
+        <div class="ml-form">
+          <p class="section-sub">This MLP classifier predicts loyalty from the same business features as the fidelisation model, but with a neural-network backend.</p>
+          <div class="form-row">
+            <label>Price <input type="number" [(ngModel)]="fidelForm.price" class="ml-input"></label>
+            <label>Budget <input type="number" [(ngModel)]="fidelForm.budget" class="ml-input"></label>
+            <label>Final Price <input type="number" [(ngModel)]="fidelForm.final_price" class="ml-input"></label>
+          </div>
+          <div class="form-row">
+            <label>Rating <input type="number" step="0.1" min="0" max="5" [(ngModel)]="fidelForm.rating" class="ml-input"></label>
+            <label>Visitors <input type="number" [(ngModel)]="fidelForm.visitors" class="ml-input"></label>
+            <label>Marketing Spend <input type="number" [(ngModel)]="fidelForm.marketing_spend" class="ml-input"></label>
+          </div>
+          <div class="form-row">
+            <label>Price/Budget Ratio <input type="number" step="0.01" [(ngModel)]="fidelForm.price_budget_ratio" class="ml-input"></label>
+            <label>Margin <input type="number" [(ngModel)]="fidelForm.margin" class="ml-input"></label>
+            <label>Month <input type="number" min="1" max="12" [(ngModel)]="fidelForm.month" class="ml-input"></label>
+          </div>
+          <div class="form-row">
+            <label>Has Complaint <select [(ngModel)]="fidelForm.has_complaint" class="ml-input"><option [ngValue]="0">No</option><option [ngValue]="1">Yes</option></select></label>
+            <label>Type Encoding <select [(ngModel)]="fidelForm.type_encoded" class="ml-input"><option [ngValue]="0">Corporate Event</option><option [ngValue]="1">Private Party</option><option [ngValue]="2">Wedding</option><option [ngValue]="3">Inconnu</option></select></label>
+            <label>Season Encoding <select [(ngModel)]="fidelForm.season_encoded" class="ml-input"><option [ngValue]="0">Automne</option><option [ngValue]="1">Ete</option><option [ngValue]="2">Hiver</option><option [ngValue]="3">Printemps</option></select></label>
+          </div>
+          <div class="form-row">
+            <label>Is Weekend <select [(ngModel)]="fidelForm.is_weekend" class="ml-input"><option [ngValue]="0">No</option><option [ngValue]="1">Yes</option></select></label>
+          </div>
+          <div class="panel-actions">
+            <button class="btn-predict panel-run" (click)="runDL()" [disabled]="dlLoading()">
+              <span *ngIf="!dlLoading()">Run Deep Learning Model</span>
+              <span *ngIf="dlLoading()" class="spinner"></span>
+            </button>
+          </div>
+          <div *ngIf="dlResult() as r" class="lab-kpi-grid">
+            <div class="lab-kpi-card">
+              <span class="lab-kpi-label">Confidence</span>
+              <strong class="lab-kpi-value">{{ (r.confidence * 100) | number:'1.1-1' }}%</strong>
+              <span class="lab-kpi-meta">Probability assigned to the positive class.</span>
+            </div>
+            <div class="lab-kpi-card" *ngIf="r.accuracy !== undefined">
+              <span class="lab-kpi-label">Accuracy</span>
+              <strong class="lab-kpi-value">{{ (r.accuracy * 100) | number:'1.1-1' }}%</strong>
+              <span class="lab-kpi-meta">Holdout accuracy for the MLP classifier.</span>
+            </div>
+            <div class="lab-kpi-card" *ngIf="r.f1_score !== undefined">
+              <span class="lab-kpi-label">F1-Score</span>
+              <strong class="lab-kpi-value">{{ r.f1_score | number:'1.3-3' }}</strong>
+              <span class="lab-kpi-meta">Balance between precision and recall.</span>
+            </div>
+            <div class="lab-kpi-card" *ngIf="r.auc !== undefined">
+              <span class="lab-kpi-label">ROC-AUC</span>
+              <strong class="lab-kpi-value">{{ r.auc | number:'1.3-3' }}</strong>
+              <span class="lab-kpi-meta">Ranking quality of the MLP probabilities.</span>
+            </div>
+          </div>
+          <div *ngIf="dlResult() as r" class="result-box dl-result">
+            <div class="result-main">Prediction: <strong>{{ r.prediction === 1 ? 'Likely Loyal' : 'At Risk' }}</strong></div>
+            <div class="result-meta">Confidence: {{ (r.confidence * 100) | number:'1.1-1' }}% · Model: {{ r.model }}</div>
+            <div class="result-meta" *ngIf="r.accuracy !== undefined || r.f1_score !== undefined || r.iterations !== undefined">
+              <span *ngIf="r.accuracy !== undefined">Accuracy: {{ (r.accuracy * 100) | number:'1.1-1' }}%</span>
+              <span *ngIf="r.f1_score !== undefined"> · F1: {{ r.f1_score | number:'1.3-3' }}</span>
+              <span *ngIf="r.auc !== undefined"> · AUC: {{ r.auc | number:'1.3-3' }}</span>
+              <span *ngIf="r.iterations !== undefined"> · Iterations: {{ r.iterations }}</span>
+            </div>
+            <div class="result-action">{{ r.note }}</div>
+          </div>
+          <p *ngIf="dlError()" class="predict-error">{{ dlError() }}</p>
         </div>
       </ng-container>
 

@@ -11,3 +11,4 @@ uvicorn
 xgboost
 imbalanced-learn
 Flask
+statsmodels

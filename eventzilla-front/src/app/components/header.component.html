@@ -26,14 +26,23 @@
 
     <!-- Actions -->
     <div class="header-actions">
-      <button class="icon-btn" (click)="theme.toggle()" [title]="theme.theme() === 'dark' ? 'Light mode' : 'Dark mode'">
-        <svg *ngIf="theme.theme() === 'dark'" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="5"/>
-          <path stroke-linecap="round" d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-        </svg>
-        <svg *ngIf="theme.theme() === 'light'" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-        </svg>
+      <button
+        class="theme-toggle"
+        (click)="theme.toggle()"
+        [attr.aria-label]="theme.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
+        [title]="theme.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'">
+        <span class="theme-toggle-icon">
+          <svg *ngIf="theme.theme() === 'dark'" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <path stroke-linecap="round" d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+          <svg *ngIf="theme.theme() === 'light'" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </span>
+        <span class="theme-toggle-text">
+          {{ theme.theme() === 'dark' ? 'Light Mode' : 'Dark Mode' }}
+        </span>
       </button>
 
       <button *ngIf="!auth.isLoggedIn()" class="btn-signin" (click)="openModal()">Sign In</button>
@@ -48,6 +57,20 @@
     </div>
   </div>
 </header>
+
+<button
+  class="theme-fab"
+  (click)="theme.toggle()"
+  [attr.aria-label]="theme.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
+  [title]="theme.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'">
+  <svg *ngIf="theme.theme() === 'dark'" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="5"/>
+    <path stroke-linecap="round" d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+  </svg>
+  <svg *ngIf="theme.theme() === 'light'" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+  </svg>
+</button>
 
 <!-- Modal backdrop -->
 <div class="modal-backdrop" *ngIf="showModal()" (click)="closeModal()"></div>

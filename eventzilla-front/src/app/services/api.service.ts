@@ -6,7 +6,11 @@ import {
   FidelisationRequest, FidelisationResponse,
   LoyaltyRequest, LoyaltyResponse,
   ClusterRequest, ClusterResponse,
-  ForecastRequest, ForecastResponse
+  ForecastRequest, ForecastResponse,
+  SentimentResponse,
+  RecommendationResponse,
+  AnomalyResponse,
+  DeepLearningResponse
 } from '../models/ml.models';
 
 export interface ChatResponse {
@@ -51,6 +55,22 @@ export class ApiService {
 
   forecast(data: ForecastRequest): Observable<ForecastResponse> {
     return this.http.post<ForecastResponse>(`${this.fastapi}/predict/forecast`, data);
+  }
+
+  predictSentiment(text: string): Observable<SentimentResponse> {
+    return this.http.post<SentimentResponse>(`${this.fastapi}/predict/sentiment`, { text });
+  }
+
+  recommendEvents(beneficiaryId: number, nReco: number = 5): Observable<RecommendationResponse> {
+    return this.http.post<RecommendationResponse>(`${this.fastapi}/recommend/events?beneficiary_id=${beneficiaryId}&n_reco=${nReco}`, {});
+  }
+
+  detectAnomalies(): Observable<AnomalyResponse> {
+    return this.http.post<AnomalyResponse>(`${this.fastapi}/predict/anomalies`, {});
+  }
+
+  predictDeepLearning(data: FidelisationRequest): Observable<DeepLearningResponse> {
+    return this.http.post<DeepLearningResponse>(`${this.fastapi}/predict/deep-learning`, data);
   }
 
   // ── Flask ────────────────────────────────────────────────────────────────
