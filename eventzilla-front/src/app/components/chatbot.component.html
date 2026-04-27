@@ -1,0 +1,92 @@
+<!-- FAB -->
+<button class="chat-fab" (click)="toggle()" [title]="open() ? 'Close' : 'AI Assistant'">
+  <svg *ngIf="!open()" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+    <path stroke-linecap="round" stroke-linejoin="round"
+      d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+  </svg>
+  <svg *ngIf="open()" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+  </svg>
+</button>
+
+<!-- Panel -->
+<div class="chat-panel" *ngIf="open()">
+
+  <!-- Header -->
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-dot"></span>
+      <span class="chat-title">EventZella AI Assistant</span>
+    </div>
+    <button class="chat-close" (click)="toggle()" title="Close">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Quick questions -->
+  <div class="quick-questions">
+    <button *ngFor="let q of quickQuestions" class="quick-btn" (click)="ask(q)">{{ q }}</button>
+  </div>
+
+  <!-- Messages -->
+  <div class="chat-messages">
+    <ng-container *ngFor="let msg of messages()">
+
+      <div *ngIf="msg.loading" class="msg-row msg-row-bot">
+        <div class="avatar avatar-bot">AI</div>
+        <div class="msg msg-bot loading-bubble">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <ng-container *ngIf="!msg.loading">
+        <div class="msg-row" [class.msg-row-user]="msg.role === 'user'" [class.msg-row-bot]="msg.role === 'bot'">
+          <div *ngIf="msg.role === 'bot'" class="avatar avatar-bot">AI</div>
+          <div class="msg" [class.msg-user]="msg.role === 'user'" [class.msg-bot]="msg.role === 'bot'">
+            {{ msg.text }}
+          </div>
+          <div *ngIf="msg.role === 'user'" class="avatar avatar-user">Me</div>
+        </div>
+
+        <div *ngIf="msg.data && msg.data.length" class="msg-table-wrap">
+          <table class="msg-table">
+            <thead>
+              <tr><th *ngFor="let key of tableKeys(msg.data[0])">{{ key }}</th></tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of msg.data">
+                <td *ngFor="let key of tableKeys(row)">{{ row[key] }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="msg.type === 'chart' && msg.data && msg.data.length" class="chart-placeholder">
+          📊 Chart visualization — coming soon
+        </div>
+      </ng-container>
+
+    </ng-container>
+    <div #msgEnd></div>
+  </div>
+
+  <!-- Input -->
+  <div class="chat-input-row">
+    <input
+      class="chat-input"
+      type="text"
+      placeholder="Ask about your events data…"
+      [value]="input()"
+      (input)="input.set($any($event.target).value)"
+      (keydown)="onKeydown($event)"
+    />
+    <button class="chat-send" (click)="send()">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+      </svg>
+    </button>
+  </div>
+
+</div>

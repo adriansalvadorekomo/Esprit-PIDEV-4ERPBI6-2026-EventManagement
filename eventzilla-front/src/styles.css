@@ -1,2 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background: #0d1117;
+  color: #e6edf3;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+app-root {
+  display: block;
+  min-height: 100vh;
+}
+
+/* keep layout normal */
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #0d1117;
+  color: #e6edf3;
+}
+
+/* fix content position */
+main {
+  flex: 1;
+  padding-top: 80px;
+  background: #0d1117;
+}
+
+/* prevent giant broken SVG */
+svg {
+  max-width: 32px;
+  max-height: 32px;
+}
+
+/* only remove decorative pseudo-shapes */
+body::before,
+body::after,
+app-root::before,
+app-root::after,
+.app-shell::before,
+.app-shell::after {
+  content: none !important;
+  display: none !important;
+}
