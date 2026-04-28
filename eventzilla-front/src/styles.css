@@ -116,8 +116,8 @@ main {
   border-radius: var(--radius-sm);
 }
 
-/* ── SVG guard ─────────────────────────────────────────────────────────── */
-svg { max-width: 32px; max-height: 32px; }
+/* ── SVG guard (exclude lucide) ────────────────────────────────────────── */
+svg:not(lucide-icon svg) { max-width: 32px; max-height: 32px; }
 
 /* ── Decorative pseudo-element guard ───────────────────────────────────── */
 body::before, body::after,

@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   private readonly el        = inject(ElementRef);
   protected readonly auth    = inject(AuthService);
 
-  readonly pbiUrl     = 'https://app.powerbi.com/reportEmbed?reportId=39e494a8-2968-437f-beb2-aaa2fb9b4625&autoAuth=true&ctid=604f1a96-cbe8-43f8-abbf-f8eaf5d85730';
+  readonly pbiUrl     = 'https://app.powerbi.com/reportEmbed?reportId=de8ac328-20ee-4ad9-8c5a-6cd4d7708ab6&autoAuth=true&embeddedDemo=true';
   readonly pbiUrlSafe: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.pbiUrl);
 
   activeSection = signal<Section>('overview');

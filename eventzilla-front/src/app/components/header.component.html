@@ -18,14 +18,43 @@
 
     <!-- Nav -->
     <nav class="nav-links">
-      <a href="#overview" class="nav-link">Overview</a>
-      <a *ngIf="auth.isAdmin" href="#dashboards" class="nav-link">Dashboards</a>
-      <a *ngIf="auth.isAdmin" href="#lab"        class="nav-link">Lab</a>
-      <a href="#about"    class="nav-link">About</a>
+      <a href="#overview" class="nav-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 9.5L12 3L21 9.5V20C21 20.55 20.55 21 20 21H15V15H9V21H4C3.45 21 3 20.55 3 20V9.5Z" fill="#388bfd" fill-opacity="0.2" stroke="#388bfd" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        Overview
+      </a>
+      <a *ngIf="auth.isAdmin" href="#dashboards" class="nav-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="8" height="8" rx="1.5" fill="#a371f7" fill-opacity="0.2" stroke="#a371f7" stroke-width="1.8"/>
+          <rect x="13" y="3" width="8" height="8" rx="1.5" fill="#a371f7" fill-opacity="0.2" stroke="#a371f7" stroke-width="1.8"/>
+          <rect x="3" y="13" width="8" height="8" rx="1.5" fill="#a371f7" fill-opacity="0.2" stroke="#a371f7" stroke-width="1.8"/>
+          <rect x="13" y="13" width="8" height="8" rx="1.5" fill="#a371f7" fill-opacity="0.2" stroke="#a371f7" stroke-width="1.8"/>
+        </svg>
+        Dashboards
+      </a>
+      <a *ngIf="auth.isAdmin" href="#lab" class="nav-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 3H15M9 3V10L4.5 18.5C4.2 19.1 4.6 19.9 5.3 20H18.7C19.4 20 19.8 19.1 19.5 18.5L15 10V3M9 3H7M15 3H17" stroke="#3fb950" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7 15.5H17" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+          <circle cx="10" cy="17.5" r="1" fill="#3fb950" opacity="0.7"/>
+          <circle cx="14" cy="16.5" r="0.8" fill="#3fb950" opacity="0.5"/>
+        </svg>
+        Lab
+      </a>
+      <a href="#about" class="nav-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="9" fill="#f2c811" fill-opacity="0.12" stroke="#f2c811" stroke-width="1.8"/>
+          <path d="M12 11V17" stroke="#f2c811" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="8" r="1.2" fill="#f2c811"/>
+        </svg>
+        About
+      </a>
     </nav>
 
     <!-- Actions -->
     <div class="header-actions">
+      <!-- Theme toggle: icon-only on mobile, with text on desktop -->
       <button
         class="theme-toggle"
         (click)="theme.toggle()"
@@ -41,7 +70,7 @@
           </svg>
         </span>
         <span class="theme-toggle-text">
-          {{ theme.theme() === 'dark' ? 'Light Mode' : 'Dark Mode' }}
+          {{ theme.theme() === 'dark' ? 'Light' : 'Dark' }}
         </span>
       </button>
 
@@ -54,8 +83,35 @@
         </div>
         <button class="btn-signout" (click)="auth.signOut()">Sign Out</button>
       </ng-container>
+
+      <!-- Hamburger (mobile only) -->
+      <button class="hamburger" (click)="menuOpen.set(!menuOpen())" [attr.aria-expanded]="menuOpen()" aria-label="Toggle menu">
+        <span [class.open]="menuOpen()"></span>
+        <span [class.open]="menuOpen()"></span>
+        <span [class.open]="menuOpen()"></span>
+      </button>
     </div>
   </div>
+
+  <!-- Mobile drawer -->
+  <nav class="mobile-nav" [class.mobile-nav--open]="menuOpen()" (click)="menuOpen.set(false)">
+    <a href="#overview" class="mobile-nav-link">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M3 9.5L12 3L21 9.5V20C21 20.55 20.55 21 20 21H15V15H9V21H4C3.45 21 3 20.55 3 20V9.5Z" fill="#388bfd" fill-opacity="0.2" stroke="#388bfd" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      Overview
+    </a>
+    <a *ngIf="auth.isAdmin" href="#dashboards" class="mobile-nav-link">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="1.5" fill="#a371f7" fill-opacity="0.2" stroke="#a371f7" stroke-width="1.8"/><rect x="13" y="3" width="8" height="8" rx="1.5" fill="#a371f7" fill-opacity="0.2" stroke="#a371f7" stroke-width="1.8"/><rect x="3" y="13" width="8" height="8" rx="1.5" fill="#a371f7" fill-opacity="0.2" stroke="#a371f7" stroke-width="1.8"/><rect x="13" y="13" width="8" height="8" rx="1.5" fill="#a371f7" fill-opacity="0.2" stroke="#a371f7" stroke-width="1.8"/></svg>
+      Dashboards
+    </a>
+    <a *ngIf="auth.isAdmin" href="#lab" class="mobile-nav-link">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M9 3H15M9 3V10L4.5 18.5C4.2 19.1 4.6 19.9 5.3 20H18.7C19.4 20 19.8 19.1 19.5 18.5L15 10V3M9 3H7M15 3H17" stroke="#3fb950" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 15.5H17" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="10" cy="17.5" r="1" fill="#3fb950" opacity="0.7"/></svg>
+      Lab
+    </a>
+    <a href="#about" class="mobile-nav-link">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="#f2c811" fill-opacity="0.12" stroke="#f2c811" stroke-width="1.8"/><path d="M12 11V17" stroke="#f2c811" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="8" r="1.2" fill="#f2c811"/></svg>
+      About
+    </a>
+  </nav>
 </header>
 
 <button

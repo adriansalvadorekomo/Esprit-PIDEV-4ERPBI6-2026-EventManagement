@@ -1,0 +1,10 @@
+artifact_location: file:C:/Users/larry/Desktop/Esprit-PABI-4ERPBI6-2526-EventZella/backend/mlruns/976529886283166105/models/m-5cf98f7bbae34ee7bbace877bfb32eee/artifacts
+creation_timestamp: 1777327855948
+experiment_id: '976529886283166105'
+last_updated_timestamp: 1777327866548
+model_id: m-5cf98f7bbae34ee7bbace877bfb32eee
+model_type: null
+name: model
+source_run_id: a63fbd0883cf42d98ff2b2e55e567dda
+status: 2
+status_message: null

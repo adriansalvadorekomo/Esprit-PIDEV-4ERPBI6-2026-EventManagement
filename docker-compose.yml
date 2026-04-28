@@ -1,0 +1,73 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: eventzilla-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres-init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  fastapi:
+    build:
+      context: .
+      dockerfile: backend.Dockerfile
+    container_name: eventzilla-fastapi
+    restart: unless-stopped
+    environment:
+      EVENTZILLA_DB_HOST: postgres
+      EVENTZILLA_DB_PORT: 5432
+      EVENTZILLA_DB_NAME: ${POSTGRES_DB}
+      EVENTZILLA_DB_USER: ${POSTGRES_USER}
+      EVENTZILLA_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      EVENTZILLA_CORS_ORIGINS: "*"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+
+  flask:
+    build:
+      context: .
+      dockerfile: backend.Dockerfile
+    container_name: eventzilla-flask
+    restart: unless-stopped
+    environment:
+      FLASK_APP_DB_HOST: postgres
+      FLASK_APP_DB_PORT: 5432
+      FLASK_APP_DB_NAME: ${POSTGRES_DB}
+      FLASK_APP_DB_USER: ${POSTGRES_USER}
+      FLASK_APP_DB_PASSWORD: ${POSTGRES_PASSWORD}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "5000:5000"
+    command: python app.py
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend.Dockerfile
+    container_name: eventzilla-frontend
+    restart: unless-stopped
+    depends_on:
+      - fastapi
+      - flask
+    ports:
+      - "4200:80"
+
+volumes:
+  postgres_data:

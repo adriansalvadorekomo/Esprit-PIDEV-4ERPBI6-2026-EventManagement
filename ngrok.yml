@@ -1,0 +1,13 @@
+version: "3"
+agent:
+  authtoken: 2gkjXEwjcxxYC6XtsbrCPEBtODb_3VWF3RvoHYfzGkvXca2zV
+tunnels:
+  frontend:
+    addr: 4200
+    proto: http
+  fastapi:
+    addr: 8000
+    proto: http
+  flask:
+    addr: 5000
+    proto: http

@@ -104,7 +104,12 @@
   text-decoration: none;
   transition: color 0.15s, background 0.2s;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
+
+.nav-link svg { flex-shrink: 0; max-width: none; max-height: none; }
 
 .nav-link::after {
   content: '';
@@ -483,10 +488,208 @@
   }
 
   .theme-toggle {
+    width: 42px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .theme-toggle-text {
     display: none;
   }
 
   .theme-fab {
-    display: inline-flex;
+    display: none;
   }
+}
+
+
+/* ── Hamburger ───────────────────────────────────────────────────────── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  background: var(--text-secondary, #8b949e);
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s, width 0.25s;
+  width: 100%;
+}
+
+.hamburger span:nth-child(1).open { transform: translateY(7px) rotate(45deg); }
+.hamburger span:nth-child(2).open { opacity: 0; }
+.hamburger span:nth-child(3).open { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── Mobile nav drawer ───────────────────────────────────────────────── */
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  padding: 0.5rem 1rem 1rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.mobile-nav--open {
+  max-height: 300px;
+}
+
+.mobile-nav-link {
+  padding: 0.75rem 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary, #8b949e);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.mobile-nav-link svg { flex-shrink: 0; max-width: none; max-height: none; }
+
+.mobile-nav-link:last-child { border-bottom: none; }
+.mobile-nav-link:hover { color: var(--text-primary, #e6edf3); }
+
+@media (max-width: 640px) {
+  .hamburger { display: flex; }
+  .mobile-nav { display: flex; }
+  .username { display: none; }
+  .btn-signout { padding: 0.45rem 0.7rem; font-size: 0.8rem; }
+  .btn-signin  { padding: 0.45rem 0.9rem; font-size: 0.85rem; }
+  .header-inner { padding: 0 1rem; height: 60px; }
+}
+
+
+/* ── Theme toggle always visible fix ────────────────────────────────── */
+.theme-toggle {
+  display: inline-flex !important;
+  flex-shrink: 0 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.header-actions {
+  gap: 0.6rem !important;
+  overflow: visible !important;
+}
+
+@media (max-width: 640px) {
+  .theme-toggle {
+    width: 38px !important;
+    height: 38px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+  }
+  .theme-toggle-text { display: none !important; }
+  .header-actions { gap: 0.4rem !important; }
+}
+
+
+/* ── Header alignment fix ────────────────────────────────────────────── */
+.header-inner {
+  justify-content: flex-start !important;
+  gap: 0 !important;
+}
+
+.nav-links {
+  flex: 1;
+  margin-left: 1.5rem !important;
+}
+
+.header-actions {
+  margin-left: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.6rem !important;
+}
+
+.header-actions > * {
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.user-badge {
+  height: 38px !important;
+  padding: 0 0.85rem 0 0.45rem !important;
+}
+
+.btn-signin,
+.btn-signout {
+  height: 38px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+
+/* ── Header spacing polish ───────────────────────────────────────────── */
+.header-inner {
+  height: 68px !important;
+  padding: 0 2.5rem !important;
+}
+
+.nav-links {
+  gap: 0.25rem !important;
+  margin-left: 2.5rem !important;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem !important;
+  gap: 0.5rem !important;
+}
+
+.header-actions {
+  gap: 0.75rem !important;
+}
+
+.logo {
+  margin-right: 0 !important;
+  gap: 0.65rem !important;
+}
+
+@media (max-width: 960px) {
+  .header-inner { padding: 0 1.25rem !important; }
+  .nav-links { margin-left: 1rem !important; gap: 0 !important; }
+  .header-actions { gap: 0.5rem !important; }
+}
+
+@media (max-width: 640px) {
+  .header-inner { padding: 0 1rem !important; }
+  .header-actions { gap: 0.4rem !important; }
+}
+
+
+/* ── Separator between theme toggle and auth ─────────────────────────── */
+.theme-toggle {
+  margin-right: 0.75rem !important;
+}
+
+.theme-toggle + * {
+  margin-left: 0.25rem !important;
+}
+
+.header-actions::after {
+  content: none;
+}
+
+/* Divider line between theme and auth */
+.btn-signin,
+.user-badge {
+  margin-left: 0.5rem !important;
+  padding-left: 1rem !important;
+  border-left: 1px solid rgba(255,255,255,0.1) !important;
 }

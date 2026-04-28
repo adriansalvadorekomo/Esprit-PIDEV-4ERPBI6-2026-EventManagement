@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   protected readonly auth  = inject(AuthService);
 
   showModal  = signal(false);
+  menuOpen   = signal(false);
   email      = signal('');
   password   = signal('');
   loginError = signal('');

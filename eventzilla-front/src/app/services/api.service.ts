@@ -21,11 +21,20 @@ export interface ChatResponse {
   status: string;
 }
 
+interface AppConfig { fastapiUrl: string; flaskUrl: string; }
+
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   private readonly http = inject(HttpClient);
-  private readonly fastapi = 'http://localhost:8000';
-  private readonly flask   = 'http://localhost:5000';
+  private fastapi = 'http://localhost:8000';
+  private flask   = 'http://localhost:5000';
+
+  constructor() {
+    this.http.get<AppConfig>('/config.json').subscribe(cfg => {
+      this.fastapi = cfg.fastapiUrl;
+      this.flask   = cfg.flaskUrl;
+    });
+  }
 
   // ── FastAPI ──────────────────────────────────────────────────────────────
 

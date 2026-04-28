@@ -61,7 +61,13 @@ def get_season(month):
     else: return 'automne'
 
 def get_engine():
-    return create_engine("postgresql://postgres:1400@localhost:5432/DW_event")
+    import os
+    host = os.getenv("FLASK_APP_DB_HOST", "localhost")
+    port = os.getenv("FLASK_APP_DB_PORT", "5432")
+    name = os.getenv("FLASK_APP_DB_NAME", "DW_event")
+    user = os.getenv("FLASK_APP_DB_USER", "postgres")
+    password = os.getenv("FLASK_APP_DB_PASSWORD", "1400")
+    return create_engine(f"postgresql://{user}:{password}@{host}:{port}/{name}")
 
 def load_cluster_metrics():
     global cluster_metrics

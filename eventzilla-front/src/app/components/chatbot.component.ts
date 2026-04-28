@@ -27,11 +27,11 @@ export class ChatbotComponent implements AfterViewChecked {
   ]);
 
   readonly quickQuestions = [
-    'How many reservations are there?',
+    'Show events by season',
     'Top 5 providers by reservations',
     'Show reservations by status',
     'What is the average rating?',
-    'Which event category has the most services?',
+    'Which event category has the most events?',
     'Show visitor trend by month',
     'What is the total revenue?',
     'Which providers have the lowest ratings?',

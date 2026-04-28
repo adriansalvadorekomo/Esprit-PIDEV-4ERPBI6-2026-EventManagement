@@ -34,7 +34,8 @@ def get_settings() -> Settings:
         "EVENTZILLA_CORS_ORIGINS",
         "http://localhost:4200,http://127.0.0.1:4200",
     )
-    origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
+    origins = raw_origins.strip()
+    origins = ["*"] if origins == "*" else [o.strip() for o in origins.split(",") if o.strip()]
 
     return Settings(
         db_user=os.getenv("EVENTZILLA_DB_USER", "postgres"),
