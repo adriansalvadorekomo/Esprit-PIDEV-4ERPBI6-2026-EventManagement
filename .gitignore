@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+*.egg-info/
+
+# ML artifacts (large binaries)
+backend/models/
+backend/mlruns/
+*.pkl
+*.joblib
+
+# Node
+node_modules/
+eventzilla-front/dist/
+eventzilla-front/.angular/
+
+# DB dump (can be large)
+docker/postgres-init/init.sql
+
+# Env
+.env
+
+# OS
+.DS_Store
+Thumbs.db
