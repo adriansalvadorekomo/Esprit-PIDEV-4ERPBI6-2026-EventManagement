@@ -1,8 +1,11 @@
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
-import os
+import sys, os
 
+# Ensure backend root is on path so `settings` is importable
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import settings as _s
 
 BACKEND_DIR = Path(__file__).resolve().parents[1]
 
@@ -19,10 +22,7 @@ class Settings:
 
     @property
     def database_url(self) -> str:
-        return (
-            f"postgresql+psycopg2://{self.db_user}:{self.db_password}"
-            f"@{self.db_host}:{self.db_port}/{self.db_name}?client_encoding=utf8"
-        )
+        return _s.DATABASE_URL
 
     def artifact_path(self, filename: str) -> Path:
         return self.backend_dir / filename
@@ -30,20 +30,14 @@ class Settings:
 
 @lru_cache(maxsize=1)
 def get_settings() -> Settings:
-    raw_origins = os.getenv(
-        "EVENTZILLA_CORS_ORIGINS",
-        "http://localhost:4200,http://127.0.0.1:4200",
-    )
-    origins = raw_origins.strip()
-    origins = ["*"] if origins == "*" else [o.strip() for o in origins.split(",") if o.strip()]
-
+    raw = os.getenv("EVENTZILLA_CORS_ORIGINS", "http://localhost:4200,http://127.0.0.1:4200").strip()
+    origins = ["*"] if raw == "*" else [o.strip() for o in raw.split(",") if o.strip()]
     return Settings(
-        db_user=os.getenv("EVENTZILLA_DB_USER", "postgres"),
-        db_password=os.getenv("EVENTZILLA_DB_PASSWORD", "1400"),
-        db_host=os.getenv("EVENTZILLA_DB_HOST", "localhost"),
-        db_port=int(os.getenv("EVENTZILLA_DB_PORT", "5432")),
-        db_name=os.getenv("EVENTZILLA_DB_NAME", "DW_event"),
+        db_user=_s.DB_USER,
+        db_password=_s.DB_PASSWORD,
+        db_host=_s.DB_HOST,
+        db_port=int(_s.DB_PORT),
+        db_name=_s.DB_NAME,
         cors_origins=origins,
         backend_dir=BACKEND_DIR,
     )
-

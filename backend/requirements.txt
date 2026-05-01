@@ -17,3 +17,5 @@ statsmodels
 pmdarima
 scipy
 matplotlib
+python-dotenv
+groq

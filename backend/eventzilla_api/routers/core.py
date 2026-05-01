@@ -25,11 +25,12 @@ def home() -> dict:
     }
 
 
-GROQ_API_KEY = __import__("os").getenv("GROQ_API_KEY", "")
 
 
 def _ask_groq(message: str, db_context: str) -> str:
     import requests as _req
+    import settings as _s
+    GROQ_API_KEY = _s.GROQ_API_KEY
     system_prompt = (
         "You are EventZella AI, a Business Intelligence Copilot for an event management company.\n"
         "Analyze the data and provide clear insights, anomaly detection, and actionable recommendations.\n"
@@ -50,7 +51,10 @@ def _ask_groq(message: str, db_context: str) -> str:
             },
             timeout=30,
         )
-        return resp.json()["choices"][0]["message"]["content"]
+        data = resp.json()
+        if "choices" not in data:
+            return "AI error: " + data.get("error", {}).get("message", str(data))
+        return data["choices"][0]["message"]["content"]
     except Exception as exc:
         return f"AI error: {exc}"
 

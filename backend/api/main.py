@@ -11,6 +11,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sklearn.neighbors import NearestNeighbors
 from sqlalchemy import create_engine, text
+from dotenv import load_dotenv
+load_dotenv(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env"))
 
 # Make eventzilla_api importable
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -64,7 +66,7 @@ except Exception as e:
     print(f"❌ Cluster model load error: {e}")
 
 # ── Chatbot: DB + Groq setup ─────────────────────────────────
-DB_URL = "postgresql://postgres:00256@localhost/event"
+from settings import DATABASE_URL as DB_URL
 
 DB_SCHEMA = """
 You are a senior BI Data Analyst for EventZella, an event management platform.

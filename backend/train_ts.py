@@ -20,10 +20,8 @@ mlflow.autolog(disable=True)
 mlflow.statsmodels.autolog(disable=True)
 
 # ─── DB ─────────────────────────────────────────
-conn = psycopg2.connect(
-    dbname="DW_event", user="postgres", password="1400",
-    host="localhost", port="5432"
-)
+from settings import DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME
+conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT)
 query = """
 SELECT e.event_date, f.final_price
 FROM fact_suivi_event f

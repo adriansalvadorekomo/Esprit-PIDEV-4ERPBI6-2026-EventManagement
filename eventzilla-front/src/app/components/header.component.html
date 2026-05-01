@@ -1,7 +1,8 @@
 <header class="header-nav">
   <div class="header-inner">
     <a class="logo" (click)="navigate('overview')" style="cursor:pointer" aria-label="EventZella Home">
-      <img src="logo-removebg-preview.png" alt="EventZella Logo" style="height:40px;width:auto;object-fit:contain;display:block;" />
+      <img *ngIf="theme.theme() === 'dark'" src="logo-removebg-preview.png" alt="EventZella Logo" style="height:40px;width:auto;object-fit:contain;display:block;" />
+      <span *ngIf="theme.theme() !== 'dark'" style="font-size:1.2rem;font-weight:700;letter-spacing:0.01em;">EventZilla</span>
     </a>
     <nav class="nav-links" aria-label="Main navigation">
       <a class="nav-link" (click)="navigate('overview')">

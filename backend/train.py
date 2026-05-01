@@ -18,12 +18,8 @@ warnings.filterwarnings('ignore')
 # 1. CONFIGURATION ET CONNEXION
 # ============================================================
 def get_engine():
-    user = "postgres"
-    password = "1400"
-    host = "localhost"
-    port = "5432"
-    database = "DW_event"
-    return create_engine(f"postgresql://{user}:{password}@{host}:{port}/{database}")
+    from settings import DATABASE_URL
+    return create_engine(DATABASE_URL)
 
 # ============================================================
 # 2. LOGIQUE DE CLUSTERING (Double Entraînement + MLflow)
@@ -36,7 +32,7 @@ def run_clustering_pipeline(engine, n_clusters=3, eps=2.0, min_samples=14):
     FROM fact_suivi_event f
     LEFT JOIN dim_event e ON f.event_sk = e.event_sk
     LEFT JOIN dim_reservation r ON f.reservation_sk = r.reservation_sk
-    LEFT JOIN "dim_complaint" c ON f.id_complaint = c.id_complaint
+    LEFT JOIN dim_complaint c ON f.id_complaint = c.id_complaint
     """
     df_raw = pd.read_sql(text(query), engine)
     

@@ -15,13 +15,8 @@ mlflow.set_tracking_uri("file:./mlruns")
 mlflow.set_experiment("rf_final_price")
 
 # ─── Connexion DB ───────────────────────────────
-conn = psycopg2.connect(
-    dbname="DW_event",
-    user="postgres",
-    password="1400",
-    host="localhost",
-    port="5432"
-)
+from settings import DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME
+conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT)
 
 # ─── Charger données ────────────────────────────
 query = """
