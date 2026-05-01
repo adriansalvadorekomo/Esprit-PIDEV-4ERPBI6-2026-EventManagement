@@ -8,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
   readonly year = new Date().getFullYear();
+
+  navigate(section: string): void {
+    window.location.hash = section;
+  }
 }

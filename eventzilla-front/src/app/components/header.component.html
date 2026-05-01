@@ -1,160 +1,80 @@
-<div class="scroll-indicator">
-  <div class="scroll-bar" *ngFor="let b of scrollBars; let i = index"
-       [class.active]="i === activeBar()"
-       [class.passed]="i < activeBar()"></div>
-</div>
 <header class="header-nav">
   <div class="header-inner">
-
-    <!-- Logo -->
-    <a href="#overview" class="logo">
-      <div class="logo-icon">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M3 8h10M8 3v10" stroke="#388bfd" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </div>
+    <a class="logo" (click)="navigate('overview')" style="cursor:pointer" aria-label="EventZella Home">
       <span>EventZella</span>
     </a>
-
-    <!-- Nav -->
-    <nav class="nav-links">
-      <a href="#overview" class="nav-link">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3 9.5L12 3L21 9.5V20C21 20.55 20.55 21 20 21H15V15H9V21H4C3.45 21 3 20.55 3 20V9.5Z" fill="#388bfd" fill-opacity="0.2" stroke="#388bfd" stroke-width="1.8" stroke-linejoin="round"/>
-        </svg>
-        Overview
+    <nav class="nav-links" aria-label="Main navigation">
+      <a class="nav-link" (click)="navigate('overview')">
+        <lucide-icon name="home" [size]="18"></lucide-icon>
+        <span>Overview</span>
       </a>
-      <a *ngIf="auth.isAdmin" href="#dashboards" class="nav-link">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="3" y="3" width="8" height="8" rx="1.5" fill="#a371f7" fill-opacity="0.2" stroke="#a371f7" stroke-width="1.8"/>
-          <rect x="13" y="3" width="8" height="8" rx="1.5" fill="#a371f7" fill-opacity="0.2" stroke="#a371f7" stroke-width="1.8"/>
-          <rect x="3" y="13" width="8" height="8" rx="1.5" fill="#a371f7" fill-opacity="0.2" stroke="#a371f7" stroke-width="1.8"/>
-          <rect x="13" y="13" width="8" height="8" rx="1.5" fill="#a371f7" fill-opacity="0.2" stroke="#a371f7" stroke-width="1.8"/>
-        </svg>
-        Dashboards
+      <a *ngIf="auth.isAdmin" class="nav-link" (click)="navigate('dashboards')">
+        <lucide-icon name="layout-dashboard" [size]="18"></lucide-icon>
+        <span>Dashboards</span>
       </a>
-      <a *ngIf="auth.isAdmin" href="#lab" class="nav-link">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9 3H15M9 3V10L4.5 18.5C4.2 19.1 4.6 19.9 5.3 20H18.7C19.4 20 19.8 19.1 19.5 18.5L15 10V3M9 3H7M15 3H17" stroke="#3fb950" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M7 15.5H17" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-          <circle cx="10" cy="17.5" r="1" fill="#3fb950" opacity="0.7"/>
-          <circle cx="14" cy="16.5" r="0.8" fill="#3fb950" opacity="0.5"/>
-        </svg>
-        Lab
+      <a *ngIf="auth.isAdmin" class="nav-link" (click)="navigate('lab')">
+        <lucide-icon name="flask-conical" [size]="18"></lucide-icon>
+        <span>Lab</span>
       </a>
-      <a href="#about" class="nav-link">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="9" fill="#f2c811" fill-opacity="0.12" stroke="#f2c811" stroke-width="1.8"/>
-          <path d="M12 11V17" stroke="#f2c811" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="12" cy="8" r="1.2" fill="#f2c811"/>
-        </svg>
-        About
+      <a class="nav-link" (click)="navigate('about')">
+        <lucide-icon name="info" [size]="18"></lucide-icon>
+        <span>About</span>
       </a>
     </nav>
-
-    <!-- Actions -->
     <div class="header-actions">
-      <!-- Theme toggle: icon-only on mobile, with text on desktop -->
-      <button
-        class="theme-toggle"
-        (click)="theme.toggle()"
-        [attr.aria-label]="theme.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
-        [title]="theme.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'">
-        <span class="theme-toggle-icon">
-          <svg *ngIf="theme.theme() === 'dark'" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="5"/>
-            <path stroke-linecap="round" d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-          </svg>
-          <svg *ngIf="theme.theme() === 'light'" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-          </svg>
-        </span>
-        <span class="theme-toggle-text">
-          {{ theme.theme() === 'dark' ? 'Light' : 'Dark' }}
-        </span>
+      <button class="theme-toggle" (click)="theme.toggle()" aria-label="Toggle theme">
+        <lucide-icon [name]="theme.theme() === 'dark' ? 'sun' : 'moon'" [size]="18"></lucide-icon>
+        <span class="theme-toggle-text">Theme</span>
       </button>
-
-      <button *ngIf="!auth.isLoggedIn()" class="btn-signin" (click)="openModal()">Sign In</button>
-
+      <button *ngIf="!auth.isLoggedIn()" class="btn-signin" (click)="openModal()">
+        <lucide-icon name="log-in" [size]="18"></lucide-icon>
+        <span>Sign In</span>
+      </button>
       <ng-container *ngIf="auth.isLoggedIn()">
-        <div class="user-badge">
-          <span class="avatar">{{ auth.userName().charAt(0).toUpperCase() }}</span>
-          <span class="username">{{ auth.userName() }}</span>
-        </div>
-        <button class="btn-signout" (click)="auth.signOut()">Sign Out</button>
+        <div class="user-badge">{{ auth.userName() }}</div>
+        <button class="btn-signout" (click)="auth.signOut()">
+          <lucide-icon name="log-out" [size]="18"></lucide-icon>
+          <span>Sign Out</span>
+        </button>
       </ng-container>
-
-      <!-- Hamburger (mobile only) -->
-      <button class="hamburger" (click)="menuOpen.set(!menuOpen())" [attr.aria-expanded]="menuOpen()" aria-label="Toggle menu">
-        <span [class.open]="menuOpen()"></span>
-        <span [class.open]="menuOpen()"></span>
-        <span [class.open]="menuOpen()"></span>
+      <button class="hamburger" (click)="menuOpen.set(!menuOpen())" aria-label="Toggle menu" [attr.aria-expanded]="menuOpen()">
+        <lucide-icon [name]="menuOpen() ? 'x' : 'menu'" [size]="20"></lucide-icon>
       </button>
     </div>
   </div>
-
-  <!-- Mobile drawer -->
-  <nav class="mobile-nav" [class.mobile-nav--open]="menuOpen()" (click)="menuOpen.set(false)">
-    <a href="#overview" class="mobile-nav-link">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M3 9.5L12 3L21 9.5V20C21 20.55 20.55 21 20 21H15V15H9V21H4C3.45 21 3 20.55 3 20V9.5Z" fill="#388bfd" fill-opacity="0.2" stroke="#388bfd" stroke-width="1.8" stroke-linejoin="round"/></svg>
-      Overview
+  <nav class="mobile-nav" [class.open]="menuOpen()" (click)="menuOpen.set(false)" aria-label="Mobile navigation">
+    <a class="nav-link" (click)="navigate('overview')">
+      <lucide-icon name="home" [size]="18"></lucide-icon>
+      <span>Overview</span>
     </a>
-    <a *ngIf="auth.isAdmin" href="#dashboards" class="mobile-nav-link">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="1.5" fill="#a371f7" fill-opacity="0.2" stroke="#a371f7" stroke-width="1.8"/><rect x="13" y="3" width="8" height="8" rx="1.5" fill="#a371f7" fill-opacity="0.2" stroke="#a371f7" stroke-width="1.8"/><rect x="3" y="13" width="8" height="8" rx="1.5" fill="#a371f7" fill-opacity="0.2" stroke="#a371f7" stroke-width="1.8"/><rect x="13" y="13" width="8" height="8" rx="1.5" fill="#a371f7" fill-opacity="0.2" stroke="#a371f7" stroke-width="1.8"/></svg>
-      Dashboards
+    <a *ngIf="auth.isAdmin" class="nav-link" (click)="navigate('dashboards')">
+      <lucide-icon name="layout-dashboard" [size]="18"></lucide-icon>
+      <span>Dashboards</span>
     </a>
-    <a *ngIf="auth.isAdmin" href="#lab" class="mobile-nav-link">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M9 3H15M9 3V10L4.5 18.5C4.2 19.1 4.6 19.9 5.3 20H18.7C19.4 20 19.8 19.1 19.5 18.5L15 10V3M9 3H7M15 3H17" stroke="#3fb950" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 15.5H17" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="10" cy="17.5" r="1" fill="#3fb950" opacity="0.7"/></svg>
-      Lab
+    <a *ngIf="auth.isAdmin" class="nav-link" (click)="navigate('lab')">
+      <lucide-icon name="flask-conical" [size]="18"></lucide-icon>
+      <span>Lab</span>
     </a>
-    <a href="#about" class="mobile-nav-link">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="#f2c811" fill-opacity="0.12" stroke="#f2c811" stroke-width="1.8"/><path d="M12 11V17" stroke="#f2c811" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="8" r="1.2" fill="#f2c811"/></svg>
-      About
+    <a class="nav-link" (click)="navigate('about')">
+      <lucide-icon name="info" [size]="18"></lucide-icon>
+      <span>About</span>
     </a>
   </nav>
 </header>
-
-<button
-  class="theme-fab"
-  (click)="theme.toggle()"
-  [attr.aria-label]="theme.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
-  [title]="theme.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'">
-  <svg *ngIf="theme.theme() === 'dark'" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-    <circle cx="12" cy="12" r="5"/>
-    <path stroke-linecap="round" d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-  </svg>
-  <svg *ngIf="theme.theme() === 'light'" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-    <path stroke-linecap="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-  </svg>
-</button>
-
-<!-- Modal backdrop -->
 <div class="modal-backdrop" *ngIf="showModal()" (click)="closeModal()"></div>
-
-<!-- Login modal -->
-<div class="modal" *ngIf="showModal()" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+<div class="modal" *ngIf="showModal()" role="dialog" aria-labelledby="modal-title" aria-modal="true">
   <div class="modal-header">
-    <span class="modal-title" id="modal-title">Sign In</span>
-    <button class="modal-close" (click)="closeModal()" aria-label="Close">
-      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-      </svg>
+    <span id="modal-title">Sign In</span>
+    <button (click)="closeModal()" aria-label="Close modal">
+      <lucide-icon name="x" [size]="20"></lucide-icon>
     </button>
   </div>
-
   <div class="modal-body">
-    <label class="field-label" for="email-input">Email</label>
-    <input id="email-input" class="field-input" type="email" placeholder="you@example.com"
-      [value]="email()" (input)="email.set($any($event.target).value)"
-      (keydown)="onKeydown($event)" autocomplete="email"/>
-
-    <label class="field-label" style="margin-top:0.9rem;" for="password-input">Password</label>
-    <input id="password-input" class="field-input" type="password" placeholder="••••••••"
-      [value]="password()" (input)="password.set($any($event.target).value)"
-      (keydown)="onKeydown($event)" autocomplete="current-password"/>
-
+    <label for="email">Email</label>
+    <input id="email" type="email" [value]="email()" (input)="email.set($any($event.target).value)" (keydown)="onKeydown($event)" autocomplete="email"/>
+    <label for="password">Password</label>
+    <input id="password" type="password" [value]="password()" (input)="password.set($any($event.target).value)" (keydown)="onKeydown($event)" autocomplete="current-password"/>
     <p *ngIf="loginError()" class="login-error" role="alert">{{ loginError() }}</p>
-
-    <button class="btn-login" (click)="submit()">Sign In</button>
+    <button (click)="submit()" class="btn-login">Sign In</button>
   </div>
 </div>

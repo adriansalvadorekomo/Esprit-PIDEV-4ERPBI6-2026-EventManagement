@@ -180,8 +180,16 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  navigate(section: string): void {
+    window.location.hash = section;
+  }
+
   isProtectedAndLocked(section: Section): boolean {
     return PROTECTED.includes(section) && !this.auth.isAdmin;
+  }
+
+  get forecastTotalReservations(): number {
+    return this.forecastResult()?.forecast.reduce((sum, p) => sum + p.value, 0) ?? 0;
   }
 
   get forecastSeries(): Array<{ label: string; value: number; phase: 'history' | 'forecast' }> {

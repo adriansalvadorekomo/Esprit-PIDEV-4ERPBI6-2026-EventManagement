@@ -3,7 +3,7 @@
 
     <!-- Brand column -->
     <div class="footer-brand">
-      <a href="#overview" class="footer-logo">
+      <a class="footer-logo" (click)="navigate('overview')" style="cursor:pointer">
         <div class="footer-logo-icon">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
             <path d="M3 8h10M8 3v10" stroke="#388bfd" stroke-width="2.2" stroke-linecap="round"/>
@@ -21,10 +21,10 @@
     <div class="footer-col">
       <h4 class="footer-col-title">Platform</h4>
       <nav class="footer-nav">
-        <a href="#overview"   class="footer-link">Overview</a>
-        <a href="#dashboards" class="footer-link">Dashboards</a>
-        <a href="#lab"        class="footer-link">AI &amp; ML Lab</a>
-        <a href="#about"      class="footer-link">Features</a>
+        <a class="footer-link" (click)="navigate('overview')"   style="cursor:pointer">Overview</a>
+        <a class="footer-link" (click)="navigate('dashboards')" style="cursor:pointer">Dashboards</a>
+        <a class="footer-link" (click)="navigate('lab')"        style="cursor:pointer">AI &amp; ML Lab</a>
+        <a class="footer-link" (click)="navigate('about')"      style="cursor:pointer">Features</a>
       </nav>
     </div>
 

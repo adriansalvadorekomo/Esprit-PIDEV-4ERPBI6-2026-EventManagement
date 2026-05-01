@@ -1,945 +1,576 @@
-<div class="home-page bg-mesh">
+<div class="home-page">
 
-<!-- ══ OVERVIEW ══ -->
 <ng-container *ngIf="activeSection() === 'overview'">
 
-  <!-- Hero -->
-  <section class="hero fade-in">
-    <span class="badge">Event Management Platform</span>
-    <h1 class="hero-title">
-      Turn your event data into<br>
-      <span class="accent">unstoppable growth</span>
-    </h1>
-    <p class="hero-sub">
-      You're already collecting valuable data — events, bookings, user behavior, provider performance.
-      Most of it sits unused. EventZella connects the dots and transforms scattered data into
-      clear, powerful decisions. <strong>From raw data → real impact.</strong>
+<!-- Hero -->
+<section class="hero">
+  <span class="badge">Event Management Platform</span>
+  <h1 class="hero-title">
+    Turn your event data into<br>
+    <span class="accent">unstoppable growth</span>
+  </h1>
+  <p class="hero-desc">
+    Transform scattered data into clear, powerful decisions. From raw data to real impact.
+  </p>
+  <div class="hero-actions">
+    <a class="btn-primary" (click)="navigate('dashboards')" style="cursor:pointer">
+      <lucide-icon name="bar-chart-2" [size]="18"></lucide-icon>
+      <span>View Dashboards</span>
+    </a>
+    <a class="btn-secondary" (click)="navigate('about')" style="cursor:pointer">
+      <span>Learn More</span>
+      <lucide-icon name="arrow-right" [size]="18"></lucide-icon>
+    </a>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats">
+  <div class="stat-card">
+    <span class="stat-value">12,400+</span>
+    <span class="stat-label">Events Created</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-value">98.9%</span>
+    <span class="stat-label">Platform Uptime</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-value">500+</span>
+    <span class="stat-label">Teams Onboarded</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-value">40+</span>
+    <span class="stat-label">Integrations</span>
+  </div>
+</section>
+
+<!-- Problem -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-label">The Problem</span>
+    <h2 class="section-title">See the full picture</h2>
+    <p class="section-desc">
+      Your current system shows isolated data points. We help you see meaningful patterns that drive growth.
     </p>
-    <div class="hero-actions">
-      <a href="#dashboards" class="btn-primary">
-        <lucide-icon name="bar-chart-2" [size]="16"></lucide-icon>
-        View Dashboards
-      </a>
-      <a href="#about" class="btn-outline">Learn More →</a>
+  </div>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon" style="background: rgba(56, 139, 253, 0.1); color: #388bfd;">
+        <lucide-icon name="bar-chart-2" [size]="20"></lucide-icon>
+      </div>
+      <h3 class="card-title">Understand bookings</h3>
+      <p class="card-desc">Analyze real behavior to understand what drives reservations.</p>
     </div>
-  </section>
-
-  <!-- Stats -->
-  <section class="stats-section">
-    <div class="stats-grid">
-      <div class="stat-card">
-        <span class="stat-value">12,400+</span>
-        <span class="stat-label">Events Created</span>
+    <div class="card">
+      <div class="card-icon" style="background: rgba(163, 113, 247, 0.1); color: #a371f7;">
+        <lucide-icon name="trending-up" [size]="20"></lucide-icon>
       </div>
-      <div class="stat-card">
-        <span class="stat-value">98.9%</span>
-        <span class="stat-label">Platform Uptime</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-value">500+</span>
-        <span class="stat-label">Teams Onboarded</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-value">40+</span>
-        <span class="stat-label">Integrations</span>
-      </div>
+      <h3 class="card-title">Detect demand early</h3>
+      <p class="card-desc">Spot emerging trends before your competitors notice.</p>
     </div>
-  </section>
+    <div class="card">
+      <div class="card-icon" style="background: rgba(63, 185, 80, 0.1); color: #3fb950;">
+        <lucide-icon name="users" [size]="20"></lucide-icon>
+      </div>
+      <h3 class="card-title">Smarter matching</h3>
+      <p class="card-desc">Match users and providers intelligently for better outcomes.</p>
+    </div>
+  </div>
+</section>
 
-  <div class="ov-divider"></div>
-
-  <!-- Telescope section -->
-  <section class="ov-section fade-in">
-    <div class="ov-section-label">The Problem</div>
-    <h2 class="ov-section-title">
-      Think of your current system<br>like a telescope <lucide-icon name="search" [size]="28" class="title-icon"></lucide-icon>
-    </h2>
-    <p class="ov-section-body">
-      Right now, it only shows you individual stars — isolated data points.
-      We help you see <strong>entire constellations</strong> — the meaningful patterns that actually drive growth.
+<!-- Intelligence -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-label">Intelligence</span>
+    <h2 class="section-title">Smarter decisions, on autopilot</h2>
+    <p class="section-desc">
+      Stop guessing. Get data-backed, real-time answers that guide every decision.
     </p>
-    <div class="ov-cards-grid">
-      <div class="ov-card">
-        <div class="ov-card-icon">
-          <lucide-icon name="bar-chart-2" [size]="20"></lucide-icon>
-        </div>
-        <h3>Understand bookings</h3>
-        <p>Analyze real past behavior to understand exactly what drives reservations.</p>
+  </div>
+  <div class="feature-list">
+    <div class="feature">
+      <div class="feature-icon" style="background: rgba(251, 191, 36, 0.1); color: #fbbf24;">
+        <lucide-icon name="zap" [size]="20"></lucide-icon>
       </div>
-      <div class="ov-card">
-        <div class="ov-card-icon">
-          <lucide-icon name="trending-up" [size]="20"></lucide-icon>
-        </div>
-        <h3>Detect demand early</h3>
-        <p>Spot emerging demand before your competitors even notice the trend.</p>
-      </div>
-      <div class="ov-card">
-        <div class="ov-card-icon">
-          <lucide-icon name="users" [size]="20"></lucide-icon>
-        </div>
-        <h3>Smarter matching</h3>
-        <p>Match users and providers more intelligently so both sides win every time.</p>
+      <div class="feature-content">
+        <h3 class="feature-title">Identifies high-demand opportunities instantly</h3>
+        <p class="feature-desc">Surface gaps in your catalog before they become missed revenue.</p>
       </div>
     </div>
-    <div class="ov-result-banner">
-      <span>More reservations</span>
-      <span class="ov-arrow">→</span>
-      <span>Higher commissions</span>
-      <span class="ov-arrow">→</span>
-      <span class="ov-result-highlight">Significantly more revenue</span>
+    <div class="feature">
+      <div class="feature-icon" style="background: rgba(247, 120, 186, 0.1); color: #f778ba;">
+        <lucide-icon name="lightbulb" [size]="20"></lucide-icon>
+      </div>
+      <div class="feature-content">
+        <h3 class="feature-title">Recommends new business strategies</h3>
+        <p class="feature-desc">AI-powered suggestions grounded in your actual data.</p>
+      </div>
     </div>
-  </section>
+    <div class="feature">
+      <div class="feature-icon" style="background: rgba(163, 113, 247, 0.1); color: #a371f7;">
+        <lucide-icon name="brain" [size]="20"></lucide-icon>
+      </div>
+      <div class="feature-content">
+        <h3 class="feature-title">Continuously optimizes recommendations</h3>
+        <p class="feature-desc">Learns and improves every day like a world-class strategist.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <div class="ov-divider"></div>
-
-  <!-- Growth / autopilot section -->
-  <section class="ov-section fade-in">
-    <div class="ov-section-label">Intelligence</div>
-    <h2 class="ov-section-title">Smarter decisions, on autopilot</h2>
-    <p class="ov-section-body">
-      Stop guessing. Instead of asking <em>which services should we promote?</em> or
-      <em>where should we invest our marketing budget?</em> — you get data-backed,
-      real-time answers that guide every decision.
+<!-- Performance -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-label">For Providers</span>
+    <h2 class="section-title">Performance that rewards quality</h2>
+    <p class="section-desc">
+      Visibility becomes fair and merit-based. Quality providers rise to the top automatically.
     </p>
-    <div class="ov-feature-list">
-      <div class="ov-feature-row">
-        <span class="ov-feature-icon"><lucide-icon name="zap" [size]="18"></lucide-icon></span>
-        <div>
-          <strong>Identifies high-demand, low-supply opportunities instantly</strong>
-          <p>Surface gaps in your catalog before they become missed revenue.</p>
-        </div>
-      </div>
-      <div class="ov-feature-row">
-        <span class="ov-feature-icon"><lucide-icon name="lightbulb" [size]="18"></lucide-icon></span>
-        <div>
-          <strong>Recommends new business lines, pricing strategies, and untapped markets</strong>
-          <p>AI-powered suggestions grounded in your actual data.</p>
-        </div>
-      </div>
-      <div class="ov-feature-row">
-        <span class="ov-feature-icon"><lucide-icon name="brain" [size]="18"></lucide-icon></span>
-        <div>
-          <strong>Continuously optimizes recommendations to boost conversion rates</strong>
-          <p>It learns and improves every day — like a world-class strategist working 24/7.</p>
-        </div>
-      </div>
+  </div>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-number">01</div>
+      <h3 class="card-title">Track KPIs in real time</h3>
+      <p class="card-desc">Clear conversion and engagement metrics, always up to date.</p>
     </div>
-  </section>
+    <div class="card">
+      <div class="card-number">02</div>
+      <h3 class="card-title">Benchmark competitors</h3>
+      <p class="card-desc">Know exactly where you stand and what it takes to lead.</p>
+    </div>
+    <div class="card">
+      <div class="card-number">03</div>
+      <h3 class="card-title">Actionable feedback</h3>
+      <p class="card-desc">Receive data-driven guidance to improve service quality.</p>
+    </div>
+  </div>
+</section>
 
-  <div class="ov-divider"></div>
-
-  <!-- Performance section -->
-  <section class="ov-section fade-in">
-    <div class="ov-section-label">For Providers</div>
-    <h2 class="ov-section-title">Performance that rewards quality</h2>
-    <p class="ov-section-body">
-      Visibility becomes fair and merit-based. Providers who deliver great experiences
-      rise to the top — automatically.
+<!-- Why -->
+<section class="section section-final">
+  <div class="section-header">
+    <span class="section-label">Why EventZella</span>
+    <h2 class="section-title">A decision engine, not just analytics</h2>
+    <p class="section-desc">
+      Three powerful forces aligned into one platform.
     </p>
-    <div class="ov-perf-grid">
-      <div class="ov-perf-card">
-        <div class="ov-perf-num">01</div>
-        <h3>Track KPIs in real time</h3>
-        <p>Clear conversion and engagement metrics, always up to date.</p>
+  </div>
+  <div class="card-grid">
+    <div class="card card-highlight">
+      <div class="card-icon" style="background: rgba(56, 139, 253, 0.1); color: #388bfd;">
+        <lucide-icon name="rocket" [size]="24"></lucide-icon>
       </div>
-      <div class="ov-perf-card">
-        <div class="ov-perf-num">02</div>
-        <h3>Benchmark against competitors</h3>
-        <p>Know exactly where you stand and what it takes to lead.</p>
-      </div>
-      <div class="ov-perf-card">
-        <div class="ov-perf-num">03</div>
-        <h3>Actionable feedback</h3>
-        <p>Receive specific, data-driven guidance to improve service quality.</p>
-      </div>
+      <h3 class="card-title">Platform growth</h3>
+      <p class="card-desc">Sustainable business growth driven by real data, not guesswork.</p>
     </div>
-    <div class="ov-result-banner">
-      <span>Better quality</span>
-      <span class="ov-arrow">→</span>
-      <span>Higher visibility</span>
-      <span class="ov-arrow">→</span>
-      <span>More bookings</span>
-      <span class="ov-arrow">→</span>
-      <span class="ov-result-highlight">Higher earnings</span>
-    </div>
-  </section>
-
-  <div class="ov-divider"></div>
-
-  <!-- Why section -->
-  <section class="ov-section ov-why fade-in">
-    <div class="ov-section-label">Why EventZella</div>
-    <h2 class="ov-section-title">This isn't just another analytics tool</h2>
-    <p class="ov-section-body">
-      It's a decision engine that aligns three powerful forces into one platform.
-    </p>
-    <div class="ov-why-grid">
-      <div class="ov-why-card">
-        <div class="ov-why-icon"><lucide-icon name="rocket" [size]="24"></lucide-icon></div>
-        <h3>Platform growth</h3>
-        <p>Sustainable business growth driven by real data, not guesswork.</p>
+    <div class="card card-highlight">
+      <div class="card-icon" style="background: rgba(251, 191, 36, 0.1); color: #fbbf24;">
+        <lucide-icon name="award" [size]="24"></lucide-icon>
       </div>
-      <div class="ov-why-card">
-        <div class="ov-why-icon"><lucide-icon name="award" [size]="24"></lucide-icon></div>
-        <h3>Provider success</h3>
-        <p>Real success for service providers through fair, merit-based visibility.</p>
-      </div>
-      <div class="ov-why-card">
-        <div class="ov-why-icon"><lucide-icon name="shield" [size]="24"></lucide-icon></div>
-        <h3>User satisfaction</h3>
-        <p>Smarter, more satisfying experiences for every user, every time.</p>
-      </div>
+      <h3 class="card-title">Provider success</h3>
+      <p class="card-desc">Real success through fair, merit-based visibility.</p>
     </div>
-    <div class="ov-cta-block">
-      <p class="ov-cta-text">EventZella turns your data into your biggest competitive advantage.</p>
-      <a href="#dashboards" class="btn-primary">
-        Get started →
-      </a>
+    <div class="card card-highlight">
+      <div class="card-icon" style="background: rgba(63, 185, 80, 0.1); color: #3fb950;">
+        <lucide-icon name="shield" [size]="24"></lucide-icon>
+      </div>
+      <h3 class="card-title">User satisfaction</h3>
+      <p class="card-desc">Smarter, more satisfying experiences for every user.</p>
     </div>
-  </section>
+  </div>
+  <div class="cta">
+    <p class="cta-text">Turn your data into your biggest competitive advantage</p>
+    <a class="btn-primary" (click)="navigate('dashboards')" style="cursor:pointer">
+      <span>Get Started</span>
+      <lucide-icon name="arrow-right" [size]="18"></lucide-icon>
+    </a>
+  </div>
+</section>
 
 </ng-container>
 
-<!-- ══ ABOUT ══ -->
-<ng-container *ngIf="activeSection() === 'about'">
-  <section class="features-section fade-in">
-    <h2 class="section-title">Everything your team needs</h2>
-    <p class="section-sub">Built for speed, designed for clarity.</p>
-    <div class="features-grid">
-
-      <div class="feature-card">
-        <div class="feature-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
-        <h3 class="feature-title">Event Scheduling</h3>
-        <p class="feature-desc">Plan and schedule events with a calendar built for teams.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
-        <h3 class="feature-title">Live Analytics</h3>
-        <p class="feature-desc">Real-time dashboards with attendance, engagement, and performance metrics.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
-        <h3 class="feature-title">Team Collaboration</h3>
-        <p class="feature-desc">Assign roles, share notes, and coordinate across departments seamlessly.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div>
-        <h3 class="feature-title">AI Chatbot</h3>
-        <p class="feature-desc">Ask natural language questions about your data — powered by Groq LLaMA.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
-        <h3 class="feature-title">ML Prediction</h3>
-        <p class="feature-desc">Predict final event prices using trained Random Forest models.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12c0 1.657-4.03 3-9 3s-9-1.343-9-3M21 19c0 1.657-4.03 3-9 3s-9-1.343-9-3"/><path stroke-linecap="round" d="M3 5v14M21 5v14"/></svg></div>
-        <h3 class="feature-title">PostgreSQL Database</h3>
-        <p class="feature-desc">Structured data warehouse powering all analytics and AI features.</p>
-      </div>
-
-    </div>
-  </section>
-</ng-container>
-
-<!-- ══ DASHBOARDS (admin only) ══ -->
+<!-- ═══════════════════════════════════════════════════════════ DASHBOARDS -->
 <ng-container *ngIf="activeSection() === 'dashboards'">
-  <section class="dashboard-section fade-in">
-    <h2 class="section-title">Power BI Dashboard</h2>
-    <p class="section-sub">Live executive report embedded from your Power BI workspace.</p>
-
-    <div class="pbi-card">
-      <div class="pbi-card-header">
-        <div class="pbi-title-row">
-          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#f2c811" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
-          </svg>
-          <span>EventZella — Executive Report</span>
-        </div>
-        <a [href]="pbiUrl" target="_blank" rel="noopener" class="btn-pbi-open">Open in Power BI ↗</a>
-      </div>
-      <div class="pbi-iframe-wrap">
-        <iframe [src]="pbiUrlSafe" frameborder="0" allowfullscreen title="Power BI Report"></iframe>
-        <p class="pbi-hint">
-          If the report is blank, please
-          <a [href]="pbiUrl" target="_blank" rel="noopener">sign in to Power BI</a>
-          or open it in a new tab.
-        </p>
-      </div>
+  <section class="section-page">
+    <div class="section-header">
+      <span class="section-label">Power BI</span>
+      <h2 class="section-title">Dashboards</h2>
+      <p class="section-desc">Live analytics and KPIs for your events platform.</p>
+    </div>
+    <div class="pbi-wrapper">
+      <iframe [src]="pbiUrlSafe" class="pbi-frame" frameborder="0" allowFullScreen="true"></iframe>
     </div>
   </section>
 </ng-container>
 
-<!-- ══ LAB (admin only) ══ -->
+<!-- ═══════════════════════════════════════════════════════════════════ LAB -->
 <ng-container *ngIf="activeSection() === 'lab'">
-  <section class="lab-section">
+  <section class="section-page">
+    <div class="section-header">
+      <span class="section-label">AI &amp; ML</span>
+      <h2 class="section-title">Lab</h2>
+      <p class="section-desc">Run predictions, forecasts, and AI models on your event data.</p>
+    </div>
 
-    <!-- Catalog header -->
-    <div class="catalog-header">
-      <div>
-        <div class="ov-section-label">AI &amp; ML Lab</div>
-        <h2 class="catalog-title">Model Catalog</h2>
-        <p class="catalog-sub">Select a model to configure inputs and run predictions against the active FastAPI and Flask services.</p>
+    <!-- Model catalog -->
+    <div *ngIf="!selectedModel()" class="catalog-grid">
+
+      <div class="catalog-card" (click)="selectModel('price')">
+        <div class="catalog-icon" style="background:rgba(56,139,253,0.1);color:#388bfd"><lucide-icon name="bar-chart-2" [size]="22"></lucide-icon></div>
+        <h3 class="catalog-title">Price Prediction</h3>
+        <p class="catalog-desc">Predict optimal event pricing using ML regression.</p>
       </div>
-      <div class="catalog-badge-row">
-        <span class="catalog-badge">10 Models</span>
-        <span class="catalog-badge catalog-badge-green">● Lab Ready</span>
+
+      <div class="catalog-card" (click)="selectModel('fidel')">
+        <div class="catalog-icon" style="background:rgba(163,113,247,0.1);color:#a371f7"><lucide-icon name="trending-up" [size]="22"></lucide-icon></div>
+        <h3 class="catalog-title">Fidelisation</h3>
+        <p class="catalog-desc">Predict client loyalty probability with confidence score.</p>
+      </div>
+
+      <div class="catalog-card" (click)="selectModel('loyalty')">
+        <div class="catalog-icon" style="background:rgba(63,185,80,0.1);color:#3fb950"><lucide-icon name="users" [size]="22"></lucide-icon></div>
+        <h3 class="catalog-title">Loyalty Score</h3>
+        <p class="catalog-desc">Flask-based loyalty classification per event.</p>
+      </div>
+
+      <div class="catalog-card" (click)="selectModel('cluster')">
+        <div class="catalog-icon" style="background:rgba(251,191,36,0.1);color:#fbbf24"><lucide-icon name="zap" [size]="22"></lucide-icon></div>
+        <h3 class="catalog-title">Clustering</h3>
+        <p class="catalog-desc">Segment events with KMeans or DBSCAN.</p>
+      </div>
+
+      <div class="catalog-card" (click)="selectModel('forecast')">
+        <div class="catalog-icon" style="background:rgba(247,120,186,0.1);color:#f778ba"><lucide-icon name="lightbulb" [size]="22"></lucide-icon></div>
+        <h3 class="catalog-title">Forecasting</h3>
+        <p class="catalog-desc">Time-series demand forecast by category.</p>
+      </div>
+
+      <div class="catalog-card" (click)="selectModel('sentiment')">
+        <div class="catalog-icon" style="background:rgba(163,113,247,0.1);color:#a371f7"><lucide-icon name="brain" [size]="22"></lucide-icon></div>
+        <h3 class="catalog-title">Sentiment</h3>
+        <p class="catalog-desc">Analyze review sentiment with polarity score.</p>
+      </div>
+
+      <div class="catalog-card" (click)="selectModel('reco')">
+        <div class="catalog-icon" style="background:rgba(56,139,253,0.1);color:#388bfd"><lucide-icon name="rocket" [size]="22"></lucide-icon></div>
+        <h3 class="catalog-title">Recommendations</h3>
+        <p class="catalog-desc">Collaborative filtering event recommendations.</p>
+      </div>
+
+      <div class="catalog-card" (click)="selectModel('anomaly')">
+        <div class="catalog-icon" style="background:rgba(248,81,73,0.1);color:#f85149"><lucide-icon name="shield" [size]="22"></lucide-icon></div>
+        <h3 class="catalog-title">Anomaly Detection</h3>
+        <p class="catalog-desc">Detect outliers in event financial data.</p>
+      </div>
+
+      <div class="catalog-card" (click)="selectModel('dl')">
+        <div class="catalog-icon" style="background:rgba(63,185,80,0.1);color:#3fb950"><lucide-icon name="award" [size]="22"></lucide-icon></div>
+        <h3 class="catalog-title">Deep Learning (MLP)</h3>
+        <p class="catalog-desc">Neural network fidelisation prediction.</p>
+      </div>
+
+    </div><!-- /catalog-grid -->
+
+    <!-- ── Price panel ── -->
+    <div *ngIf="selectedModel() === 'price'" class="catalog-panel">
+      <button class="panel-back" (click)="selectModel(null)">← Back</button>
+      <h3 class="panel-title">Price Prediction</h3>
+      <div class="form-grid">
+        <label>Price<input type="number" [(ngModel)]="priceForm.price"></label>
+        <label>Budget<input type="number" [(ngModel)]="priceForm.budget"></label>
+        <label>Marketing Spend<input type="number" [(ngModel)]="priceForm.marketing_spend"></label>
+        <label>New Beneficiaries<input type="number" [(ngModel)]="priceForm.new_beneficiaries"></label>
+        <label>Reservations<input type="number" [(ngModel)]="priceForm.reservations"></label>
+        <label>Nb Events<input type="number" [(ngModel)]="priceForm.nb_events"></label>
+        <label>Avg Spent/User<input type="number" [(ngModel)]="priceForm.avg_spent_user"></label>
+        <label>Type<input type="text" [(ngModel)]="priceForm.type"></label>
+        <label>Status<input type="text" [(ngModel)]="priceForm.status"></label>
+      </div>
+      <div class="panel-actions">
+        <button class="btn-run" (click)="runPricePredict()" [disabled]="priceLoading()">{{ priceLoading() ? 'Running…' : 'Predict' }}</button>
+        <button class="btn-train" (click)="trainPrice()" [disabled]="priceLoading()">Train Model</button>
+      </div>
+      <p *ngIf="priceError()" class="panel-error">{{ priceError() }}</p>
+      <div *ngIf="priceResult()" class="price-result panel-result">
+        <span class="result-label">Predicted Final Price</span>
+        <span class="result-value">{{ priceResult()!.prediction | number:'1.2-2' }}</span>
+        <span class="result-meta">Model: {{ priceResult()!.model }}</span>
       </div>
     </div>
 
-    <!-- Catalog grid -->
-    <div class="catalog-grid">
-
-      <!-- Price Prediction -->
-      <div class="catalog-card" [class.catalog-card--active]="selectedModel() === 'price'" (click)="selectModel('price')">
-        <div class="catalog-card-icon" style="background:rgba(56,139,253,0.12);border-color:rgba(56,139,253,0.25);">
-          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#388bfd" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-        </div>
-        <div class="catalog-card-body">
-          <div class="catalog-card-tag">Random Forest</div>
-          <h3>Price Prediction</h3>
-          <p>Predict final event price from budget, spend, and event metadata.</p>
-        </div>
-        <div class="catalog-card-arrow">→</div>
+    <!-- ── Fidelisation panel ── -->
+    <div *ngIf="selectedModel() === 'fidel'" class="catalog-panel">
+      <button class="panel-back" (click)="selectModel(null)">← Back</button>
+      <h3 class="panel-title">Fidelisation Prediction</h3>
+      <div class="form-grid">
+        <label>Price<input type="number" [(ngModel)]="fidelForm.price"></label>
+        <label>Budget<input type="number" [(ngModel)]="fidelForm.budget"></label>
+        <label>Final Price<input type="number" [(ngModel)]="fidelForm.final_price"></label>
+        <label>Rating<input type="number" step="0.1" [(ngModel)]="fidelForm.rating"></label>
+        <label>Visitors<input type="number" [(ngModel)]="fidelForm.visitors"></label>
+        <label>Marketing Spend<input type="number" [(ngModel)]="fidelForm.marketing_spend"></label>
+        <label>Price/Budget Ratio<input type="number" step="0.01" [(ngModel)]="fidelForm.price_budget_ratio"></label>
+        <label>Margin<input type="number" [(ngModel)]="fidelForm.margin"></label>
+        <label>Has Complaint (0/1)<input type="number" [(ngModel)]="fidelForm.has_complaint"></label>
+        <label>Type Encoded<input type="number" [(ngModel)]="fidelForm.type_encoded"></label>
+        <label>Season Encoded<input type="number" [(ngModel)]="fidelForm.season_encoded"></label>
+        <label>Is Weekend (0/1)<input type="number" [(ngModel)]="fidelForm.is_weekend"></label>
+        <label>Month<input type="number" [(ngModel)]="fidelForm.month"></label>
       </div>
-
-      <!-- Fidelisation -->
-      <div class="catalog-card" [class.catalog-card--active]="selectedModel() === 'fidel'" (click)="selectModel('fidel')">
-        <div class="catalog-card-icon" style="background:rgba(248,81,73,0.1);border-color:rgba(248,81,73,0.25);">
-          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#f85149" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-        </div>
-        <div class="catalog-card-body">
-          <div class="catalog-card-tag">Classifier</div>
-          <h3>Fidelisation</h3>
-          <p>Classify customer loyalty level with confidence score and recommended action.</p>
-        </div>
-        <div class="catalog-card-arrow">→</div>
+      <div class="panel-actions">
+        <button class="btn-run" (click)="runFidelPredict()" [disabled]="fidelLoading()">{{ fidelLoading() ? 'Running…' : 'Predict' }}</button>
+        <button class="btn-train" (click)="trainFidel()" [disabled]="fidelLoading()">Train Model</button>
       </div>
-
-      <!-- Sentiment Analysis (NEW) -->
-      <div class="catalog-card" [class.catalog-card--active]="selectedModel() === 'sentiment'" (click)="selectModel('sentiment')">
-        <div class="catalog-card-icon" style="background:rgba(255,107,107,0.1);border-color:rgba(255,107,107,0.25);">
-          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#ff6b6b" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <p *ngIf="fidelError()" class="panel-error">{{ fidelError() }}</p>
+      <div *ngIf="fidelResult()" class="fidel-result panel-result">
+        <span class="result-label">{{ fidelResult()!.label }}</span>
+        <span class="result-value">{{ (fidelResult()!.probabilite_fidelite * 100) | number:'1.1-1' }}%</span>
+        <span class="result-meta">Confidence: {{ fidelResult()!.niveau_confiance }} · {{ fidelResult()!.action_recommandee }}</span>
+        <div class="kpi-row" *ngIf="fidelResult()!.accuracy != null">
+          <div class="kpi-card"><span class="kpi-val">{{ (fidelResult()!.accuracy! * 100) | number:'1.1-1' }}%</span><span class="kpi-lbl">Accuracy</span></div>
+          <div class="kpi-card"><span class="kpi-val">{{ (fidelResult()!.recall! * 100) | number:'1.1-1' }}%</span><span class="kpi-lbl">Recall</span></div>
+          <div class="kpi-card"><span class="kpi-val">{{ (fidelResult()!.roc_auc! * 100) | number:'1.1-1' }}%</span><span class="kpi-lbl">ROC-AUC</span></div>
         </div>
-        <div class="catalog-card-body">
-          <div class="catalog-card-tag">NLP · Keyword Engine</div>
-          <h3>Sentiment Analysis</h3>
-          <p>Analyze the emotional tone of event reviews and complaints.</p>
-        </div>
-        <div class="catalog-card-arrow">→</div>
       </div>
+    </div>
 
-      <!-- Event Recommendation (NEW) -->
-      <div class="catalog-card" [class.catalog-card--active]="selectedModel() === 'reco'" (click)="selectModel('reco')">
-        <div class="catalog-card-icon" style="background:rgba(78,205,196,0.1);border-color:rgba(78,205,196,0.25);">
-          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#4ecdc4" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-        </div>
-        <div class="catalog-card-body">
-          <div class="catalog-card-tag">Content-Based Filtering</div>
-          <h3>Event Recommendation</h3>
-          <p>Recommend tailored events to beneficiaries based on their history.</p>
-        </div>
-        <div class="catalog-card-arrow">→</div>
+    <!-- ── Loyalty panel ── -->
+    <div *ngIf="selectedModel() === 'loyalty'" class="catalog-panel">
+      <button class="panel-back" (click)="selectModel(null)">← Back</button>
+      <h3 class="panel-title">Loyalty Score</h3>
+      <div class="form-grid">
+        <label>Price<input type="number" [(ngModel)]="loyaltyForm.price"></label>
+        <label>Budget<input type="number" [(ngModel)]="loyaltyForm.budget"></label>
+        <label>Final Price<input type="number" [(ngModel)]="loyaltyForm.final_price"></label>
+        <label>Rating<input type="number" step="0.1" [(ngModel)]="loyaltyForm.rating"></label>
+        <label>Visitors<input type="number" [(ngModel)]="loyaltyForm.visitors"></label>
+        <label>Event Date<input type="date" [(ngModel)]="loyaltyForm.event_date"></label>
+        <label>Event Type
+          <select [(ngModel)]="loyaltyForm.event_type">
+            <option>Corporate Event</option>
+            <option>Private Party</option>
+            <option>Wedding</option>
+            <option>inconnu</option>
+          </select>
+        </label>
       </div>
-
-      <!-- Loyalty -->
-      <div class="catalog-card" [class.catalog-card--active]="selectedModel() === 'loyalty'" (click)="selectModel('loyalty')">
-        <div class="catalog-card-icon" style="background:rgba(63,185,80,0.1);border-color:rgba(63,185,80,0.25);">
-          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#3fb950" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-        </div>
-        <div class="catalog-card-body">
-          <div class="catalog-card-tag">Flask · Random Forest</div>
-          <h3>Loyalty Score</h3>
-          <p>Predict customer loyalty probability from event and booking attributes.</p>
-        </div>
-        <div class="catalog-card-arrow">→</div>
+      <div class="panel-actions">
+        <button class="btn-run" (click)="runLoyaltyPredict()" [disabled]="loyaltyLoading()">{{ loyaltyLoading() ? 'Running…' : 'Predict' }}</button>
       </div>
-
-      <!-- Clustering -->
-      <div class="catalog-card" [class.catalog-card--active]="selectedModel() === 'cluster'" (click)="selectModel('cluster')">
-        <div class="catalog-card-icon" style="background:rgba(210,153,34,0.1);border-color:rgba(210,153,34,0.25);">
-          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#d2991f" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-        </div>
-        <div class="catalog-card-body">
-          <div class="catalog-card-tag">Flask · KMeans / DBSCAN</div>
-          <h3>Customer Clustering</h3>
-          <p>Segment customers into behavioral clusters using unsupervised learning.</p>
-        </div>
-        <div class="catalog-card-arrow">→</div>
+      <p *ngIf="loyaltyError()" class="panel-error">{{ loyaltyError() }}</p>
+      <div *ngIf="loyaltyResult()" class="loyalty-result panel-result">
+        <span class="result-label">{{ loyaltyResult()!.is_loyal ? 'Loyal' : 'Not Loyal' }}</span>
+        <span class="result-value">{{ (loyaltyResult()!.probability * 100) | number:'1.1-1' }}%</span>
+        <span class="result-meta">Status: {{ loyaltyResult()!.status }}</span>
       </div>
+    </div>
 
-      <!-- Anomaly Detection (NEW) -->
-      <div class="catalog-card" [class.catalog-card--active]="selectedModel() === 'anomalies'" (click)="selectModel('anomalies')">
-        <div class="catalog-card-icon" style="background:rgba(255,159,67,0.1);border-color:rgba(255,159,67,0.25);">
-          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#ff9f43" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-        </div>
-        <div class="catalog-card-body">
-          <div class="catalog-card-tag">Isolation Forest</div>
-          <h3>Anomaly Detection</h3>
-          <p>Identify unusual pricing, attendance, and marketing patterns from the event fact table.</p>
-        </div>
-        <div class="catalog-card-arrow">→</div>
+    <!-- ── Cluster panel ── -->
+    <div *ngIf="selectedModel() === 'cluster'" class="catalog-panel">
+      <button class="panel-back" (click)="selectModel(null)">← Back</button>
+      <h3 class="panel-title">Clustering</h3>
+      <div class="form-grid">
+        <label>Budget<input type="number" [(ngModel)]="clusterForm.budget"></label>
+        <label>Price<input type="number" [(ngModel)]="clusterForm.price"></label>
+        <label>Final Price<input type="number" [(ngModel)]="clusterForm.final_price"></label>
+        <label>Rating<input type="number" step="0.1" [(ngModel)]="clusterForm.rating"></label>
+        <label>Visitors<input type="number" [(ngModel)]="clusterForm.visitors"></label>
+        <label>Algorithm
+          <select [(ngModel)]="clusterForm.algo">
+            <option value="kmeans">KMeans</option>
+            <option value="dbscan">DBSCAN</option>
+          </select>
+        </label>
+        <label>Event Type
+          <select [(ngModel)]="clusterForm.event_type">
+            <option>Corporate Event</option>
+            <option>Private Party</option>
+            <option>Wedding</option>
+          </select>
+        </label>
+        <label>Reservation Status
+          <select [(ngModel)]="clusterForm.reservation_status">
+            <option value="confirmed">Confirmed</option>
+            <option value="cancelled">Cancelled</option>
+            <option value="pending">Pending</option>
+          </select>
+        </label>
       </div>
-
-      <!-- Forecasting -->
-      <div class="catalog-card" [class.catalog-card--active]="selectedModel() === 'forecast'" (click)="selectModel('forecast')">
-        <div class="catalog-card-icon" style="background:rgba(121,192,255,0.1);border-color:rgba(121,192,255,0.25);">
-          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#79c0ff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
-        </div>
-        <div class="catalog-card-body">
-          <div class="catalog-card-tag">Holt-Winters</div>
-          <h3>Demand Forecasting</h3>
-          <p>Forecast future reservation volumes by category using exponential smoothing.</p>
-        </div>
-        <div class="catalog-card-arrow">→</div>
+      <div class="panel-actions">
+        <button class="btn-run" (click)="runClusterPredict()" [disabled]="clusterLoading()">{{ clusterLoading() ? 'Running…' : 'Predict' }}</button>
       </div>
-
-      <!-- Deep Learning (NEW) -->
-      <div class="catalog-card" [class.catalog-card--active]="selectedModel() === 'dl'" (click)="selectModel('dl')">
-        <div class="catalog-card-icon" style="background:rgba(238,82,83,0.1);border-color:rgba(238,82,83,0.25);">
-          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#ee5253" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+      <p *ngIf="clusterError()" class="panel-error">{{ clusterError() }}</p>
+      <div *ngIf="clusterResult()" class="cluster-result panel-result">
+        <span class="result-label">{{ clusterResult()!.cluster_name }}</span>
+        <span class="result-value">Cluster {{ clusterResult()!.cluster_id }}</span>
+        <span class="result-meta">Algorithm: {{ clusterResult()!.algorithm }}</span>
+        <div class="kpi-row" *ngIf="clusterResult()!.silhouette_score != null">
+          <div class="kpi-card"><span class="kpi-val">{{ clusterResult()!.silhouette_score! | number:'1.3-3' }}</span><span class="kpi-lbl">Silhouette</span></div>
+          <div class="kpi-card"><span class="kpi-val">{{ clusterResult()!.davies_bouldin_score! | number:'1.3-3' }}</span><span class="kpi-lbl">Davies-Bouldin</span></div>
+          <div class="kpi-card"><span class="kpi-val">{{ clusterResult()!.n_clusters_detected }}</span><span class="kpi-lbl">Clusters</span></div>
+          <div class="kpi-card" *ngIf="clusterResult()!.noise_points"><span class="kpi-val">{{ clusterResult()!.noise_points }}</span><span class="kpi-lbl">Noise pts</span></div>
         </div>
-        <div class="catalog-card-body">
-          <div class="catalog-card-tag">MLP Neural Network</div>
-          <h3>Advanced Prediction</h3>
-          <p>MLP loyalty classification trained on the same business features as the fidelisation workflow.</p>
-        </div>
-        <div class="catalog-card-arrow">→</div>
       </div>
+    </div>
 
-      <!-- Chatbot -->
-      <div class="catalog-card" [class.catalog-card--active]="selectedModel() === 'chatbot'" (click)="selectModel('chatbot')">
-        <div class="catalog-card-icon" style="background:rgba(188,140,255,0.1);border-color:rgba(188,140,255,0.25);">
-          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#bc8cff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-        </div>
-        <div class="catalog-card-body">
-          <div class="catalog-card-tag">Groq LLaMA 3.3</div>
-          <h3>AI BI Chatbot</h3>
-          <p>Ask natural language questions about your PostgreSQL data warehouse.</p>
-        </div>
-        <div class="catalog-card-arrow">→</div>
+    <!-- ── Forecast panel ── -->
+    <div *ngIf="selectedModel() === 'forecast'" class="catalog-panel">
+      <button class="panel-back" (click)="selectModel(null)">← Back</button>
+      <h3 class="panel-title">Demand Forecasting</h3>
+      <div class="form-grid">
+        <label>Category
+          <select [(ngModel)]="forecastForm.category_name">
+            <option *ngFor="let c of categories()" [value]="c">{{ c }}</option>
+          </select>
+        </label>
+        <label>Horizon (months)<input type="number" [(ngModel)]="forecastForm.horizon"></label>
       </div>
+      <div class="panel-actions">
+        <button class="btn-run" (click)="runForecast()" [disabled]="forecastLoading()">{{ forecastLoading() ? 'Running…' : 'Forecast' }}</button>
+      </div>
+      <p *ngIf="forecastError()" class="panel-error">{{ forecastError() }}</p>
+      <div *ngIf="forecastResult()" class="forecast-result panel-result">
+        <span class="result-label">Forecast — {{ forecastResult()!.category }}</span>
+        <div class="kpi-row">
+          <div class="kpi-card kpi-accent">
+            <span class="kpi-val">{{ forecastTotalReservations | number:'1.0-0' }}</span>
+            <span class="kpi-lbl">Est. Reservations</span>
+          </div>
+          <div class="kpi-card" *ngIf="forecastResult()!.metrics">
+            <span class="kpi-val">{{ forecastResult()!.metrics!.mape | number:'1.1-1' }}%</span>
+            <span class="kpi-lbl">MAPE</span>
+          </div>
+          <div class="kpi-card" *ngIf="forecastResult()!.metrics">
+            <span class="kpi-val">{{ forecastResult()!.metrics!.mae | number:'1.1-1' }}</span>
+            <span class="kpi-lbl">MAE</span>
+          </div>
+          <div class="kpi-card" *ngIf="forecastResult()!.metrics">
+            <span class="kpi-val">{{ forecastResult()!.metrics!.rmse | number:'1.1-1' }}</span>
+            <span class="kpi-lbl">RMSE</span>
+          </div>
+        </div>
+        <app-forecast-chart [data]="forecastResult()!"></app-forecast-chart>
+        <span class="result-meta">Model: {{ forecastResult()!.model }} · {{ forecastResult()!.forecast.length }} periods forecast</span>
+      </div>
+    </div>
 
-    </div><!-- /.catalog-grid -->
+    <!-- ── Sentiment panel ── -->
+    <div *ngIf="selectedModel() === 'sentiment'" class="catalog-panel">
+      <button class="panel-back" (click)="selectModel(null)">← Back</button>
+      <h3 class="panel-title">Sentiment Analysis</h3>
+      <div class="form-grid form-grid-full">
+        <label>Review Text<textarea rows="3" [(ngModel)]="sentimentText"></textarea></label>
+      </div>
+      <div class="panel-actions">
+        <button class="btn-run" (click)="runSentiment()" [disabled]="sentimentLoading()">{{ sentimentLoading() ? 'Running…' : 'Analyze' }}</button>
+      </div>
+      <div *ngIf="sentimentResult()" class="sentiment-result panel-result">
+        <span class="result-label">{{ sentimentResult()!.label }}</span>
+        <span class="result-value">{{ sentimentResult()!.polarity | number:'1.2-2' }}</span>
+        <span class="result-meta">Polarity score</span>
+      </div>
+    </div>
 
-    <!-- ── Expanded detail panel ── -->
-    <div class="catalog-panel" *ngIf="selectedModel()" [@panelAnim]>
+    <!-- ── Recommendation panel ── -->
+    <div *ngIf="selectedModel() === 'reco'" class="catalog-panel">
+      <button class="panel-back" (click)="selectModel(null)">← Back</button>
+      <h3 class="panel-title">Event Recommendations</h3>
+      <div class="form-grid">
+        <label>Beneficiary ID<input type="number" [(ngModel)]="recoBeneId"></label>
+        <label>Count<input type="number" [(ngModel)]="recoCount"></label>
+      </div>
+      <div class="panel-actions">
+        <button class="btn-run" (click)="runReco()" [disabled]="recoLoading()">{{ recoLoading() ? 'Running…' : 'Recommend' }}</button>
+      </div>
+      <p *ngIf="recoError()" class="panel-error">{{ recoError() }}</p>
+      <div *ngIf="recoResult()" class="reco-result panel-result">
+        <span class="result-label">Recommended Events</span>
+        <span class="result-value">{{ recoResult()!.recommendations.join(', ') }}</span>
+        <span class="result-meta">Type: {{ recoResult()!.type }}</span>
+      </div>
+    </div>
 
-      <!-- Price -->
-      <ng-container *ngIf="selectedModel() === 'price'">
-        <div class="panel-header">
-          <div class="panel-title-row">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#388bfd" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            <h3>Price Prediction <span class="panel-endpoint">/predict/price</span></h3>
-          </div>
-          <button class="panel-close" (click)="selectModel(null)">✕</button>
-        </div>
-        <div class="ml-form">
-          <div class="form-row">
-            <label>Price <input type="number" [(ngModel)]="priceForm.price" class="ml-input"></label>
-            <label>Budget <input type="number" [(ngModel)]="priceForm.budget" class="ml-input"></label>
-            <label>Marketing Spend <input type="number" [(ngModel)]="priceForm.marketing_spend" class="ml-input"></label>
-          </div>
-          <div class="form-row">
-            <label>New Beneficiaries <input type="number" [(ngModel)]="priceForm.new_beneficiaries" class="ml-input"></label>
-            <label>Reservations <input type="number" [(ngModel)]="priceForm.reservations" class="ml-input"></label>
-            <label>Nb Events <input type="number" [(ngModel)]="priceForm.nb_events" class="ml-input"></label>
-          </div>
-          <div class="form-row">
-            <label>Avg Spent / User <input type="number" [(ngModel)]="priceForm.avg_spent_user" class="ml-input"></label>
-            <label>Type <select [(ngModel)]="priceForm.type" class="ml-input"><option value="Corporate Event">Corporate Event</option><option value="Private Party">Private Party</option><option value="Wedding">Wedding</option></select></label>
-            <label>Status <select [(ngModel)]="priceForm.status" class="ml-input"><option value="confirmed">Confirmed</option><option value="cancelled">Cancelled</option><option value="pending">Pending</option></select></label>
-          </div>
-          <div class="panel-actions">
-            <button class="btn-predict panel-run" (click)="runPricePredict()" [disabled]="priceLoading()">
-              <span *ngIf="!priceLoading()">Run Prediction</span>
-              <span *ngIf="priceLoading()" class="spinner"></span>
-            </button>
-            <button class="btn-outline panel-train" (click)="trainPrice()" [disabled]="priceLoading()">Train Model</button>
-          </div>
-          <div *ngIf="priceResult() as r" class="result-box price-result">
-            <div class="result-main">Predicted Price: <strong>{{ r.prediction | number:'1.2-2' }}</strong></div>
-            <div class="result-meta">Model: {{ r.model }}</div>
-          </div>
-          <p *ngIf="priceError()" class="predict-error">{{ priceError() }}</p>
-        </div>
-      </ng-container>
+    <!-- ── Anomaly panel ── -->
+    <div *ngIf="selectedModel() === 'anomaly'" class="catalog-panel">
+      <button class="panel-back" (click)="selectModel(null)">← Back</button>
+      <h3 class="panel-title">Anomaly Detection</h3>
+      <div class="panel-actions">
+        <button class="btn-run" (click)="runAnomalies()" [disabled]="anomalyLoading()">{{ anomalyLoading() ? 'Running…' : 'Detect' }}</button>
+      </div>
+      <p *ngIf="anomalyError()" class="panel-error">{{ anomalyError() }}</p>
+      <div *ngIf="anomalyResult()" class="anomaly-result panel-result">
+        <span class="result-label">Anomalies Found</span>
+        <span class="result-value">{{ anomalyResult()!.anomaly_count }} / {{ anomalyResult()!.total_count }}</span>
+        <span class="result-meta">Rate: {{ anomalyRatePercent | number:'1.1-1' }}%</span>
+      </div>
+    </div>
 
-      <!-- Fidelisation -->
-      <ng-container *ngIf="selectedModel() === 'fidel'">
-        <div class="panel-header">
-          <div class="panel-title-row">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#f85149" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-            <h3>Fidelisation <span class="panel-endpoint">/predict/fidelisation</span></h3>
-          </div>
-          <button class="panel-close" (click)="selectModel(null)">✕</button>
+    <!-- ── Deep Learning panel ── -->
+    <div *ngIf="selectedModel() === 'dl'" class="catalog-panel">
+      <button class="panel-back" (click)="selectModel(null)">← Back</button>
+      <h3 class="panel-title">Deep Learning (MLP)</h3>
+      <p class="panel-desc">Uses the same inputs as Fidelisation. Fill the Fidelisation form first if needed.</p>
+      <div class="panel-actions">
+        <button class="btn-run" (click)="runDL()" [disabled]="dlLoading()">{{ dlLoading() ? 'Running…' : 'Predict' }}</button>
+      </div>
+      <p *ngIf="dlError()" class="panel-error">{{ dlError() }}</p>
+      <div *ngIf="dlResult()" class="dl-result panel-result">
+        <span class="result-label">{{ dlResult()!.prediction === 1 ? 'Loyal' : 'Not Loyal' }}</span>
+        <span class="result-value">{{ (dlResult()!.confidence * 100) | number:'1.1-1' }}%</span>
+        <span class="result-meta">{{ dlResult()!.note }}</span>
+        <div class="kpi-row" *ngIf="dlResult()!.accuracy != null">
+          <div class="kpi-card"><span class="kpi-val">{{ (dlResult()!.accuracy! * 100) | number:'1.1-1' }}%</span><span class="kpi-lbl">Accuracy</span></div>
+          <div class="kpi-card"><span class="kpi-val">{{ (dlResult()!.f1_score! * 100) | number:'1.1-1' }}%</span><span class="kpi-lbl">F1 Score</span></div>
+          <div class="kpi-card"><span class="kpi-val">{{ (dlResult()!.auc! * 100) | number:'1.1-1' }}%</span><span class="kpi-lbl">AUC</span></div>
+          <div class="kpi-card"><span class="kpi-val">{{ dlResult()!.iterations }}</span><span class="kpi-lbl">Iterations</span></div>
         </div>
-        <div class="ml-form">
-          <div class="form-row">
-            <label>Price <input type="number" [(ngModel)]="fidelForm.price" class="ml-input"></label>
-            <label>Budget <input type="number" [(ngModel)]="fidelForm.budget" class="ml-input"></label>
-            <label>Final Price <input type="number" [(ngModel)]="fidelForm.final_price" class="ml-input"></label>
-          </div>
-          <div class="form-row">
-            <label>Rating <input type="number" step="0.1" min="0" max="5" [(ngModel)]="fidelForm.rating" class="ml-input"></label>
-            <label>Visitors <input type="number" [(ngModel)]="fidelForm.visitors" class="ml-input"></label>
-            <label>Marketing Spend <input type="number" [(ngModel)]="fidelForm.marketing_spend" class="ml-input"></label>
-          </div>
-          <div class="form-row">
-            <label>Price/Budget Ratio <input type="number" step="0.01" [(ngModel)]="fidelForm.price_budget_ratio" class="ml-input"></label>
-            <label>Margin <input type="number" [(ngModel)]="fidelForm.margin" class="ml-input"></label>
-            <label>Month <input type="number" min="1" max="12" [(ngModel)]="fidelForm.month" class="ml-input"></label>
-          </div>
-          <div class="form-row">
-            <label>Has Complaint <select [(ngModel)]="fidelForm.has_complaint" class="ml-input"><option [ngValue]="0">No</option><option [ngValue]="1">Yes</option></select></label>
-            <label>Type <select [(ngModel)]="fidelForm.type_encoded" class="ml-input"><option [ngValue]="0">Corporate Event</option><option [ngValue]="1">Private Party</option><option [ngValue]="2">Wedding</option><option [ngValue]="3">Inconnu</option></select></label>
-            <label>Season <select [(ngModel)]="fidelForm.season_encoded" class="ml-input"><option [ngValue]="0">Automne</option><option [ngValue]="1">Été</option><option [ngValue]="2">Hiver</option><option [ngValue]="3">Printemps</option></select></label>
-          </div>
-          <div class="form-row">
-            <label>Is Weekend <select [(ngModel)]="fidelForm.is_weekend" class="ml-input"><option [ngValue]="0">No</option><option [ngValue]="1">Yes</option></select></label>
-          </div>
-          <div class="panel-actions">
-            <button class="btn-predict panel-run" (click)="runFidelPredict()" [disabled]="fidelLoading()">
-              <span *ngIf="!fidelLoading()">Run Prediction</span>
-              <span *ngIf="fidelLoading()" class="spinner"></span>
-            </button>
-            <button class="btn-outline panel-train" (click)="trainFidel()" [disabled]="fidelLoading()">Train Model</button>
-          </div>
-          <div *ngIf="fidelResult() as r" class="lab-kpi-grid">
-            <div class="lab-kpi-card">
-              <span class="lab-kpi-label">Probability</span>
-              <strong class="lab-kpi-value">{{ (r.probabilite_fidelite * 100) | number:'1.1-1' }}%</strong>
-              <span class="lab-kpi-meta">Current prediction confidence.</span>
-            </div>
-            <div class="lab-kpi-card" *ngIf="r.accuracy !== undefined">
-              <span class="lab-kpi-label">Accuracy</span>
-              <strong class="lab-kpi-value">{{ (r.accuracy * 100) | number:'1.1-1' }}%</strong>
-              <span class="lab-kpi-meta">Evaluation metric from the backend logistic model.</span>
-            </div>
-            <div class="lab-kpi-card" *ngIf="r.recall !== undefined">
-              <span class="lab-kpi-label">Recall</span>
-              <strong class="lab-kpi-value">{{ (r.recall * 100) | number:'1.1-1' }}%</strong>
-              <span class="lab-kpi-meta">Share of loyal profiles correctly detected.</span>
-            </div>
-            <div class="lab-kpi-card" *ngIf="r.roc_auc !== undefined">
-              <span class="lab-kpi-label">ROC-AUC</span>
-              <strong class="lab-kpi-value">{{ r.roc_auc | number:'1.3-3' }}</strong>
-              <span class="lab-kpi-meta">Classifier ranking quality.</span>
-            </div>
-          </div>
-          <div *ngIf="fidelResult() as r" class="result-box fidel-result" [class.result-loyal]="r.prediction === 1" [class.result-not-loyal]="r.prediction === 0">
-            <div class="result-main">{{ r.label }} <span class="result-badge">{{ r.niveau_confiance }}</span></div>
-            <div class="result-meta">Probability: {{ (r.probabilite_fidelite * 100) | number:'1.1-1' }}%</div>
-            <div class="result-action">{{ r.action_recommandee }}</div>
-          </div>
-          <p *ngIf="fidelError()" class="predict-error">{{ fidelError() }}</p>
-        </div>
-      </ng-container>
-
-      <!-- Loyalty -->
-      <ng-container *ngIf="selectedModel() === 'loyalty'">
-        <div class="panel-header">
-          <div class="panel-title-row">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#3fb950" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-            <h3>Loyalty Score <span class="panel-endpoint">/predict-loyalty</span></h3>
-          </div>
-          <button class="panel-close" (click)="selectModel(null)">✕</button>
-        </div>
-        <div class="ml-form">
-          <div class="form-row">
-            <label>Price <input type="number" [(ngModel)]="loyaltyForm.price" class="ml-input"></label>
-            <label>Budget <input type="number" [(ngModel)]="loyaltyForm.budget" class="ml-input"></label>
-            <label>Final Price <input type="number" [(ngModel)]="loyaltyForm.final_price" class="ml-input"></label>
-          </div>
-          <div class="form-row">
-            <label>Rating <input type="number" step="0.1" min="0" max="5" [(ngModel)]="loyaltyForm.rating" class="ml-input"></label>
-            <label>Visitors <input type="number" [(ngModel)]="loyaltyForm.visitors" class="ml-input"></label>
-            <label>Event Date <input type="date" [(ngModel)]="loyaltyForm.event_date" class="ml-input"></label>
-          </div>
-          <div class="form-row">
-            <label>Event Type <select [(ngModel)]="loyaltyForm.event_type" class="ml-input"><option value="Corporate Event">Corporate Event</option><option value="Private Party">Private Party</option><option value="Wedding">Wedding</option><option value="inconnu">Inconnu</option></select></label>
-            <label>Has Complaint <select [(ngModel)]="loyaltyForm.id_complaint" class="ml-input"><option [ngValue]="null">No</option><option value="yes">Yes</option></select></label>
-          </div>
-          <div class="panel-actions">
-            <button class="btn-predict panel-run" (click)="runLoyaltyPredict()" [disabled]="loyaltyLoading()">
-              <span *ngIf="!loyaltyLoading()">Run Prediction</span>
-              <span *ngIf="loyaltyLoading()" class="spinner"></span>
-            </button>
-          </div>
-          <div *ngIf="loyaltyResult() as r" class="result-box loyalty-result" [class.result-loyal]="r.is_loyal === 1" [class.result-not-loyal]="r.is_loyal === 0">
-            <div class="result-main">{{ r.is_loyal === 1 ? 'Loyal Customer' : 'Not Loyal' }}</div>
-            <div class="result-meta">Probability: {{ (r.probability * 100) | number:'1.1-1' }}%</div>
-          </div>
-          <p *ngIf="loyaltyError()" class="predict-error">{{ loyaltyError() }}</p>
-        </div>
-      </ng-container>
-
-      <!-- Cluster -->
-      <ng-container *ngIf="selectedModel() === 'cluster'">
-        <div class="panel-header">
-          <div class="panel-title-row">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#d2991f" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-            <h3>Customer Clustering <span class="panel-endpoint">/predict-cluster</span></h3>
-          </div>
-          <button class="panel-close" (click)="selectModel(null)">✕</button>
-        </div>
-        <div class="ml-form">
-          <div class="form-row">
-            <label>Price <input type="number" [(ngModel)]="clusterForm.price" class="ml-input"></label>
-            <label>Budget <input type="number" [(ngModel)]="clusterForm.budget" class="ml-input"></label>
-            <label>Final Price <input type="number" [(ngModel)]="clusterForm.final_price" class="ml-input"></label>
-          </div>
-          <div class="form-row">
-            <label>Rating <input type="number" step="0.1" min="0" max="5" [(ngModel)]="clusterForm.rating" class="ml-input"></label>
-            <label>Visitors <input type="number" [(ngModel)]="clusterForm.visitors" class="ml-input"></label>
-            <label>Algorithm <select [(ngModel)]="clusterForm.algo" class="ml-input"><option value="kmeans">KMeans</option><option value="dbscan">DBSCAN</option></select></label>
-          </div>
-          <div class="form-row">
-            <label>Event Type <select [(ngModel)]="clusterForm.event_type" class="ml-input"><option value="Corporate Event">Corporate Event</option><option value="Private Party">Private Party</option><option value="Wedding">Wedding</option></select></label>
-            <label>Reservation Status <select [(ngModel)]="clusterForm.reservation_status" class="ml-input"><option value="confirmed">Confirmed</option><option value="cancelled">Cancelled</option><option value="pending">Pending</option></select></label>
-            <label>Complaint Status <select [(ngModel)]="clusterForm.complaint_status" class="ml-input"><option value="">None</option><option value="open">Open</option><option value="closed">Closed</option></select></label>
-          </div>
-          <div class="panel-actions">
-            <button class="btn-predict panel-run" (click)="runClusterPredict()" [disabled]="clusterLoading()">
-              <span *ngIf="!clusterLoading()">Run Clustering</span>
-              <span *ngIf="clusterLoading()" class="spinner"></span>
-            </button>
-          </div>
-          <div *ngIf="clusterResult() as r" class="lab-kpi-grid">
-            <div class="lab-kpi-card">
-              <span class="lab-kpi-label">Algorithm</span>
-              <strong class="lab-kpi-value">{{ r.algorithm | uppercase }}</strong>
-              <span class="lab-kpi-meta">Clustering engine used for the current assignment.</span>
-            </div>
-            <div class="lab-kpi-card" *ngIf="r.silhouette_score !== undefined && r.silhouette_score !== null">
-              <span class="lab-kpi-label">Silhouette</span>
-              <strong class="lab-kpi-value">{{ r.silhouette_score | number:'1.3-3' }}</strong>
-              <span class="lab-kpi-meta">Higher is better cluster separation.</span>
-            </div>
-            <div class="lab-kpi-card" *ngIf="r.davies_bouldin_score !== undefined && r.davies_bouldin_score !== null">
-              <span class="lab-kpi-label">Davies-Bouldin</span>
-              <strong class="lab-kpi-value">{{ r.davies_bouldin_score | number:'1.3-3' }}</strong>
-              <span class="lab-kpi-meta">Lower is better cluster compactness.</span>
-            </div>
-            <div class="lab-kpi-card" *ngIf="r.n_clusters_detected !== undefined">
-              <span class="lab-kpi-label">Clusters</span>
-              <strong class="lab-kpi-value">{{ r.n_clusters_detected }}</strong>
-              <span class="lab-kpi-meta">Detected by the selected clustering model.</span>
-            </div>
-            <div class="lab-kpi-card" *ngIf="r.algorithm === 'dbscan'">
-              <span class="lab-kpi-label">Noise Points</span>
-              <strong class="lab-kpi-value">{{ r.noise_points ?? 0 }}</strong>
-              <span class="lab-kpi-meta">Profiles classified as outliers by DBSCAN.</span>
-            </div>
-          </div>
-          <div *ngIf="clusterResult() as r" class="result-box cluster-result">
-            <div class="result-main">{{ r.cluster_name }}</div>
-            <div class="result-meta">Cluster ID: {{ r.cluster_id }} · Algorithm: {{ r.algorithm }}</div>
-            <div class="result-meta" *ngIf="r.silhouette_score === null && r.algorithm === 'dbscan'">Silhouette and Davies-Bouldin are unavailable when DBSCAN detects too few stable clusters.</div>
-          </div>
-          <p *ngIf="clusterError()" class="predict-error">{{ clusterError() }}</p>
-        </div>
-      </ng-container>
-
-      <!-- Forecast -->
-      <ng-container *ngIf="selectedModel() === 'forecast'">
-        <div class="panel-header">
-          <div class="panel-title-row">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#79c0ff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
-            <h3>Demand Forecasting <span class="panel-endpoint">/predict/forecast</span></h3>
-          </div>
-          <button class="panel-close" (click)="selectModel(null)">✕</button>
-        </div>
-        <div class="ml-form">
-          <div class="form-row">
-            <label>Category <select [(ngModel)]="forecastForm.category_name" class="ml-input"><option *ngFor="let cat of categories()" [value]="cat">{{ cat }}</option></select></label>
-            <label>Horizon (months) <input type="number" [(ngModel)]="forecastForm.horizon" min="1" max="24" class="ml-input"></label>
-          </div>
-          <div class="panel-actions">
-            <button class="btn-predict panel-run" (click)="runForecast()" [disabled]="forecastLoading()">
-              <span *ngIf="!forecastLoading()">Run Forecast</span>
-              <span *ngIf="forecastLoading()" class="spinner"></span>
-            </button>
-          </div>
-          <div *ngIf="forecastResult() as r" class="lab-kpi-grid">
-            <div class="lab-kpi-card" *ngIf="r.metrics">
-              <span class="lab-kpi-label">MAPE</span>
-              <strong class="lab-kpi-value">{{ r.metrics.mape | number:'1.1-1' }}%</strong>
-              <span class="lab-kpi-meta">Validation error on the holdout window.</span>
-            </div>
-            <div class="lab-kpi-card" *ngIf="r.metrics">
-              <span class="lab-kpi-label">MAE</span>
-              <strong class="lab-kpi-value">{{ r.metrics.mae | number:'1.1-1' }}</strong>
-              <span class="lab-kpi-meta">Average absolute reservation error.</span>
-            </div>
-            <div class="lab-kpi-card" *ngIf="r.metrics">
-              <span class="lab-kpi-label">RMSE</span>
-              <strong class="lab-kpi-value">{{ r.metrics.rmse | number:'1.1-1' }}</strong>
-              <span class="lab-kpi-meta">Penalty-weighted forecast error.</span>
-            </div>
-            <div class="lab-kpi-card" *ngIf="r.metrics">
-              <span class="lab-kpi-label">Validation Window</span>
-              <strong class="lab-kpi-value">{{ r.metrics.test_points }}</strong>
-              <span class="lab-kpi-meta">Test periods after {{ r.metrics.train_points }} training periods.</span>
-            </div>
-          </div>
-          <div *ngIf="forecastResult() as r" class="result-box forecast-result">
-            <div class="forecast-chart">
-              <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="forecast-chart-svg">
-                <line x1="0" y1="100" x2="100" y2="100" class="forecast-axis"></line>
-                <line x1="0" y1="0" x2="0" y2="100" class="forecast-axis"></line>
-                <line *ngIf="forecastDividerX !== null" [attr.x1]="forecastDividerX" [attr.x2]="forecastDividerX" y1="0" y2="100" class="forecast-divider"></line>
-                <polyline [attr.points]="forecastPolylinePoints" class="forecast-line"></polyline>
-              </svg>
-              <div class="forecast-chart-legend">
-                <span>History</span>
-                <span>Forecast</span>
-              </div>
-            </div>
-            <div class="forecast-list">
-              <div *ngFor="let item of r.forecast" class="forecast-item">
-                <span class="forecast-date">{{ item.date | date:'MMM yyyy' }}</span>
-                <span class="forecast-value"><strong>{{ item.value }}</strong> reservations</span>
-              </div>
-            </div>
-            <div class="result-meta">Model: {{ r.model || 'Holt-Winters Exponential Smoothing' }}</div>
-          </div>
-          <p *ngIf="forecastError()" class="predict-error">{{ forecastError() }}</p>
-        </div>
-      </ng-container>
-
-      <!-- Sentiment (NEW) -->
-      <ng-container *ngIf="selectedModel() === 'sentiment'">
-        <div class="panel-header">
-          <div class="panel-title-row">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#ff6b6b" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <h3>Sentiment Analysis <span class="panel-endpoint">/predict/sentiment</span></h3>
-          </div>
-          <button class="panel-close" (click)="selectModel(null)">✕</button>
-        </div>
-        <div class="ml-form">
-          <label class="field-label">Complaint or Review Text</label>
-          <textarea class="ml-input" style="height:80px;resize:vertical;" [(ngModel)]="sentimentText"></textarea>
-          <div class="panel-actions">
-            <button class="btn-predict panel-run" (click)="runSentiment()" [disabled]="sentimentLoading()">
-              <span *ngIf="!sentimentLoading()">Analyze Sentiment</span>
-              <span *ngIf="sentimentLoading()" class="spinner"></span>
-            </button>
-          </div>
-          <div *ngIf="sentimentResult() as r" class="result-box sentiment-result">
-            <div class="result-main">Label: <strong>{{ r.label }}</strong></div>
-            <div class="result-meta">Polarity Score: {{ r.polarity | number:'1.3-3' }} ( -1 to +1 )</div>
-          </div>
-        </div>
-      </ng-container>
-
-      <!-- Recommendation (NEW) -->
-      <ng-container *ngIf="selectedModel() === 'reco'">
-        <div class="panel-header">
-          <div class="panel-title-row">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#4ecdc4" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-            <h3>Event Recommendation <span class="panel-endpoint">/recommend/events</span></h3>
-          </div>
-          <button class="panel-close" (click)="selectModel(null)">✕</button>
-        </div>
-        <div class="ml-form">
-          <div class="result-box" style="border-color:rgba(78,205,196,0.2);background:rgba(78,205,196,0.05);">
-            <div class="result-main">Content-based recommender</div>
-            <div class="result-meta">The backend compares event similarity using average price, rating, visitors, marketing spend, and event type.</div>
-          </div>
-          <div class="form-row">
-            <label>Beneficiary ID <input type="number" [(ngModel)]="recoBeneId" class="ml-input"></label>
-            <label>Recommendation Count <input type="number" [(ngModel)]="recoCount" min="1" max="10" class="ml-input"></label>
-          </div>
-          <div class="panel-actions">
-            <button class="btn-predict panel-run" (click)="runReco()" [disabled]="recoLoading()">
-              <span *ngIf="!recoLoading()">Get Recommendations</span>
-              <span *ngIf="recoLoading()" class="spinner"></span>
-            </button>
-          </div>
-          <div *ngIf="recoResult() as r" class="result-box reco-result">
-            <div class="result-main">Recommended Event IDs:</div>
-            <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem;">
-              <span *ngFor="let id of r.recommendations" class="catalog-badge" style="background:rgba(78,205,196,0.15);color:#4ecdc4;">ID: {{ id }}</span>
-            </div>
-            <div class="result-meta" style="margin-top:0.5rem;">Strategy: {{ r.type }}</div>
-            <div *ngIf="r.scores?.length" class="result-meta">Scores: {{ r.scores?.join(', ') }}</div>
-          </div>
-          <p *ngIf="recoError()" class="predict-error">{{ recoError() }}</p>
-        </div>
-      </ng-container>
-
-      <!-- Anomalies (NEW) -->
-      <ng-container *ngIf="selectedModel() === 'anomalies'">
-        <div class="panel-header">
-          <div class="panel-title-row">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#ff9f43" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-            <h3>Anomaly Detection <span class="panel-endpoint">/predict/anomalies</span></h3>
-          </div>
-          <button class="panel-close" (click)="selectModel(null)">✕</button>
-        </div>
-        <div class="ml-form">
-          <div class="result-box" style="border-color:rgba(255,159,67,0.2);background:rgba(255,159,67,0.05);">
-            <div class="result-main">Backend detector</div>
-            <div class="result-meta">This panel uses the FastAPI anomaly endpoint powered by Isolation Forest over core event metrics.</div>
-          </div>
-          <div class="panel-actions">
-            <button class="btn-predict panel-run" (click)="runAnomalies()" [disabled]="anomalyLoading()">
-              <span *ngIf="!anomalyLoading()">Scan for Anomalies</span>
-              <span *ngIf="anomalyLoading()" class="spinner"></span>
-            </button>
-          </div>
-          <div *ngIf="anomalyResult() as r" class="lab-kpi-grid">
-            <div class="lab-kpi-card">
-              <span class="lab-kpi-label">Anomaly Rate</span>
-              <strong class="lab-kpi-value">{{ anomalyRatePercent | number:'1.1-1' }}%</strong>
-              <span class="lab-kpi-meta">Detected anomalous profiles over all scanned records.</span>
-            </div>
-            <div class="lab-kpi-card">
-              <span class="lab-kpi-label">Anomalies</span>
-              <strong class="lab-kpi-value">{{ r.anomaly_count }}</strong>
-              <span class="lab-kpi-meta">Flagged by {{ r.algorithm || 'Isolation Forest' }}.</span>
-            </div>
-            <div class="lab-kpi-card">
-              <span class="lab-kpi-label">Population</span>
-              <strong class="lab-kpi-value">{{ r.total_count }}</strong>
-              <span class="lab-kpi-meta">Records evaluated by the detector.</span>
-            </div>
-            <div class="lab-kpi-card" *ngIf="r.contamination !== undefined">
-              <span class="lab-kpi-label">Contamination</span>
-              <strong class="lab-kpi-value">{{ (r.contamination * 100) | number:'1.1-1' }}%</strong>
-              <span class="lab-kpi-meta">Configured anomaly prior in the backend.</span>
-            </div>
-          </div>
-          <div *ngIf="anomalyResult() as r" class="result-box anomaly-result">
-            <div class="result-main">Found <strong>{{ r.anomaly_count }}</strong> anomalies out of {{ r.total_count }} records.</div>
-            <div class="result-meta" style="margin-top:0.5rem;">
-              Detection Algorithm: {{ r.algorithm || 'Isolation Forest' }}
-              <span *ngIf="r.contamination !== undefined"> (Contamination={{ r.contamination }})</span>
-            </div>
-            <div *ngIf="r.sample_anomalies.length" class="forecast-list" style="margin-top:0.75rem;">
-              <div *ngFor="let item of r.sample_anomalies | slice:0:5" class="forecast-item">
-                <span class="forecast-date">Price {{ item.price | number:'1.0-0' }} / Budget {{ item.budget | number:'1.0-0' }}</span>
-                <span class="forecast-value"><strong>{{ item.ano_score | number:'1.3-3' }}</strong> score</span>
-              </div>
-            </div>
-          </div>
-          <p *ngIf="anomalyError()" class="predict-error">{{ anomalyError() }}</p>
-        </div>
-      </ng-container>
-
-      <!-- Deep Learning (NEW) -->
-      <ng-container *ngIf="selectedModel() === 'dl'">
-        <div class="panel-header">
-          <div class="panel-title-row">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#ee5253" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-            <h3>Advanced Prediction (MLP) <span class="panel-endpoint">/predict/deep-learning</span></h3>
-          </div>
-          <button class="panel-close" (click)="selectModel(null)">✕</button>
-        </div>
-        <div class="ml-form">
-          <p class="section-sub">This MLP classifier predicts loyalty from the same business features as the fidelisation model, but with a neural-network backend.</p>
-          <div class="form-row">
-            <label>Price <input type="number" [(ngModel)]="fidelForm.price" class="ml-input"></label>
-            <label>Budget <input type="number" [(ngModel)]="fidelForm.budget" class="ml-input"></label>
-            <label>Final Price <input type="number" [(ngModel)]="fidelForm.final_price" class="ml-input"></label>
-          </div>
-          <div class="form-row">
-            <label>Rating <input type="number" step="0.1" min="0" max="5" [(ngModel)]="fidelForm.rating" class="ml-input"></label>
-            <label>Visitors <input type="number" [(ngModel)]="fidelForm.visitors" class="ml-input"></label>
-            <label>Marketing Spend <input type="number" [(ngModel)]="fidelForm.marketing_spend" class="ml-input"></label>
-          </div>
-          <div class="form-row">
-            <label>Price/Budget Ratio <input type="number" step="0.01" [(ngModel)]="fidelForm.price_budget_ratio" class="ml-input"></label>
-            <label>Margin <input type="number" [(ngModel)]="fidelForm.margin" class="ml-input"></label>
-            <label>Month <input type="number" min="1" max="12" [(ngModel)]="fidelForm.month" class="ml-input"></label>
-          </div>
-          <div class="form-row">
-            <label>Has Complaint <select [(ngModel)]="fidelForm.has_complaint" class="ml-input"><option [ngValue]="0">No</option><option [ngValue]="1">Yes</option></select></label>
-            <label>Type Encoding <select [(ngModel)]="fidelForm.type_encoded" class="ml-input"><option [ngValue]="0">Corporate Event</option><option [ngValue]="1">Private Party</option><option [ngValue]="2">Wedding</option><option [ngValue]="3">Inconnu</option></select></label>
-            <label>Season Encoding <select [(ngModel)]="fidelForm.season_encoded" class="ml-input"><option [ngValue]="0">Automne</option><option [ngValue]="1">Ete</option><option [ngValue]="2">Hiver</option><option [ngValue]="3">Printemps</option></select></label>
-          </div>
-          <div class="form-row">
-            <label>Is Weekend <select [(ngModel)]="fidelForm.is_weekend" class="ml-input"><option [ngValue]="0">No</option><option [ngValue]="1">Yes</option></select></label>
-          </div>
-          <div class="panel-actions">
-            <button class="btn-predict panel-run" (click)="runDL()" [disabled]="dlLoading()">
-              <span *ngIf="!dlLoading()">Run Deep Learning Model</span>
-              <span *ngIf="dlLoading()" class="spinner"></span>
-            </button>
-          </div>
-          <div *ngIf="dlResult() as r" class="lab-kpi-grid">
-            <div class="lab-kpi-card">
-              <span class="lab-kpi-label">Confidence</span>
-              <strong class="lab-kpi-value">{{ (r.confidence * 100) | number:'1.1-1' }}%</strong>
-              <span class="lab-kpi-meta">Probability assigned to the positive class.</span>
-            </div>
-            <div class="lab-kpi-card" *ngIf="r.accuracy !== undefined">
-              <span class="lab-kpi-label">Accuracy</span>
-              <strong class="lab-kpi-value">{{ (r.accuracy * 100) | number:'1.1-1' }}%</strong>
-              <span class="lab-kpi-meta">Holdout accuracy for the MLP classifier.</span>
-            </div>
-            <div class="lab-kpi-card" *ngIf="r.f1_score !== undefined">
-              <span class="lab-kpi-label">F1-Score</span>
-              <strong class="lab-kpi-value">{{ r.f1_score | number:'1.3-3' }}</strong>
-              <span class="lab-kpi-meta">Balance between precision and recall.</span>
-            </div>
-            <div class="lab-kpi-card" *ngIf="r.auc !== undefined">
-              <span class="lab-kpi-label">ROC-AUC</span>
-              <strong class="lab-kpi-value">{{ r.auc | number:'1.3-3' }}</strong>
-              <span class="lab-kpi-meta">Ranking quality of the MLP probabilities.</span>
-            </div>
-          </div>
-          <div *ngIf="dlResult() as r" class="result-box dl-result">
-            <div class="result-main">Prediction: <strong>{{ r.prediction === 1 ? 'Likely Loyal' : 'At Risk' }}</strong></div>
-            <div class="result-meta">Confidence: {{ (r.confidence * 100) | number:'1.1-1' }}% · Model: {{ r.model }}</div>
-            <div class="result-meta" *ngIf="r.accuracy !== undefined || r.f1_score !== undefined || r.iterations !== undefined">
-              <span *ngIf="r.accuracy !== undefined">Accuracy: {{ (r.accuracy * 100) | number:'1.1-1' }}%</span>
-              <span *ngIf="r.f1_score !== undefined"> · F1: {{ r.f1_score | number:'1.3-3' }}</span>
-              <span *ngIf="r.auc !== undefined"> · AUC: {{ r.auc | number:'1.3-3' }}</span>
-              <span *ngIf="r.iterations !== undefined"> · Iterations: {{ r.iterations }}</span>
-            </div>
-            <div class="result-action">{{ r.note }}</div>
-          </div>
-          <p *ngIf="dlError()" class="predict-error">{{ dlError() }}</p>
-        </div>
-      </ng-container>
-
-      <!-- Chatbot -->
-      <ng-container *ngIf="selectedModel() === 'chatbot'">
-        <div class="panel-header">
-          <div class="panel-title-row">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#bc8cff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-            <h3>AI BI Chatbot <span class="panel-endpoint">Groq LLaMA 3.3</span></h3>
-          </div>
-          <button class="panel-close" (click)="selectModel(null)">✕</button>
-        </div>
-        <div class="chatbot-panel-body">
-          <p class="chatbot-panel-desc">Ask natural language questions about your PostgreSQL data warehouse. The AI translates your question into SQL, runs it, and explains the results.</p>
-          <button class="btn-predict panel-run" style="width:auto;" onclick="document.querySelector('.chat-fab').click()">
-            Open AI Assistant →
-          </button>
-        </div>
-      </ng-container>
-
-    </div><!-- /.catalog-panel -->
+      </div>
+    </div>
 
   </section>
 </ng-container>
 
-<!-- ══ ACCESS DENIED (protected section, not logged in) ══ -->
-<ng-container *ngIf="isProtectedAndLocked(activeSection())">
-  <section class="access-denied fade-in">
-    <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#8b949e" stroke-width="1.5">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-    </svg>
-    <p>Please sign in as admin to access this section.</p>
+<!-- ══════════════════════════════════════════════════════════════════ ABOUT -->
+<ng-container *ngIf="activeSection() === 'about'">
+  <section class="section-page">
+    <div class="section-header">
+      <span class="section-label">About</span>
+      <h2 class="section-title">What is EventZella?</h2>
+      <p class="section-desc">A full-stack AI-powered analytics platform built for event management businesses.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon" style="background:rgba(56,139,253,0.1);color:#388bfd"><lucide-icon name="bar-chart-2" [size]="22"></lucide-icon></div>
+        <h3 class="card-title">Real-time Dashboards</h3>
+        <p class="card-desc">Power BI embedded reports with live KPIs, booking trends, and revenue analytics.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(163,113,247,0.1);color:#a371f7"><lucide-icon name="brain" [size]="22"></lucide-icon></div>
+        <h3 class="card-title">9 ML Models</h3>
+        <p class="card-desc">Price prediction, fidelisation, loyalty, clustering, forecasting, sentiment, recommendations, anomaly detection, and deep learning.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(63,185,80,0.1);color:#3fb950"><lucide-icon name="zap" [size]="22"></lucide-icon></div>
+        <h3 class="card-title">AI Chatbot</h3>
+        <p class="card-desc">Groq LLaMA-powered assistant for instant answers about your event data.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(251,191,36,0.1);color:#fbbf24"><lucide-icon name="shield" [size]="22"></lucide-icon></div>
+        <h3 class="card-title">Role-based Access</h3>
+        <p class="card-desc">Admin-only sections for dashboards and lab. Secure sign-in with credential validation.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(247,120,186,0.1);color:#f778ba"><lucide-icon name="rocket" [size]="22"></lucide-icon></div>
+        <h3 class="card-title">Angular 20 + FastAPI</h3>
+        <p class="card-desc">Modern frontend with zoneless change detection, signals, and a Python ML backend.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(56,139,253,0.1);color:#388bfd"><lucide-icon name="award" [size]="22"></lucide-icon></div>
+        <h3 class="card-title">Esprit PABI Project</h3>
+        <p class="card-desc">Built by the 4ERP BI6 team (2025–26) as a capstone business intelligence project.</p>
+      </div>
+    </div>
   </section>
 </ng-container>
 
-</div><!-- /.home-page -->
+</div>
