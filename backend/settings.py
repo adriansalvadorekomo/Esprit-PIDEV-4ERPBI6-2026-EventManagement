@@ -3,13 +3,15 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv(Path(__file__).parent / ".env")
+# Only load .env if not already set by docker-compose (or other env injection)
+if not os.getenv("EVENTZILLA_DB_HOST"):
+    load_dotenv(Path(__file__).parent / ".env")
 
-DB_USER     = os.getenv("EVENTZELLA_DB_USER",     "postgres")
-DB_PASSWORD = os.getenv("EVENTZELLA_DB_PASSWORD", "1400")
-DB_HOST     = os.getenv("EVENTZELLA_DB_HOST",     "localhost")
-DB_PORT     = os.getenv("EVENTZELLA_DB_PORT",     "5432")
-DB_NAME     = os.getenv("EVENTZELLA_DB_NAME",     "DW_event")
+DB_USER     = os.getenv("EVENTZILLA_DB_USER",     "postgres")
+DB_PASSWORD = os.getenv("EVENTZILLA_DB_PASSWORD", "1400")
+DB_HOST     = os.getenv("EVENTZILLA_DB_HOST",     "localhost")
+DB_PORT     = os.getenv("EVENTZILLA_DB_PORT",     "5432")
+DB_NAME     = os.getenv("EVENTZILLA_DB_NAME",     "DW_event")
 
 DATABASE_URL = (
     f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}"

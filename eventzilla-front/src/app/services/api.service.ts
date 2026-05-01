@@ -27,8 +27,8 @@ interface AppConfig { fastapiUrl: string; flaskUrl: string; }
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   private readonly http = inject(HttpClient);
-  private fastapi = 'http://localhost:8000';
-  private flask   = 'http://localhost:5000';
+  private fastapi = '/api';
+  private flask   = '/bi';
 
   constructor() {
     this.http.get<AppConfig>('/config.json').subscribe(cfg => {

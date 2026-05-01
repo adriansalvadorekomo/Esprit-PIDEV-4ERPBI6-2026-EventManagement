@@ -31,6 +31,7 @@ services:
       EVENTZILLA_DB_USER: ${POSTGRES_USER}
       EVENTZILLA_DB_PASSWORD: ${POSTGRES_PASSWORD}
       EVENTZILLA_CORS_ORIGINS: "*"
+      GROQ_API_KEY: ${GROQ_API_KEY}
     depends_on:
       postgres:
         condition: service_healthy
@@ -45,11 +46,12 @@ services:
     container_name: eventzilla-flask
     restart: unless-stopped
     environment:
-      FLASK_APP_DB_HOST: postgres
-      FLASK_APP_DB_PORT: 5432
-      FLASK_APP_DB_NAME: ${POSTGRES_DB}
-      FLASK_APP_DB_USER: ${POSTGRES_USER}
-      FLASK_APP_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      EVENTZILLA_DB_HOST: postgres
+      EVENTZILLA_DB_PORT: 5432
+      EVENTZILLA_DB_NAME: ${POSTGRES_DB}
+      EVENTZILLA_DB_USER: ${POSTGRES_USER}
+      EVENTZILLA_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      GROQ_API_KEY: ${GROQ_API_KEY}
     depends_on:
       postgres:
         condition: service_healthy

@@ -1,4 +1,4 @@
 {
-  "fastapiUrl": "http://localhost:8000",
-  "flaskUrl": "http://localhost:5000"
+  "fastapiUrl": "/api",
+  "flaskUrl": "/bi"
 }
