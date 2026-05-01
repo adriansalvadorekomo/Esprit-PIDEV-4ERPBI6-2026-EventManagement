@@ -215,49 +215,98 @@
     <!-- Model catalog -->
     <div *ngIf="!selectedModel()" class="catalog-grid">
       <div class="catalog-card" (click)="selectModel('price')">
-        <div class="catalog-icon" style="background:rgba(56,139,253,0.1);color:#388bfd"><lucide-icon name="bar-chart-2" [size]="22"></lucide-icon></div>
+        <div class="catalog-card-header">
+          <div class="catalog-icon" style="background:rgba(56,139,253,0.1);color:#388bfd"><lucide-icon name="bar-chart-2" [size]="22"></lucide-icon></div>
+          <button nz-button nzType="text" class="info-btn" (click)="openModelInfo('price', $event)"><lucide-icon name="info" [size]="16"></lucide-icon></button>
+        </div>
         <h3 class="catalog-title">Price Prediction</h3>
-        <p class="catalog-desc">Predict optimal event pricing using ML regression.</p>
       </div>
       <div class="catalog-card" (click)="selectModel('fidel')">
-        <div class="catalog-icon" style="background:rgba(163,113,247,0.1);color:#a371f7"><lucide-icon name="trending-up" [size]="22"></lucide-icon></div>
+        <div class="catalog-card-header">
+          <div class="catalog-icon" style="background:rgba(163,113,247,0.1);color:#a371f7"><lucide-icon name="trending-up" [size]="22"></lucide-icon></div>
+          <button nz-button nzType="text" class="info-btn" (click)="openModelInfo('fidel', $event)"><lucide-icon name="info" [size]="16"></lucide-icon></button>
+        </div>
         <h3 class="catalog-title">Fidelisation</h3>
-        <p class="catalog-desc">Predict client loyalty probability with confidence score.</p>
       </div>
       <div class="catalog-card" (click)="selectModel('loyalty')">
-        <div class="catalog-icon" style="background:rgba(63,185,80,0.1);color:#3fb950"><lucide-icon name="users" [size]="22"></lucide-icon></div>
+        <div class="catalog-card-header">
+          <div class="catalog-icon" style="background:rgba(63,185,80,0.1);color:#3fb950"><lucide-icon name="users" [size]="22"></lucide-icon></div>
+          <button nz-button nzType="text" class="info-btn" (click)="openModelInfo('loyalty', $event)"><lucide-icon name="info" [size]="16"></lucide-icon></button>
+        </div>
         <h3 class="catalog-title">Loyalty Score</h3>
-        <p class="catalog-desc">Flask-based loyalty classification per event.</p>
       </div>
       <div class="catalog-card" (click)="selectModel('cluster')">
-        <div class="catalog-icon" style="background:rgba(251,191,36,0.1);color:#fbbf24"><lucide-icon name="zap" [size]="22"></lucide-icon></div>
+        <div class="catalog-card-header">
+          <div class="catalog-icon" style="background:rgba(251,191,36,0.1);color:#fbbf24"><lucide-icon name="zap" [size]="22"></lucide-icon></div>
+          <button nz-button nzType="text" class="info-btn" (click)="openModelInfo('cluster', $event)"><lucide-icon name="info" [size]="16"></lucide-icon></button>
+        </div>
         <h3 class="catalog-title">Clustering</h3>
-        <p class="catalog-desc">Segment events with KMeans or DBSCAN.</p>
       </div>
       <div class="catalog-card" (click)="selectModel('forecast')">
-        <div class="catalog-icon" style="background:rgba(247,120,186,0.1);color:#f778ba"><lucide-icon name="lightbulb" [size]="22"></lucide-icon></div>
+        <div class="catalog-card-header">
+          <div class="catalog-icon" style="background:rgba(247,120,186,0.1);color:#f778ba"><lucide-icon name="lightbulb" [size]="22"></lucide-icon></div>
+          <button nz-button nzType="text" class="info-btn" (click)="openModelInfo('forecast', $event)"><lucide-icon name="info" [size]="16"></lucide-icon></button>
+        </div>
         <h3 class="catalog-title">Forecasting</h3>
-        <p class="catalog-desc">Time-series demand forecast by category.</p>
       </div>
       <div class="catalog-card" (click)="selectModel('sentiment')">
-        <div class="catalog-icon" style="background:rgba(163,113,247,0.1);color:#a371f7"><lucide-icon name="brain" [size]="22"></lucide-icon></div>
+        <div class="catalog-card-header">
+          <div class="catalog-icon" style="background:rgba(163,113,247,0.1);color:#a371f7"><lucide-icon name="brain" [size]="22"></lucide-icon></div>
+          <button nz-button nzType="text" class="info-btn" (click)="openModelInfo('sentiment', $event)"><lucide-icon name="info" [size]="16"></lucide-icon></button>
+        </div>
         <h3 class="catalog-title">Sentiment</h3>
-        <p class="catalog-desc">Analyze review sentiment with polarity score.</p>
       </div>
       <div class="catalog-card" (click)="selectModel('reco')">
-        <div class="catalog-icon" style="background:rgba(56,139,253,0.1);color:#388bfd"><lucide-icon name="rocket" [size]="22"></lucide-icon></div>
+        <div class="catalog-card-header">
+          <div class="catalog-icon" style="background:rgba(56,139,253,0.1);color:#388bfd"><lucide-icon name="rocket" [size]="22"></lucide-icon></div>
+          <button nz-button nzType="text" class="info-btn" (click)="openModelInfo('reco', $event)"><lucide-icon name="info" [size]="16"></lucide-icon></button>
+        </div>
         <h3 class="catalog-title">Recommendations</h3>
-        <p class="catalog-desc">Collaborative filtering event recommendations.</p>
       </div>
       <div class="catalog-card" (click)="selectModel('anomaly')">
-        <div class="catalog-icon" style="background:rgba(248,81,73,0.1);color:#f85149"><lucide-icon name="shield" [size]="22"></lucide-icon></div>
+        <div class="catalog-card-header">
+          <div class="catalog-icon" style="background:rgba(248,81,73,0.1);color:#f85149"><lucide-icon name="shield" [size]="22"></lucide-icon></div>
+          <button nz-button nzType="text" class="info-btn" (click)="openModelInfo('anomaly', $event)"><lucide-icon name="info" [size]="16"></lucide-icon></button>
+        </div>
         <h3 class="catalog-title">Anomaly Detection</h3>
-        <p class="catalog-desc">Detect outliers in event financial data.</p>
       </div>
       <div class="catalog-card" (click)="selectModel('dl')">
-        <div class="catalog-icon" style="background:rgba(63,185,80,0.1);color:#3fb950"><lucide-icon name="award" [size]="22"></lucide-icon></div>
+        <div class="catalog-card-header">
+          <div class="catalog-icon" style="background:rgba(63,185,80,0.1);color:#3fb950"><lucide-icon name="award" [size]="22"></lucide-icon></div>
+          <button nz-button nzType="text" class="info-btn" (click)="openModelInfo('dl', $event)"><lucide-icon name="info" [size]="16"></lucide-icon></button>
+        </div>
         <h3 class="catalog-title">Deep Learning (MLP)</h3>
-        <p class="catalog-desc">Neural network fidelisation prediction.</p>
+      </div>
+    </div>
+
+    <!-- Model info modal -->
+    <div class="info-backdrop" *ngIf="modelInfoVisible() && modelInfoKey()" (click)="modelInfoVisible.set(false)"></div>
+    <div class="info-modal" *ngIf="modelInfoVisible() && modelInfoKey()" role="dialog" aria-modal="true">
+      <div class="info-modal-header">
+        <span class="info-modal-title">{{ modelInfo[modelInfoKey()!].title }}</span>
+        <button class="info-modal-close" (click)="modelInfoVisible.set(false)" aria-label="Close">
+          <lucide-icon name="x" [size]="18"></lucide-icon>
+        </button>
+      </div>
+      <div class="info-modal-body">
+        <p class="modal-info-goal">{{ modelInfo[modelInfoKey()!].goal }}</p>
+        <h4 class="modal-info-fields-title">What each field means</h4>
+        <div class="modal-info-fields">
+          <div class="modal-info-field" *ngFor="let f of modelInfo[modelInfoKey()!].fields">
+            <span class="modal-info-field-name">{{ f.name }}</span>
+            <span class="modal-info-field-desc">{{ f.desc }}</span>
+          </div>
+        </div>
+        <ng-container *ngIf="modelInfo[modelInfoKey()!].benchmarks">
+          <h4 class="modal-info-fields-title">How to read the results</h4>
+          <div class="modal-info-fields">
+            <div class="modal-info-benchmark" *ngFor="let b of modelInfo[modelInfoKey()!].benchmarks">
+              <span class="modal-info-field-name">{{ b.name }}</span>
+              <span class="modal-info-field-desc">{{ b.desc }}</span>
+              <span class="modal-info-example"><lucide-icon name="lightbulb" [size]="12"></lucide-icon> {{ b.example }}</span>
+            </div>
+          </div>
+        </ng-container>
       </div>
     </div>
 

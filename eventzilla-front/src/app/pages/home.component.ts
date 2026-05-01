@@ -33,6 +33,128 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   activeSection = signal<Section>('overview');
   selectedModel = signal<string | null>(null);
+  modelInfoVisible = signal(false);
+  modelInfoKey = signal<string | null>(null);
+
+  readonly modelInfo: Record<string, { title: string; goal: string; fields: { name: string; desc: string }[]; benchmarks?: { name: string; desc: string; example: string }[] }> = {
+    price: {
+      title: 'Price Prediction',
+      goal: 'This tool estimates the best final price for an event based on its characteristics. Think of it as a smart pricing advisor — you give it the event details and it tells you what price to expect.',
+      fields: [
+        { name: 'Price', desc: 'The base price you plan to charge.' },
+        { name: 'Budget', desc: 'Total budget allocated for the event.' },
+        { name: 'Marketing Spend', desc: 'How much you spent promoting the event.' },
+        { name: 'New Beneficiaries', desc: 'Number of new attendees expected.' },
+        { name: 'Reservations', desc: 'Number of bookings already made.' },
+        { name: 'Nb Events', desc: 'How many events the organizer has run before.' },
+        { name: 'Avg Spent / User', desc: 'On average, how much each attendee spends.' },
+        { name: 'Type', desc: 'The kind of event (Corporate, Wedding, Party…).' },
+        { name: 'Status', desc: 'Whether the event is confirmed, pending, or cancelled.' },
+      ]
+    },
+    fidel: {
+      title: 'Fidelisation',
+      goal: 'This tool predicts whether a client will come back and book again. It gives you a loyalty score and tells you what action to take — like sending a personalized offer or just a newsletter.',
+      fields: [
+        { name: 'Price / Budget / Final Price', desc: 'The financial profile of the event.' },
+        { name: 'Rating', desc: 'How the client rated the event (0 to 5).' },
+        { name: 'Visitors', desc: 'How many people attended.' },
+        { name: 'Marketing Spend', desc: 'Budget spent on promotion.' },
+        { name: 'Has Complaint', desc: 'Did the client file a complaint? Yes or No.' },
+        { name: 'Event Type', desc: 'Corporate, Wedding, Private Party, or Unknown.' },
+        { name: 'Season', desc: 'Which season the event took place in.' },
+        { name: 'Is Weekend', desc: 'Was the event on a weekend?' },
+        { name: 'Month', desc: 'Which month the event happened.' },
+      ],
+      benchmarks: [
+        { name: 'Accuracy', desc: 'Out of all clients, how many did the model correctly classify as loyal or not loyal.', example: '85% accuracy means 85 out of 100 predictions were correct.' },
+        { name: 'Recall', desc: 'Out of all truly loyal clients, how many did the model successfully identify. High recall means fewer loyal clients are missed.', example: '78% recall means the model caught 78 out of every 100 genuinely loyal clients.' },
+        { name: 'ROC-AUC', desc: 'A score from 0 to 1 measuring how well the model separates loyal from non-loyal clients. 0.5 is random guessing; 1.0 is perfect.', example: '0.91 AUC means the model is excellent at ranking loyal clients above non-loyal ones.' },
+      ]
+    },
+    loyalty: {
+      title: 'Loyalty Score',
+      goal: 'Similar to Fidelisation but uses a different calculation method. It gives a simple Yes/No answer: will this client be loyal? Plus a confidence percentage.',
+      fields: [
+        { name: 'Price / Budget / Final Price', desc: 'The financial profile of the event.' },
+        { name: 'Rating', desc: 'Client satisfaction score (0 to 5).' },
+        { name: 'Visitors', desc: 'Number of attendees.' },
+        { name: 'Event Date', desc: 'When the event took place.' },
+        { name: 'Event Type', desc: 'The category of the event.' },
+      ]
+    },
+    cluster: {
+      title: 'Clustering',
+      goal: 'This tool groups events into categories based on their profile. It helps you understand what "type" of event you are dealing with — Premium, Potential, or At-Risk — so you can treat each group differently.',
+      fields: [
+        { name: 'Budget / Price / Final Price', desc: 'The financial profile of the event.' },
+        { name: 'Rating', desc: 'Client satisfaction score.' },
+        { name: 'Visitors', desc: 'Number of attendees.' },
+        { name: 'Algorithm', desc: 'KMeans groups into fixed clusters; DBSCAN finds natural groups automatically.' },
+        { name: 'Event Type', desc: 'The category of the event.' },
+        { name: 'Reservation Status', desc: 'Whether the booking is confirmed, pending, or cancelled.' },
+      ],
+      benchmarks: [
+        { name: 'Silhouette Score', desc: 'Measures how well each event fits its assigned group vs. other groups. Ranges from -1 to 1. Higher is better.', example: '0.62 means events in the same cluster are clearly more similar to each other than to events in other clusters.' },
+        { name: 'Davies-Bouldin Score', desc: 'Measures how spread out and separated the clusters are. Lower is better — it means clusters are compact and far apart.', example: '0.85 is a good score; 2.5 would mean the clusters overlap too much.' },
+        { name: 'Clusters Detected', desc: 'The number of distinct groups the algorithm found in your data.', example: '3 clusters might represent Premium, Standard, and At-Risk event profiles.' },
+      ]
+    },
+    forecast: {
+      title: 'Demand Forecasting',
+      goal: 'This tool looks at past booking history and predicts how many reservations to expect in the coming months. Like a weather forecast, but for your event demand.',
+      fields: [
+        { name: 'Category', desc: 'The type of events to forecast (e.g. Concerts, Weddings…).' },
+        { name: 'Horizon', desc: 'How many months ahead you want to predict.' },
+      ],
+      benchmarks: [
+        { name: 'MAPE', desc: 'Mean Absolute Percentage Error — the average % gap between predicted and actual reservations. Lower is better.', example: '12% MAPE means the forecast is off by about 12 reservations for every 100 expected.' },
+        { name: 'MAE', desc: 'Mean Absolute Error — the average number of reservations the forecast misses per month, regardless of direction.', example: 'MAE of 8 means the model is typically off by 8 reservations per month.' },
+        { name: 'RMSE', desc: 'Root Mean Square Error — similar to MAE but penalizes large errors more heavily. Useful for spotting months with big misses.', example: 'RMSE of 15 with MAE of 8 means there are occasional months with much larger errors.' },
+      ]
+    },
+    sentiment: {
+      title: 'Sentiment Analysis',
+      goal: 'Paste any client review or feedback text and this tool instantly tells you if it is Positive, Negative, or Neutral. No reading required — it reads it for you.',
+      fields: [
+        { name: 'Review Text', desc: 'Any written feedback from a client, in any language.' },
+      ]
+    },
+    reco: {
+      title: 'Event Recommendations',
+      goal: 'Given a client ID, this tool suggests events they are most likely to enjoy based on what similar clients have attended. Like a "You might also like…" feature.',
+      fields: [
+        { name: 'Beneficiary ID', desc: 'The unique ID of the client in your system.' },
+        { name: 'Count', desc: 'How many event suggestions you want (1 to 10).' },
+      ]
+    },
+    anomaly: {
+      title: 'Anomaly Detection',
+      goal: 'This tool scans all your event financial data and flags anything that looks unusual — events with abnormal prices, budgets, or visitor numbers. Think of it as a fraud or error detector.',
+      fields: [
+        { name: '(No inputs needed)', desc: 'The tool automatically analyzes all events in the database.' },
+      ]
+    },
+    dl: {
+      title: 'Deep Learning (MLP)',
+      goal: 'A more powerful version of the Fidelisation model. It uses a neural network — a system inspired by the human brain — to predict loyalty. It takes the same inputs as Fidelisation but can detect more complex patterns.',
+      fields: [
+        { name: '(Same inputs as Fidelisation)', desc: 'Fill the Fidelisation form first, then run this model for a second opinion.' },
+      ],
+      benchmarks: [
+        { name: 'Accuracy', desc: 'The percentage of clients correctly classified as loyal or not loyal during testing.', example: '88% accuracy means 88 out of 100 test predictions were correct.' },
+        { name: 'F1 Score', desc: 'A balance between catching loyal clients (recall) and not falsely labeling non-loyal ones (precision). Useful when the data is imbalanced.', example: '0.84 F1 means the model is both precise and thorough in identifying loyal clients.' },
+        { name: 'AUC', desc: 'Area Under the Curve — how well the model ranks loyal clients above non-loyal ones. 1.0 is perfect; 0.5 is random.', example: '0.93 AUC means the model almost always ranks a truly loyal client higher than a non-loyal one.' },
+        { name: 'Iterations', desc: 'How many training rounds the neural network completed before converging. More is not always better — early stopping prevents overfitting.', example: '47 iterations means the network found its optimal weights after 47 passes through the training data.' },
+      ]
+    },
+  };
+
+  openModelInfo(key: string, event: MouseEvent): void {
+    event.stopPropagation();
+    this.modelInfoKey.set(key);
+    this.modelInfoVisible.set(true);
+  }
 
   // ── Price Prediction ──────────────────────────────────────────────────────
   priceForm: PricePredictRequest = {
