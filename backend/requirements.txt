@@ -12,3 +12,7 @@ xgboost
 imbalanced-learn
 Flask
 statsmodels
+
+pmdarima
+scipy
+matplotlib

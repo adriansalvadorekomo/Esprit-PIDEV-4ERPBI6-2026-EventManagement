@@ -168,6 +168,11 @@ def train_fidelisation() -> dict:
     return get_service().train_fidelisation()
 
 
+@router.post("/train/forecast")
+def train_forecast() -> dict:
+    return get_service().train_forecast()
+
+
 @router.post("/predict/price")
 def predict_price(data: PricePredictRequest) -> dict:
     return get_service().predict_price(data)

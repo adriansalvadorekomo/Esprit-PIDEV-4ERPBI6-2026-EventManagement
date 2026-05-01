@@ -67,12 +67,19 @@ class SentimentResponse(BaseModel):
     label: str
 
 
+class RecommendationItem(BaseModel):
+    event_sk: int
+    event_type: str
+    event_title: str | None = None
+    avg_rating: float | None = None
+    score: float
+
+
 class RecommendationResponse(BaseModel):
     status: str
     beneficiary_id: int | None = None
-    recommendations: list[int]
+    recommendations: list[RecommendationItem]
     type: str
-    scores: list[float] = []
 
 
 class AnomalyRecord(BaseModel):

@@ -7,6 +7,8 @@ import subprocess
 
 from fastapi import HTTPException
 import joblib
+import mlflow
+import mlflow.sklearn
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import IsolationForest
@@ -30,6 +32,7 @@ from ..schemas.ml import (
     InputForecast,
     InputSentiment,
     PricePredictRequest,
+    RecommendationItem,
     RecommendationResponse,
     SentimentResponse,
 )
@@ -151,6 +154,64 @@ class MLService:
 
         self._fidelisation_artifacts = None
         return result
+
+    def train_forecast(self) -> dict:
+        mlflow.set_tracking_uri("file:./mlruns")
+        mlflow.set_experiment("forecast_holt_winters")
+
+        query = """
+        WITH dts AS (SELECT date::timestamp AS ds, date_id FROM dim_date)
+        SELECT d.ds, c.category_name, COALESCE(SUM(fs.reservations), 0) AS y
+        FROM dts d
+        CROSS JOIN public."DIM_category" c
+        LEFT JOIN fact_suivi_event fs ON fs.reservation_date_fk = d.date_id AND fs.category_id = c.category_id
+        GROUP BY d.ds, c.category_name
+        ORDER BY d.ds
+        """
+        with self.engine.connect() as connection:
+            frame = pd.read_sql(query, connection)
+
+        frame["ds"] = pd.to_datetime(frame["ds"])
+        categories = frame.groupby("category_name")["y"].sum()
+        categories = categories[categories > 0].index.tolist()
+
+        results = []
+        for category in categories:
+            cat_data = frame[frame["category_name"] == category].copy()
+            monthly = cat_data.set_index("ds").resample("MS").sum()
+
+            if len(monthly) < 24:
+                continue
+
+            split_index = int(len(monthly) * 0.8)
+            train = monthly.iloc[:split_index]
+            test = monthly.iloc[split_index:]
+
+            with mlflow.start_run(run_name=f"forecast_{category}"):
+                model = ExponentialSmoothing(
+                    train["y"], trend="add", seasonal="add", seasonal_periods=12
+                ).fit()
+
+                forecast = np.clip(model.forecast(len(test)).to_numpy(dtype=float), 0, None)
+                actual = test["y"].to_numpy(dtype=float)
+                mae = float(np.mean(np.abs(actual - forecast)))
+                rmse = float(np.sqrt(np.mean((actual - forecast) ** 2)))
+                denominator = np.where(actual == 0, np.nan, actual)
+                mape = float(np.nanmean(np.abs((actual - forecast) / denominator)) * 100)
+                if np.isnan(mape):
+                    mape = 0.0
+
+                mlflow.log_param("category", category)
+                mlflow.log_param("train_points", len(train))
+                mlflow.log_param("test_points", len(test))
+                mlflow.log_metric("mae", mae)
+                mlflow.log_metric("rmse", rmse)
+                mlflow.log_metric("mape", mape)
+                mlflow.sklearn.log_model(model, "model")
+
+                results.append({"category": category, "mae": round(mae, 2), "mape": round(mape, 2)})
+
+        return {"status": "success", "model": "Holt-Winters", "trained_categories": results}
 
     def _load_regression_artifacts(self) -> RegressionArtifacts:
         model_path = self._artifact("rf_model.pkl")
@@ -460,7 +521,7 @@ class MLService:
         query = """
         SELECT f.sk_beneficiary, f.event_sk, f.final_price, f.rating,
                f.visitors, f.marketing_spend, f.reservations,
-               e.type AS event_type
+               e.type AS event_type, e.title AS event_title
         FROM fact_suivi_event f
         JOIN dim_event e ON f.event_sk = e.event_sk
         WHERE f.sk_beneficiary IS NOT NULL
@@ -480,10 +541,12 @@ class MLService:
             visitors=("visitors", "mean"),
             marketing_spend=("marketing_spend", "mean"),
             type_enc=("type_enc", "first"),
+            event_type=("event_type", "first"),
+            event_title=("event_title", "first"),
         ).fillna(0)
 
         scaler = StandardScaler()
-        event_matrix = scaler.fit_transform(event_features)
+        event_matrix = scaler.fit_transform(event_features[["final_price", "rating", "visitors", "marketing_spend", "type_enc"]])
         similarity = cosine_similarity(event_matrix)
         sim_df = pd.DataFrame(similarity, index=event_features.index, columns=event_features.index)
 
@@ -491,38 +554,42 @@ class MLService:
         attended = bene_events.get(beneficiary_id, [])
         all_events = event_features.index.tolist()
 
+        def make_item(event_id: int, score: float) -> RecommendationItem:
+            row = event_features.loc[event_id]
+            return RecommendationItem(
+                event_sk=int(event_id),
+                event_type=str(row["event_type"]),
+                event_title=str(row["event_title"]) if row["event_title"] else None,
+                avg_rating=round(float(row["rating"]), 2),
+                score=round(score, 4),
+            )
+
         if not attended:
             top_rated = event_features.sort_values(["rating", "final_price"], ascending=False).head(n_reco)
             return RecommendationResponse(
                 status="success",
                 beneficiary_id=beneficiary_id,
-                recommendations=[int(event_id) for event_id in top_rated.index.tolist()],
+                recommendations=[make_item(int(eid), float(event_features.loc[eid, "rating"])) for eid in top_rated.index],
                 type="cold-start",
-                scores=[float(score) for score in top_rated["rating"].round(4).tolist()],
             )
 
-        remaining = [event_id for event_id in all_events if event_id not in attended]
+        remaining = [eid for eid in all_events if eid not in attended]
         if not remaining:
             return RecommendationResponse(
-                status="success",
-                beneficiary_id=beneficiary_id,
-                recommendations=[],
-                type="content-based",
-                scores=[],
+                status="success", beneficiary_id=beneficiary_id, recommendations=[], type="content-based"
             )
 
         scores: dict[int, float] = {}
         for event_id in remaining:
-            similarities = [sim_df.loc[event_id, known] for known in attended if known in sim_df.index]
-            scores[int(event_id)] = float(np.mean(similarities)) if similarities else 0.0
+            sims = [sim_df.loc[event_id, known] for known in attended if known in sim_df.index]
+            scores[int(event_id)] = float(np.mean(sims)) if sims else 0.0
 
-        top_recommendations = sorted(scores.items(), key=lambda item: item[1], reverse=True)[:n_reco]
+        top = sorted(scores.items(), key=lambda x: x[1], reverse=True)[:n_reco]
         return RecommendationResponse(
             status="success",
             beneficiary_id=beneficiary_id,
-            recommendations=[event_id for event_id, _ in top_recommendations],
+            recommendations=[make_item(eid, sc) for eid, sc in top],
             type="content-based",
-            scores=[round(score, 4) for _, score in top_recommendations],
         )
 
     def detect_anomalies(self) -> AnomalyResponse:
