@@ -214,81 +214,82 @@
 
     <!-- Model catalog -->
     <div *ngIf="!selectedModel()" class="catalog-grid">
-
       <div class="catalog-card" (click)="selectModel('price')">
         <div class="catalog-icon" style="background:rgba(56,139,253,0.1);color:#388bfd"><lucide-icon name="bar-chart-2" [size]="22"></lucide-icon></div>
         <h3 class="catalog-title">Price Prediction</h3>
         <p class="catalog-desc">Predict optimal event pricing using ML regression.</p>
       </div>
-
       <div class="catalog-card" (click)="selectModel('fidel')">
         <div class="catalog-icon" style="background:rgba(163,113,247,0.1);color:#a371f7"><lucide-icon name="trending-up" [size]="22"></lucide-icon></div>
         <h3 class="catalog-title">Fidelisation</h3>
         <p class="catalog-desc">Predict client loyalty probability with confidence score.</p>
       </div>
-
       <div class="catalog-card" (click)="selectModel('loyalty')">
         <div class="catalog-icon" style="background:rgba(63,185,80,0.1);color:#3fb950"><lucide-icon name="users" [size]="22"></lucide-icon></div>
         <h3 class="catalog-title">Loyalty Score</h3>
         <p class="catalog-desc">Flask-based loyalty classification per event.</p>
       </div>
-
       <div class="catalog-card" (click)="selectModel('cluster')">
         <div class="catalog-icon" style="background:rgba(251,191,36,0.1);color:#fbbf24"><lucide-icon name="zap" [size]="22"></lucide-icon></div>
         <h3 class="catalog-title">Clustering</h3>
         <p class="catalog-desc">Segment events with KMeans or DBSCAN.</p>
       </div>
-
       <div class="catalog-card" (click)="selectModel('forecast')">
         <div class="catalog-icon" style="background:rgba(247,120,186,0.1);color:#f778ba"><lucide-icon name="lightbulb" [size]="22"></lucide-icon></div>
         <h3 class="catalog-title">Forecasting</h3>
         <p class="catalog-desc">Time-series demand forecast by category.</p>
       </div>
-
       <div class="catalog-card" (click)="selectModel('sentiment')">
         <div class="catalog-icon" style="background:rgba(163,113,247,0.1);color:#a371f7"><lucide-icon name="brain" [size]="22"></lucide-icon></div>
         <h3 class="catalog-title">Sentiment</h3>
         <p class="catalog-desc">Analyze review sentiment with polarity score.</p>
       </div>
-
       <div class="catalog-card" (click)="selectModel('reco')">
         <div class="catalog-icon" style="background:rgba(56,139,253,0.1);color:#388bfd"><lucide-icon name="rocket" [size]="22"></lucide-icon></div>
         <h3 class="catalog-title">Recommendations</h3>
         <p class="catalog-desc">Collaborative filtering event recommendations.</p>
       </div>
-
       <div class="catalog-card" (click)="selectModel('anomaly')">
         <div class="catalog-icon" style="background:rgba(248,81,73,0.1);color:#f85149"><lucide-icon name="shield" [size]="22"></lucide-icon></div>
         <h3 class="catalog-title">Anomaly Detection</h3>
         <p class="catalog-desc">Detect outliers in event financial data.</p>
       </div>
-
       <div class="catalog-card" (click)="selectModel('dl')">
         <div class="catalog-icon" style="background:rgba(63,185,80,0.1);color:#3fb950"><lucide-icon name="award" [size]="22"></lucide-icon></div>
         <h3 class="catalog-title">Deep Learning (MLP)</h3>
         <p class="catalog-desc">Neural network fidelisation prediction.</p>
       </div>
-
-    </div><!-- /catalog-grid -->
+    </div>
 
     <!-- ── Price panel ── -->
     <div *ngIf="selectedModel() === 'price'" class="catalog-panel">
       <button class="panel-back" (click)="selectModel(null)">← Back</button>
       <h3 class="panel-title">Price Prediction</h3>
-      <div class="form-grid">
-        <label>Price<input type="number" [(ngModel)]="priceForm.price"></label>
-        <label>Budget<input type="number" [(ngModel)]="priceForm.budget"></label>
-        <label>Marketing Spend<input type="number" [(ngModel)]="priceForm.marketing_spend"></label>
-        <label>New Beneficiaries<input type="number" [(ngModel)]="priceForm.new_beneficiaries"></label>
-        <label>Reservations<input type="number" [(ngModel)]="priceForm.reservations"></label>
-        <label>Nb Events<input type="number" [(ngModel)]="priceForm.nb_events"></label>
-        <label>Avg Spent/User<input type="number" [(ngModel)]="priceForm.avg_spent_user"></label>
-        <label>Type<input type="text" [(ngModel)]="priceForm.type"></label>
-        <label>Status<input type="text" [(ngModel)]="priceForm.status"></label>
+      <div class="nz-form-grid">
+        <div class="nz-field"><label class="nz-label">Price</label><nz-input-number [(ngModel)]="priceForm.price" [nzStep]="10" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Budget</label><nz-input-number [(ngModel)]="priceForm.budget" [nzStep]="100" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Marketing Spend</label><nz-input-number [(ngModel)]="priceForm.marketing_spend" [nzStep]="10" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">New Beneficiaries</label><nz-input-number [(ngModel)]="priceForm.new_beneficiaries" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Reservations</label><nz-input-number [(ngModel)]="priceForm.reservations" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Nb Events</label><nz-input-number [(ngModel)]="priceForm.nb_events" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Avg Spent / User</label><nz-input-number [(ngModel)]="priceForm.avg_spent_user" [nzStep]="5" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Type</label>
+          <nz-select [(ngModel)]="priceForm.type" style="width:100%">
+            <nz-option nzValue="Corporate Event" nzLabel="Corporate Event"></nz-option>
+            <nz-option nzValue="Private Party" nzLabel="Private Party"></nz-option>
+            <nz-option nzValue="Wedding" nzLabel="Wedding"></nz-option>
+          </nz-select>
+        </div>
+        <div class="nz-field"><label class="nz-label">Status</label>
+          <nz-select [(ngModel)]="priceForm.status" style="width:100%">
+            <nz-option nzValue="confirmed" nzLabel="Confirmed"></nz-option>
+            <nz-option nzValue="cancelled" nzLabel="Cancelled"></nz-option>
+            <nz-option nzValue="pending" nzLabel="Pending"></nz-option>
+          </nz-select>
+        </div>
       </div>
       <div class="panel-actions">
-        <button class="btn-run" (click)="runPricePredict()" [disabled]="priceLoading()">{{ priceLoading() ? 'Running…' : 'Predict' }}</button>
-        <button class="btn-train" (click)="trainPrice()" [disabled]="priceLoading()">Train Model</button>
+        <button nz-button nzType="primary" (click)="runPricePredict()" [nzLoading]="priceLoading()">Predict</button>
       </div>
       <p *ngIf="priceError()" class="panel-error">{{ priceError() }}</p>
       <div *ngIf="priceResult()" class="price-result panel-result">
@@ -302,24 +303,47 @@
     <div *ngIf="selectedModel() === 'fidel'" class="catalog-panel">
       <button class="panel-back" (click)="selectModel(null)">← Back</button>
       <h3 class="panel-title">Fidelisation Prediction</h3>
-      <div class="form-grid">
-        <label>Price<input type="number" [(ngModel)]="fidelForm.price"></label>
-        <label>Budget<input type="number" [(ngModel)]="fidelForm.budget"></label>
-        <label>Final Price<input type="number" [(ngModel)]="fidelForm.final_price"></label>
-        <label>Rating<input type="number" step="0.1" [(ngModel)]="fidelForm.rating"></label>
-        <label>Visitors<input type="number" [(ngModel)]="fidelForm.visitors"></label>
-        <label>Marketing Spend<input type="number" [(ngModel)]="fidelForm.marketing_spend"></label>
-        <label>Price/Budget Ratio<input type="number" step="0.01" [(ngModel)]="fidelForm.price_budget_ratio"></label>
-        <label>Margin<input type="number" [(ngModel)]="fidelForm.margin"></label>
-        <label>Has Complaint (0/1)<input type="number" [(ngModel)]="fidelForm.has_complaint"></label>
-        <label>Type Encoded<input type="number" [(ngModel)]="fidelForm.type_encoded"></label>
-        <label>Season Encoded<input type="number" [(ngModel)]="fidelForm.season_encoded"></label>
-        <label>Is Weekend (0/1)<input type="number" [(ngModel)]="fidelForm.is_weekend"></label>
-        <label>Month<input type="number" [(ngModel)]="fidelForm.month"></label>
+      <div class="nz-form-grid">
+        <div class="nz-field"><label class="nz-label">Price</label><nz-input-number [(ngModel)]="fidelForm.price" [nzStep]="10" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Budget</label><nz-input-number [(ngModel)]="fidelForm.budget" [nzStep]="100" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Final Price</label><nz-input-number [(ngModel)]="fidelForm.final_price" [nzStep]="10" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Rating</label><nz-input-number [(ngModel)]="fidelForm.rating" [nzStep]="0.1" [nzMin]="0" [nzMax]="5" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Visitors</label><nz-input-number [(ngModel)]="fidelForm.visitors" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Marketing Spend</label><nz-input-number [(ngModel)]="fidelForm.marketing_spend" [nzStep]="10" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Price / Budget Ratio</label><nz-input-number [(ngModel)]="fidelForm.price_budget_ratio" [nzStep]="0.01" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Margin</label><nz-input-number [(ngModel)]="fidelForm.margin" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Has Complaint</label>
+          <nz-select [(ngModel)]="fidelForm.has_complaint" style="width:100%">
+            <nz-option [nzValue]="0" nzLabel="No"></nz-option>
+            <nz-option [nzValue]="1" nzLabel="Yes"></nz-option>
+          </nz-select>
+        </div>
+        <div class="nz-field"><label class="nz-label">Event Type</label>
+          <nz-select [(ngModel)]="fidelForm.type_encoded" style="width:100%">
+            <nz-option [nzValue]="0" nzLabel="Corporate Event"></nz-option>
+            <nz-option [nzValue]="1" nzLabel="Private Party"></nz-option>
+            <nz-option [nzValue]="2" nzLabel="Wedding"></nz-option>
+            <nz-option [nzValue]="3" nzLabel="Unknown"></nz-option>
+          </nz-select>
+        </div>
+        <div class="nz-field"><label class="nz-label">Season</label>
+          <nz-select [(ngModel)]="fidelForm.season_encoded" style="width:100%">
+            <nz-option [nzValue]="0" nzLabel="Autumn"></nz-option>
+            <nz-option [nzValue]="1" nzLabel="Summer"></nz-option>
+            <nz-option [nzValue]="2" nzLabel="Winter"></nz-option>
+            <nz-option [nzValue]="3" nzLabel="Spring"></nz-option>
+          </nz-select>
+        </div>
+        <div class="nz-field"><label class="nz-label">Is Weekend</label>
+          <nz-select [(ngModel)]="fidelForm.is_weekend" style="width:100%">
+            <nz-option [nzValue]="0" nzLabel="No"></nz-option>
+            <nz-option [nzValue]="1" nzLabel="Yes"></nz-option>
+          </nz-select>
+        </div>
+        <div class="nz-field"><label class="nz-label">Month</label><nz-input-number [(ngModel)]="fidelForm.month" [nzMin]="1" [nzMax]="12" style="width:100%"></nz-input-number></div>
       </div>
       <div class="panel-actions">
-        <button class="btn-run" (click)="runFidelPredict()" [disabled]="fidelLoading()">{{ fidelLoading() ? 'Running…' : 'Predict' }}</button>
-        <button class="btn-train" (click)="trainFidel()" [disabled]="fidelLoading()">Train Model</button>
+        <button nz-button nzType="primary" (click)="runFidelPredict()" [nzLoading]="fidelLoading()">Predict</button>
       </div>
       <p *ngIf="fidelError()" class="panel-error">{{ fidelError() }}</p>
       <div *ngIf="fidelResult()" class="fidel-result panel-result">
@@ -338,24 +362,24 @@
     <div *ngIf="selectedModel() === 'loyalty'" class="catalog-panel">
       <button class="panel-back" (click)="selectModel(null)">← Back</button>
       <h3 class="panel-title">Loyalty Score</h3>
-      <div class="form-grid">
-        <label>Price<input type="number" [(ngModel)]="loyaltyForm.price"></label>
-        <label>Budget<input type="number" [(ngModel)]="loyaltyForm.budget"></label>
-        <label>Final Price<input type="number" [(ngModel)]="loyaltyForm.final_price"></label>
-        <label>Rating<input type="number" step="0.1" [(ngModel)]="loyaltyForm.rating"></label>
-        <label>Visitors<input type="number" [(ngModel)]="loyaltyForm.visitors"></label>
-        <label>Event Date<input type="date" [(ngModel)]="loyaltyForm.event_date"></label>
-        <label>Event Type
-          <select [(ngModel)]="loyaltyForm.event_type">
-            <option>Corporate Event</option>
-            <option>Private Party</option>
-            <option>Wedding</option>
-            <option>inconnu</option>
-          </select>
-        </label>
+      <div class="nz-form-grid">
+        <div class="nz-field"><label class="nz-label">Price</label><nz-input-number [(ngModel)]="loyaltyForm.price" [nzStep]="10" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Budget</label><nz-input-number [(ngModel)]="loyaltyForm.budget" [nzStep]="100" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Final Price</label><nz-input-number [(ngModel)]="loyaltyForm.final_price" [nzStep]="10" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Rating</label><nz-input-number [(ngModel)]="loyaltyForm.rating" [nzStep]="0.1" [nzMin]="0" [nzMax]="5" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Visitors</label><nz-input-number [(ngModel)]="loyaltyForm.visitors" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Event Date</label><nz-date-picker [(ngModel)]="loyaltyForm.event_date" nzFormat="yyyy-MM-dd" style="width:100%"></nz-date-picker></div>
+        <div class="nz-field"><label class="nz-label">Event Type</label>
+          <nz-select [(ngModel)]="loyaltyForm.event_type" style="width:100%">
+            <nz-option nzValue="Corporate Event" nzLabel="Corporate Event"></nz-option>
+            <nz-option nzValue="Private Party" nzLabel="Private Party"></nz-option>
+            <nz-option nzValue="Wedding" nzLabel="Wedding"></nz-option>
+            <nz-option nzValue="inconnu" nzLabel="Unknown"></nz-option>
+          </nz-select>
+        </div>
       </div>
       <div class="panel-actions">
-        <button class="btn-run" (click)="runLoyaltyPredict()" [disabled]="loyaltyLoading()">{{ loyaltyLoading() ? 'Running…' : 'Predict' }}</button>
+        <button nz-button nzType="primary" (click)="runLoyaltyPredict()" [nzLoading]="loyaltyLoading()">Predict</button>
       </div>
       <p *ngIf="loyaltyError()" class="panel-error">{{ loyaltyError() }}</p>
       <div *ngIf="loyaltyResult()" class="loyalty-result panel-result">
@@ -369,35 +393,35 @@
     <div *ngIf="selectedModel() === 'cluster'" class="catalog-panel">
       <button class="panel-back" (click)="selectModel(null)">← Back</button>
       <h3 class="panel-title">Clustering</h3>
-      <div class="form-grid">
-        <label>Budget<input type="number" [(ngModel)]="clusterForm.budget"></label>
-        <label>Price<input type="number" [(ngModel)]="clusterForm.price"></label>
-        <label>Final Price<input type="number" [(ngModel)]="clusterForm.final_price"></label>
-        <label>Rating<input type="number" step="0.1" [(ngModel)]="clusterForm.rating"></label>
-        <label>Visitors<input type="number" [(ngModel)]="clusterForm.visitors"></label>
-        <label>Algorithm
-          <select [(ngModel)]="clusterForm.algo">
-            <option value="kmeans">KMeans</option>
-            <option value="dbscan">DBSCAN</option>
-          </select>
-        </label>
-        <label>Event Type
-          <select [(ngModel)]="clusterForm.event_type">
-            <option>Corporate Event</option>
-            <option>Private Party</option>
-            <option>Wedding</option>
-          </select>
-        </label>
-        <label>Reservation Status
-          <select [(ngModel)]="clusterForm.reservation_status">
-            <option value="confirmed">Confirmed</option>
-            <option value="cancelled">Cancelled</option>
-            <option value="pending">Pending</option>
-          </select>
-        </label>
+      <div class="nz-form-grid">
+        <div class="nz-field"><label class="nz-label">Budget</label><nz-input-number [(ngModel)]="clusterForm.budget" [nzStep]="100" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Price</label><nz-input-number [(ngModel)]="clusterForm.price" [nzStep]="10" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Final Price</label><nz-input-number [(ngModel)]="clusterForm.final_price" [nzStep]="10" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Rating</label><nz-input-number [(ngModel)]="clusterForm.rating" [nzStep]="0.1" [nzMin]="0" [nzMax]="5" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Visitors</label><nz-input-number [(ngModel)]="clusterForm.visitors" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Algorithm</label>
+          <nz-select [(ngModel)]="clusterForm.algo" style="width:100%">
+            <nz-option nzValue="kmeans" nzLabel="KMeans"></nz-option>
+            <nz-option nzValue="dbscan" nzLabel="DBSCAN"></nz-option>
+          </nz-select>
+        </div>
+        <div class="nz-field"><label class="nz-label">Event Type</label>
+          <nz-select [(ngModel)]="clusterForm.event_type" style="width:100%">
+            <nz-option nzValue="Corporate Event" nzLabel="Corporate Event"></nz-option>
+            <nz-option nzValue="Private Party" nzLabel="Private Party"></nz-option>
+            <nz-option nzValue="Wedding" nzLabel="Wedding"></nz-option>
+          </nz-select>
+        </div>
+        <div class="nz-field"><label class="nz-label">Reservation Status</label>
+          <nz-select [(ngModel)]="clusterForm.reservation_status" style="width:100%">
+            <nz-option nzValue="confirmed" nzLabel="Confirmed"></nz-option>
+            <nz-option nzValue="cancelled" nzLabel="Cancelled"></nz-option>
+            <nz-option nzValue="pending" nzLabel="Pending"></nz-option>
+          </nz-select>
+        </div>
       </div>
       <div class="panel-actions">
-        <button class="btn-run" (click)="runClusterPredict()" [disabled]="clusterLoading()">{{ clusterLoading() ? 'Running…' : 'Predict' }}</button>
+        <button nz-button nzType="primary" (click)="runClusterPredict()" [nzLoading]="clusterLoading()">Predict</button>
       </div>
       <p *ngIf="clusterError()" class="panel-error">{{ clusterError() }}</p>
       <div *ngIf="clusterResult()" class="cluster-result panel-result">
@@ -417,16 +441,16 @@
     <div *ngIf="selectedModel() === 'forecast'" class="catalog-panel">
       <button class="panel-back" (click)="selectModel(null)">← Back</button>
       <h3 class="panel-title">Demand Forecasting</h3>
-      <div class="form-grid">
-        <label>Category
-          <select [(ngModel)]="forecastForm.category_name">
-            <option *ngFor="let c of categories()" [value]="c">{{ c }}</option>
-          </select>
-        </label>
-        <label>Horizon (months)<input type="number" [(ngModel)]="forecastForm.horizon"></label>
+      <div class="nz-form-grid">
+        <div class="nz-field"><label class="nz-label">Category</label>
+          <nz-select [(ngModel)]="forecastForm.category_name" style="width:100%">
+            <nz-option *ngFor="let c of categories()" [nzValue]="c" [nzLabel]="c"></nz-option>
+          </nz-select>
+        </div>
+        <div class="nz-field"><label class="nz-label">Horizon (months)</label><nz-input-number [(ngModel)]="forecastForm.horizon" [nzMin]="1" [nzMax]="24" style="width:100%"></nz-input-number></div>
       </div>
       <div class="panel-actions">
-        <button class="btn-run" (click)="runForecast()" [disabled]="forecastLoading()">{{ forecastLoading() ? 'Running…' : 'Forecast' }}</button>
+        <button nz-button nzType="primary" (click)="runForecast()" [nzLoading]="forecastLoading()">Forecast</button>
       </div>
       <p *ngIf="forecastError()" class="panel-error">{{ forecastError() }}</p>
       <div *ngIf="forecastResult()" class="forecast-result panel-result">
@@ -458,11 +482,13 @@
     <div *ngIf="selectedModel() === 'sentiment'" class="catalog-panel">
       <button class="panel-back" (click)="selectModel(null)">← Back</button>
       <h3 class="panel-title">Sentiment Analysis</h3>
-      <div class="form-grid form-grid-full">
-        <label>Review Text<textarea rows="3" [(ngModel)]="sentimentText"></textarea></label>
+      <div class="nz-form-grid nz-form-grid-full">
+        <div class="nz-field"><label class="nz-label">Review Text</label>
+          <textarea nz-input [(ngModel)]="sentimentText" [nzAutosize]="{ minRows: 3, maxRows: 6 }"></textarea>
+        </div>
       </div>
       <div class="panel-actions">
-        <button class="btn-run" (click)="runSentiment()" [disabled]="sentimentLoading()">{{ sentimentLoading() ? 'Running…' : 'Analyze' }}</button>
+        <button nz-button nzType="primary" (click)="runSentiment()" [nzLoading]="sentimentLoading()">Analyze</button>
       </div>
       <div *ngIf="sentimentResult()" class="sentiment-result panel-result">
         <span class="result-label">{{ sentimentResult()!.label }}</span>
@@ -475,18 +501,28 @@
     <div *ngIf="selectedModel() === 'reco'" class="catalog-panel">
       <button class="panel-back" (click)="selectModel(null)">← Back</button>
       <h3 class="panel-title">Event Recommendations</h3>
-      <div class="form-grid">
-        <label>Beneficiary ID<input type="number" [(ngModel)]="recoBeneId"></label>
-        <label>Count<input type="number" [(ngModel)]="recoCount"></label>
+      <div class="nz-form-grid">
+        <div class="nz-field"><label class="nz-label">Beneficiary ID</label><nz-input-number [(ngModel)]="recoBeneId" [nzMin]="1" style="width:100%"></nz-input-number></div>
+        <div class="nz-field"><label class="nz-label">Count</label><nz-input-number [(ngModel)]="recoCount" [nzMin]="1" [nzMax]="10" style="width:100%"></nz-input-number></div>
       </div>
       <div class="panel-actions">
-        <button class="btn-run" (click)="runReco()" [disabled]="recoLoading()">{{ recoLoading() ? 'Running…' : 'Recommend' }}</button>
+        <button nz-button nzType="primary" (click)="runReco()" [nzLoading]="recoLoading()">Recommend</button>
       </div>
       <p *ngIf="recoError()" class="panel-error">{{ recoError() }}</p>
       <div *ngIf="recoResult()" class="reco-result panel-result">
-        <span class="result-label">Recommended Events</span>
-        <span class="result-value">{{ recoResult()!.recommendations.join(', ') }}</span>
-        <span class="result-meta">Type: {{ recoResult()!.type }}</span>
+        <span class="result-label">Recommended Events · {{ recoResult()!.type }}</span>
+        <table class="reco-table">
+          <thead><tr><th>#</th><th>Type</th><th>Title</th><th>Avg Rating</th><th>Score</th></tr></thead>
+          <tbody>
+            <tr *ngFor="let item of recoResult()!.recommendations; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td><span class="reco-badge">{{ item.event_type }}</span></td>
+              <td>{{ item.event_title || '—' }}</td>
+              <td>{{ item.avg_rating | number:'1.1-1' }} ★</td>
+              <td>{{ item.score | number:'1.3-3' }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
@@ -495,7 +531,7 @@
       <button class="panel-back" (click)="selectModel(null)">← Back</button>
       <h3 class="panel-title">Anomaly Detection</h3>
       <div class="panel-actions">
-        <button class="btn-run" (click)="runAnomalies()" [disabled]="anomalyLoading()">{{ anomalyLoading() ? 'Running…' : 'Detect' }}</button>
+        <button nz-button nzType="primary" nzDanger (click)="runAnomalies()" [nzLoading]="anomalyLoading()">Detect</button>
       </div>
       <p *ngIf="anomalyError()" class="panel-error">{{ anomalyError() }}</p>
       <div *ngIf="anomalyResult()" class="anomaly-result panel-result">
@@ -511,7 +547,7 @@
       <h3 class="panel-title">Deep Learning (MLP)</h3>
       <p class="panel-desc">Uses the same inputs as Fidelisation. Fill the Fidelisation form first if needed.</p>
       <div class="panel-actions">
-        <button class="btn-run" (click)="runDL()" [disabled]="dlLoading()">{{ dlLoading() ? 'Running…' : 'Predict' }}</button>
+        <button nz-button nzType="primary" (click)="runDL()" [nzLoading]="dlLoading()">Predict</button>
       </div>
       <p *ngIf="dlError()" class="panel-error">{{ dlError() }}</p>
       <div *ngIf="dlResult()" class="dl-result panel-result">

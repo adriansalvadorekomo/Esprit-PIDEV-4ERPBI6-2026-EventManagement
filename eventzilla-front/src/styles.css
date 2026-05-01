@@ -141,3 +141,109 @@ app-root::before, app-root::after,
     radial-gradient(ellipse 60% 40% at 80% 80%, rgba(14,165,233,0.08) 0%, transparent 60%),
     var(--bg-base);
 }
+
+
+/* ── ng-zorro theme overrides ──────────────────────────────────────────── */
+.nz-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+.nz-form-grid-full { grid-template-columns: 1fr; }
+
+.nz-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nz-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* Input number, input, select, date-picker */
+.ant-input-number,
+.ant-select:not(.ant-select-customize-input) .ant-select-selector,
+.ant-picker,
+.ant-input {
+  background: var(--bg-base) !important;
+  border-color: var(--border-muted) !important;
+  color: var(--text-primary) !important;
+  border-radius: 6px !important;
+}
+
+.ant-input-number-input,
+.ant-picker-input > input,
+.ant-select-selection-item,
+.ant-select-selection-placeholder {
+  color: var(--text-primary) !important;
+}
+
+.ant-input-number:hover,
+.ant-select:not(.ant-select-customize-input) .ant-select-selector:hover,
+.ant-picker:hover,
+.ant-input:hover {
+  border-color: var(--accent) !important;
+}
+
+.ant-input-number-focused,
+.ant-input-number:focus,
+.ant-select-focused .ant-select-selector,
+.ant-picker-focused,
+.ant-input:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 2px var(--accent-glow) !important;
+}
+
+/* Dropdown */
+.ant-select-dropdown,
+.ant-picker-dropdown .ant-picker-panel-container {
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-muted) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.ant-select-item {
+  color: var(--text-secondary) !important;
+}
+
+.ant-select-item-option-active,
+.ant-select-item-option-selected {
+  background: var(--accent-glow) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Date picker cells */
+.ant-picker-cell-in-view .ant-picker-cell-inner {
+  color: var(--text-primary) !important;
+}
+.ant-picker-cell:not(.ant-picker-cell-in-view) .ant-picker-cell-inner {
+  color: var(--text-muted) !important;
+}
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+  background: var(--accent) !important;
+}
+.ant-picker-header, .ant-picker-header button {
+  color: var(--text-primary) !important;
+}
+.ant-picker-content th { color: var(--text-muted) !important; }
+
+/* nz-button primary */
+.ant-btn-primary {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+.ant-btn-primary:hover {
+  background: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+}
+
+/* Input number handler arrows */
+.ant-input-number-handler-wrap {
+  background: var(--bg-elevated) !important;
+  border-color: var(--border-muted) !important;
+}
+.ant-input-number-handler { color: var(--text-secondary) !important; }

@@ -85,17 +85,19 @@ export interface SentimentResponse {
   label: string;
 }
 
-export interface RecommendationRequest {
-  beneficiary_id: number;
-  n_reco?: number;
+export interface RecommendationItem {
+  event_sk: number;
+  event_type: string;
+  event_title: string | null;
+  avg_rating: number | null;
+  score: number;
 }
 
 export interface RecommendationResponse {
   status: string;
   beneficiary_id?: number;
-  recommendations: number[];
+  recommendations: RecommendationItem[];
   type: string;
-  scores?: number[];
 }
 
 export interface AnomalyRecord {
