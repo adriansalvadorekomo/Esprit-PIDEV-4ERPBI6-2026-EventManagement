@@ -47,21 +47,8 @@
           <div *ngIf="msg.role === 'user'" class="avatar avatar-user">Me</div>
         </div>
 
-        <div *ngIf="msg.data && msg.data.length" class="msg-table-wrap">
-          <table class="msg-table">
-            <thead>
-              <tr><th *ngFor="let key of tableKeys(msg.data[0])">{{ key }}</th></tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let row of msg.data">
-                <td *ngFor="let key of tableKeys(row)">{{ row[key] }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div *ngIf="msg.type === 'chart' && msg.data && msg.data.length" class="chart-placeholder">
-          📊 Chart visualization — coming soon
+        <div *ngIf="msg.type === 'chart' && msg.chartId && msg.data && msg.data.length" class="chart-wrap">
+          <canvas [id]="msg.chartId" class="chart-canvas"></canvas>
         </div>
       </ng-container>
 

@@ -18,6 +18,7 @@ export interface ChatResponse {
   sql: string | null;
   data: Record<string, unknown>[];
   type: 'kpi' | 'chart' | 'general';
+  chart_type: 'bar' | 'horizontalBar' | 'pie' | 'line' | null;
   status: string;
 }
 
