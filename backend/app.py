@@ -64,9 +64,9 @@ def get_engine():
     import os
     host = os.getenv("FLASK_APP_DB_HOST", "localhost")
     port = os.getenv("FLASK_APP_DB_PORT", "5432")
-    name = os.getenv("FLASK_APP_DB_NAME", "DW_event")
+    name = os.getenv("FLASK_APP_DB_NAME", "event")
     user = os.getenv("FLASK_APP_DB_USER", "postgres")
-    password = os.getenv("FLASK_APP_DB_PASSWORD", "1400")
+    password = os.getenv("FLASK_APP_DB_PASSWORD", "00256")
     return create_engine(f"postgresql://{user}:{password}@{host}:{port}/{name}")
 
 def load_cluster_metrics():
@@ -81,7 +81,7 @@ def load_cluster_metrics():
     FROM fact_suivi_event f
     LEFT JOIN dim_event e ON f.event_sk = e.event_sk
     LEFT JOIN dim_reservation r ON f.reservation_sk = r.reservation_sk
-    LEFT JOIN "dim_complaint" c ON f.id_complaint = c.id_complaint
+    LEFT JOIN "DIM_complaint" c ON f.id_complaint = c.id_complaint
     """
 
     engine = get_engine()

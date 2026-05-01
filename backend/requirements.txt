@@ -11,6 +11,7 @@ uvicorn
 xgboost
 imbalanced-learn
 Flask
+flask-cors
 statsmodels
 
 pmdarima

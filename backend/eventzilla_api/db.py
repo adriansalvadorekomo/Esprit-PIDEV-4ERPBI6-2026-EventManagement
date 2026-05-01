@@ -16,4 +16,3 @@ def get_engine() -> Engine:
         pool_pre_ping=True,
         pool_recycle=300,
     )
-
